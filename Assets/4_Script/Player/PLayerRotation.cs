@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PLayerRotation : MonoBehaviour
@@ -9,6 +7,7 @@ public class PLayerRotation : MonoBehaviour
     [SerializeField] private float MinRotateX;
     [SerializeField] private float MaxRotateX;
     private Vector3 originRotation;
+
     private void Start()
     {
         originRotation = transform.localEulerAngles;
