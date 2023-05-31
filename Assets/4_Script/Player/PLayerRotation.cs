@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PLayerRotation : MonoBehaviour
 {
+    [Header("Rotation properties")]
     [SerializeField] private float MouseYIntensivity;
     [SerializeField] private float MouseXIntensivity;
     [SerializeField] private float MinRotateX;

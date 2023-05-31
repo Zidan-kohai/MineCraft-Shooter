@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class Enemy : HealthObject
 {
-
     public override void GetDamage(int damage)
     {
         health -= damage;
