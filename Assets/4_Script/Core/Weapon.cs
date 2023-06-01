@@ -15,12 +15,12 @@ public class Weapon : MonoBehaviour, Interactable
     [SerializeField] private Vector3 rotation;
 
     [Header("Recharge Properties")]
-    [SerializeField] private float rechargeTime;
-    [SerializeField] private bool isRecharge;
+    [SerializeField] protected float rechargeTime;
+    [SerializeField] protected bool isRecharge;
 
     [Header("Shoot Properties")]
     [SerializeField] private float delayBetweenShoot;
-    [SerializeField] private bool canShoot = true;
+    [SerializeField] protected bool canShoot = true;
 
     [Header("Components")]
     [SerializeField] private Rigidbody rb;
