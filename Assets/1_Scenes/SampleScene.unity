@@ -988,8 +988,9 @@ MonoBehaviour:
   maxPatronsInMagazine: 7
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 70, z: -10}
-  isRecharging: 0
-  rechargeTime: 2
+  rechargeTime: 0
+  lastedTimeFromLstRecharge: 2
+  isRecharge: 0
   rb: {fileID: 918989637}
 --- !u!65 &918989635
 BoxCollider:
@@ -1565,8 +1566,9 @@ MonoBehaviour:
   maxPatronsInMagazine: 7
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 70, z: -10}
-  isRecharging: 0
   rechargeTime: 2
+  lastedTimeFromLstRecharge: 0
+  isRecharge: 0
   rb: {fileID: 1469921251}
 --- !u!65 &1469921253
 BoxCollider:
@@ -1891,7 +1893,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4624713274624258741, guid: b4526d730edccdc4e8510851e5508ad4, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5664114271613963535, guid: b4526d730edccdc4e8510851e5508ad4, type: 3}
       propertyPath: m_LocalPosition.x
