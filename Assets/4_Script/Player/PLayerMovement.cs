@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-public class PLayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     [Header("Force")]
     [SerializeField] private float walkForce;
@@ -11,8 +11,11 @@ public class PLayerMovement : MonoBehaviour
 
     [Header("Ground Check")]
     [SerializeField] private bool isGround;
+    [SerializeField] private float sphereRadius;
     [SerializeField] private float rayLenght;
-    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private Transform groundCheckPosition;
+    [SerializeField] private Vector3 ofset;
+    [SerializeField] private string[] groundTag;
 
     private float Yvelocity;
     private CharacterController controller;
@@ -67,12 +70,25 @@ public class PLayerMovement : MonoBehaviour
 
     private bool CheckGround()
     {
-        RaycastHit hit;
-        Debug.DrawRay(transform.position, Vector3.down, Color.green, rayLenght);
-        if(Physics.Raycast(transform.position, Vector3.down, out hit, rayLenght, groundLayer)) 
+        RaycastHit[] hit;
+        hit = Physics.SphereCastAll(groundCheckPosition.position + ofset, sphereRadius, Vector3.down, rayLenght);
+        foreach (RaycastHit h in hit)
         {
-            return true;
+            foreach (string ground in groundTag)
+            {
+                if (h.transform.CompareTag(ground))
+                {
+                    return true;
+                }
+            }
         }
+
         return false;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(groundCheckPosition.position + ofset, sphereRadius);
     }
 }

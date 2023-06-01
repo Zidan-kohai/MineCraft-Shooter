@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PLayerRotation : MonoBehaviour
+public class PlayerRotation : MonoBehaviour
 {
     [Header("Rotation properties")]
     [SerializeField] private Transform head;
