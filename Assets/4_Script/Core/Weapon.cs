@@ -45,6 +45,8 @@ public class Weapon : MonoBehaviour, Interactable
             {
                 canShoot = true;
             });
+
+        EventManager.Instance.OnShoot(currentPatronsInMagazine,allPatrons,maxPatronsInMagazine);
     }
 
     public virtual void Inspect() { }
@@ -72,8 +74,9 @@ public class Weapon : MonoBehaviour, Interactable
 
                 currentPatronsInMagazine += howManyPatronsWeCanAdd;
                 allPatrons -= howManyPatronsWeCanAdd;
+                EventManager.Instance.OnShoot(currentPatronsInMagazine, allPatrons, maxPatronsInMagazine);
             });
-
+        
     }
 
     public void Interaction(Transform parent)
@@ -82,7 +85,7 @@ public class Weapon : MonoBehaviour, Interactable
         transform.localPosition = position;
         transform.localRotation = Quaternion.Euler(rotation);
 
-        Debug.Log("Interaction");
+        EventManager.Instance.OnShoot(currentPatronsInMagazine, allPatrons, maxPatronsInMagazine);
     }
 
     public void AddToPlayerHand(Transform parent)
