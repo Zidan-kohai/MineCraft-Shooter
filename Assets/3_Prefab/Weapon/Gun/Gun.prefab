@@ -96,7 +96,7 @@ MonoBehaviour:
   maxPatronsInMagazine: 7
   currentPatronsInMagazine: 0
   position: {x: 0, y: 0, z: 0}
-  rotation: {x: 0, y: 70, z: -10}
+  rotation: {x: 0, y: 80, z: -10}
   rechargeTime: 2
   isRecharge: 0
   delayBetweenShoot: 0.3
@@ -105,7 +105,7 @@ MonoBehaviour:
   bulletSpawnPosition: {fileID: 6761765448594312848}
   bulletPrefab: {fileID: 6970171171338320101, guid: 110440070f84fa948a13ee7defdb6168, type: 3}
   damage: 2
-  bulletSpeed: 5
+  bulletSpeed: 60
 --- !u!54 &2250845669609097163
 Rigidbody:
   m_ObjectHideFlags: 0

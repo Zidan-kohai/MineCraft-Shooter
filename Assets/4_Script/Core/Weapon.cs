@@ -65,7 +65,9 @@ public class Weapon : MonoBehaviour, Interactable
                 isRecharge = false;
                 canShoot = true;
                 int countPatronsToFullMagazine = maxPatronsInMagazine - currentPatronsInMagazine;
-                int minCountPatronsCanAdd = allPatrons < maxPatronsInMagazine ? allPatrons : maxPatronsInMagazine;
+
+                int minCountPatronsCanAdd = allPatrons < countPatronsToFullMagazine ? allPatrons : countPatronsToFullMagazine;
+                
                 int howManyPatronsWeCanAdd = Mathf.Clamp(allPatrons - countPatronsToFullMagazine, minCountPatronsCanAdd, countPatronsToFullMagazine);
 
                 currentPatronsInMagazine += howManyPatronsWeCanAdd;
@@ -87,11 +89,13 @@ public class Weapon : MonoBehaviour, Interactable
     {
         transform.SetParent(parent);
         rb.isKinematic = true;
+        transform.GetComponent<Collider>().enabled = false;
     }
     public void RemoveFromPlayerHand()
     {
         transform.SetParent(null);
         rb.isKinematic = false;
+        transform.GetComponent<Collider>().enabled = true;
     }
 
 }
