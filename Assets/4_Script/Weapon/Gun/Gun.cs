@@ -31,6 +31,5 @@ public class Gun : Weapon
         Bullet bullet = Instantiate(bulletPrefab, bulletSpawnPosition.position, Quaternion.identity, bulletSpawnPosition);
         bullet.transform.SetParent(null);
         bullet.Init(bulletSpawnPosition.forward, damage, bulletSpeed);
-        
     }
 }
