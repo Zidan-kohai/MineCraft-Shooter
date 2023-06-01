@@ -16,8 +16,11 @@ public class Weapon : MonoBehaviour, Interactable
 
     [Header("Recharge Properties")]
     [SerializeField] private float rechargeTime;
-    [SerializeField] private float lastedTimeFromLstRecharge;
     [SerializeField] private bool isRecharge;
+
+    [Header("Shoot Properties")]
+    [SerializeField] private float delayBetweenShoot;
+    [SerializeField] private bool canShoot = true;
 
     [Header("Components")]
     [SerializeField] private Rigidbody rb;
@@ -25,12 +28,23 @@ public class Weapon : MonoBehaviour, Interactable
 
     public virtual void Shoot()
     {
+        if(!canShoot)
+        {
+            return;
+        }
+        canShoot = false;
         if (currentPatronsInMagazine == 0)
         {
             Recharge();
             return;
         }
         currentPatronsInMagazine--;
+
+        DOTween.Sequence()
+            .AppendInterval(delayBetweenShoot).OnComplete(() =>
+            {
+                canShoot = true;
+            });
     }
 
     public virtual void Inspect() { }
@@ -44,10 +58,12 @@ public class Weapon : MonoBehaviour, Interactable
         }
 
         isRecharge = true;
+        canShoot = false;
         DOTween.Sequence()
             .AppendInterval(rechargeTime).OnComplete(() =>
             {
                 isRecharge = false;
+                canShoot = true;
                 int countPatronsToFullMagazine = maxPatronsInMagazine - currentPatronsInMagazine;
                 int minCountPatronsCanAdd = allPatrons < maxPatronsInMagazine ? allPatrons : maxPatronsInMagazine;
                 int howManyPatronsWeCanAdd = Mathf.Clamp(allPatrons - countPatronsToFullMagazine, minCountPatronsCanAdd, countPatronsToFullMagazine);

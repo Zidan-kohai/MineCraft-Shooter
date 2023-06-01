@@ -986,11 +986,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allPatrons: 25
   maxPatronsInMagazine: 7
+  currentPatronsInMagazine: 0
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 70, z: -10}
   rechargeTime: 0
-  lastedTimeFromLstRecharge: 2
   isRecharge: 0
+  delayBetweenShoot: 0.3
+  canShoot: 1
   rb: {fileID: 918989637}
 --- !u!65 &918989635
 BoxCollider:
@@ -1564,11 +1566,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allPatrons: 25
   maxPatronsInMagazine: 7
+  currentPatronsInMagazine: 0
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 70, z: -10}
   rechargeTime: 2
-  lastedTimeFromLstRecharge: 0
   isRecharge: 0
+  delayBetweenShoot: 0.3
+  canShoot: 1
   rb: {fileID: 1469921251}
 --- !u!65 &1469921253
 BoxCollider:
