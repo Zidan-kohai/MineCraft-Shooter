@@ -2,7 +2,7 @@ using DG.Tweening;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class Weapon : MonoBehaviour, Interactable
+public class Weapon : Interactable
 {
 
     [Header("Patrons Properties")]
@@ -26,7 +26,7 @@ public class Weapon : MonoBehaviour, Interactable
     [SerializeField] private Rigidbody rb;
     public virtual void Idle() { }
 
-    public virtual void Shoot()
+    public virtual void Shoot(Transform OriginPosition)
     {
         if(!canShoot)
         {
@@ -79,7 +79,7 @@ public class Weapon : MonoBehaviour, Interactable
         
     }
 
-    public void Interaction(Transform parent)
+    public override void Interaction(Transform parent)
     {
         AddToPlayerHand(parent);
         transform.localPosition = position;

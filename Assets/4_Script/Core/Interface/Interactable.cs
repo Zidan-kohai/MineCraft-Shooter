@@ -1,6 +1,6 @@
 using UnityEngine;
 
-interface Interactable
+public abstract class Interactable : MonoBehaviour
 {
-    public void Interaction(Transform parent);
+    public virtual void Interaction(Transform parent) { }
 }

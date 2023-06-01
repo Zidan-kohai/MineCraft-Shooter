@@ -9,13 +9,13 @@ public class Gun : Weapon
     [SerializeField] private float bulletSpeed;
     public override void Idle() { }
 
-    public override void Shoot()
+    public override void Shoot(Transform originPosition)
     {
         if(currentPatronsInMagazine > 0 && canShoot && !isRecharge)
         {
-            bulletSpawn();
+            bulletSpawn(originPosition);
         }
-        base.Shoot();
+        base.Shoot(originPosition);
         
     }
 
@@ -26,10 +26,26 @@ public class Gun : Weapon
         base.Recharge();
     }
 
-    private void bulletSpawn()
+    private void bulletSpawn(Transform originPosition)
     {
+        Ray ray = new Ray(originPosition.position, originPosition.forward);
+
+        RaycastHit hit;
+
+        Vector3 targetPoint;
+        if(Physics.Raycast(ray, out hit))
+        {
+            targetPoint = hit.point;
+        }
+        else
+        {
+            targetPoint = ray.GetPoint(75);
+        }
+
+        Vector3 direction = targetPoint - bulletSpawnPosition.position;
+
         Bullet bullet = Instantiate(bulletPrefab, bulletSpawnPosition.position, Quaternion.identity, bulletSpawnPosition);
         bullet.transform.SetParent(null);
-        bullet.Init(bulletSpawnPosition.forward, damage, bulletSpeed);
+        bullet.Init(direction.normalized, damage, bulletSpeed);
     }
 }

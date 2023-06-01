@@ -40,9 +40,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2250845669609097162}
-  - component: {fileID: 2250845669609097165}
   - component: {fileID: 2250845669609097164}
   - component: {fileID: 2250845669609097163}
+  - component: {fileID: 7227181939779196731}
   m_Layer: 9
   m_Name: Gun
   m_TagString: Untagged
@@ -67,19 +67,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &2250845669609097165
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2250845669609097167}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.3, y: 0.3, z: 0.05}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2250845669609097164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,12 +83,13 @@ MonoBehaviour:
   maxPatronsInMagazine: 7
   currentPatronsInMagazine: 0
   position: {x: 0, y: 0, z: 0}
-  rotation: {x: 0, y: 80, z: -10}
+  rotation: {x: 0, y: 90, z: -4}
   rechargeTime: 2
   isRecharge: 0
   delayBetweenShoot: 0.3
   canShoot: 1
   rb: {fileID: 2250845669609097163}
+  cam: {fileID: 0}
   bulletSpawnPosition: {fileID: 6761765448594312848}
   bulletPrefab: {fileID: 6970171171338320101, guid: 110440070f84fa948a13ee7defdb6168, type: 3}
   damage: 2
@@ -122,6 +110,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &7227181939779196731
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2250845669609097167}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3, y: 0.2, z: 0.05}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &2250845669537812327
 PrefabInstance:
   m_ObjectHideFlags: 0

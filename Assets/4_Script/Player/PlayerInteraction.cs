@@ -17,10 +17,16 @@ public class PlayerInteraction : PlayerWeapon
     public void Update()
     {
         CheckInteractibleObject();
-        if (Input.GetKeyDown(KeyCode.E) && weapon != null)
+
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            DropWeapon();
+            if (weapon != null)
+            {
+                DropWeapon();
+            }
+            GetInteractibbleObject();
         }
+
         if (Input.GetMouseButton(0) && weapon != null)
         {
             Shoot();
@@ -33,7 +39,7 @@ public class PlayerInteraction : PlayerWeapon
 
     private void Shoot()
     {
-        weapon.Shoot();
+        weapon.Shoot(originPosition);
     }
     private void Recharge()
     {
@@ -48,21 +54,37 @@ public class PlayerInteraction : PlayerWeapon
 
     private void CheckInteractibleObject()
     {
-        if (Input.GetKey(KeyCode.E))
+        if (Physics.Raycast(originPosition.position, originPosition.TransformDirection(direction), out hit, length, layerMask))
         {
-            if (Physics.Raycast(originPosition.position, originPosition.TransformDirection(direction), out hit, length, layerMask))
+            if (hit.transform.TryGetComponent(out Interactable interactable))
             {
-                if(hit.transform.TryGetComponent(out Weapon weapon))
-                {
-                    if(this.weapon != null)
-                    {
-                        DropWeapon();
-                    }
-                    weapon.Interaction(hand.transform);
-                    this.weapon = weapon;
-                }
-                Debug.Log(hit.transform.name);
+                EventManager.Instance.OnPlayerInteraction(true);
+                Debug.Log(hit.collider + "HEllo");
             }
+        }
+        else
+        {
+            EventManager.Instance.OnPlayerInteraction(false);
+        }
+    }
+    private void GetInteractibbleObject()
+    {
+        if (hit.collider != null && hit.transform.TryGetComponent(out Interactable interactable))
+        {
+            if (hit.transform.TryGetComponent(out Weapon weapon))
+            {
+                if (this.weapon != null)
+                {
+                    DropWeapon();
+                }
+                weapon.Interaction(hand.transform);
+                this.weapon = weapon;
+            }
+            else
+            {
+                
+            }
+
         }
     }
 
