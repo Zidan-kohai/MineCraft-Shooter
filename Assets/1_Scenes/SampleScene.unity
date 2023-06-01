@@ -988,6 +988,8 @@ MonoBehaviour:
   maxPatronsInMagazine: 7
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 70, z: -10}
+  isRecharging: 0
+  rechargeTime: 2
   rb: {fileID: 918989637}
 --- !u!65 &918989635
 BoxCollider:
@@ -1563,6 +1565,8 @@ MonoBehaviour:
   maxPatronsInMagazine: 7
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 70, z: -10}
+  isRecharging: 0
+  rechargeTime: 2
   rb: {fileID: 1469921251}
 --- !u!65 &1469921253
 BoxCollider:

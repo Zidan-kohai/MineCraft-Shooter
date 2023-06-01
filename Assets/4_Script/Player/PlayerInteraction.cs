@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerInteraction : PlayerWeapon
@@ -15,11 +16,29 @@ public class PlayerInteraction : PlayerWeapon
     public void Update()
     {
         CheckInteractibleObject();
+
+        if (Input.GetMouseButton(0) && weapon != null)
+        {
+            Shoot();
+        }
+        if (Input.GetKeyDown(KeyCode.R) && weapon != null)
+        {
+            Recharge();
+        }
+    }
+
+    private void Shoot()
+    {
+        weapon.Shoot();
+    }
+    private void Recharge()
+    {
+        weapon.Recharge();
     }
 
     private void CheckInteractibleObject()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKey(KeyCode.E))
         {
             if (Physics.Raycast(originPosition.position, originPosition.TransformDirection(direction), out hit, length, layerMask))
             {
