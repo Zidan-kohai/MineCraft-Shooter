@@ -99,6 +99,8 @@ public class Weapon : MonoBehaviour, Interactable
         transform.SetParent(null);
         rb.isKinematic = false;
         transform.GetComponent<Collider>().enabled = true;
+
+        EventManager.Instance.OnShoot(0, 0, 0);
     }
 
 }

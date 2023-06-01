@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -16,7 +17,10 @@ public class PlayerInteraction : PlayerWeapon
     public void Update()
     {
         CheckInteractibleObject();
-
+        if (Input.GetKeyDown(KeyCode.E) && weapon != null)
+        {
+            DropWeapon();
+        }
         if (Input.GetMouseButton(0) && weapon != null)
         {
             Shoot();
@@ -35,6 +39,12 @@ public class PlayerInteraction : PlayerWeapon
     {
         weapon.Recharge();
     }
+    
+    private void DropWeapon()
+    {
+        weapon.RemoveFromPlayerHand();
+        weapon = null;
+    }
 
     private void CheckInteractibleObject()
     {
@@ -46,7 +56,7 @@ public class PlayerInteraction : PlayerWeapon
                 {
                     if(this.weapon != null)
                     {
-                        this.weapon.RemoveFromPlayerHand();
+                        DropWeapon();
                     }
                     weapon.Interaction(hand.transform);
                     this.weapon = weapon;
@@ -55,6 +65,7 @@ public class PlayerInteraction : PlayerWeapon
             }
         }
     }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
