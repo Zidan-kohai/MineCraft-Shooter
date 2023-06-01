@@ -39,6 +39,7 @@ public class PLayerMovement : MonoBehaviour
         {
             moveVelocity = runForce;
         }
+
         direction = transform.TransformDirection(direction.normalized);
         direction.y = 0;
         controller.Move(direction * moveVelocity * Time.deltaTime);
