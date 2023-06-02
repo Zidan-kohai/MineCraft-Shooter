@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Manager
 {
@@ -98,6 +99,16 @@ public class GameManager : Manager
         {
 
         }
+
+        if(enemies.Count == 0 || villegers.Count == 0)
+        {
+            NextLevel();
+        }
+    }
+
+    private void NextLevel()
+    {
+        SceneManager.LoadScene(0);
     }
 
     private void OnDestroy()

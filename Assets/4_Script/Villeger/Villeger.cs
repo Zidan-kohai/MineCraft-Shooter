@@ -37,6 +37,7 @@ public class Villeger : HealthObject
     public override void Death()
     {
         EventManager.Instance.OnDeath(this);
+        Destroy(gameObject);
         Debug.Log("Enemy Death");
     }
 }

@@ -77,8 +77,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 4880018750917547873}
-  speed: 5
-  damage: 1
+  damage: 10
 --- !u!1 &4880018751427255362
 GameObject:
   m_ObjectHideFlags: 0
