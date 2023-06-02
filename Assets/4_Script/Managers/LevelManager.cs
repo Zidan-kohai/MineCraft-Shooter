@@ -38,4 +38,9 @@ public class LevelManager : Manager
     {
         return positionsToVillegerWalkAndSpawn[Random.Range(0, positionsToVillegerWalkAndSpawn.Count)];
     }
+
+    public override void Destroy()
+    {
+        Instance = null;
+    }
 }

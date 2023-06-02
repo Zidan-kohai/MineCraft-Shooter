@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MainWindow : Window
+public class MainWindowManager : Window
 {
     [Header("Bullets")]
     [SerializeField] private GameObject countPatronShowPanel;
@@ -39,7 +39,7 @@ public class MainWindow : Window
         }
     }
 
-    private void OnDestroy()
+    public override void Destroy()
     {
         EventManager.Instance.UnsubscribeOnShoot(OnShoot);
         EventManager.Instance.UnsubscribePlayerInteraction(SetTarget);

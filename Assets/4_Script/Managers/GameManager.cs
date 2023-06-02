@@ -111,8 +111,9 @@ public class GameManager : Manager
         SceneManager.LoadScene(0);
     }
 
-    private void OnDestroy()
+    public override void Destroy()
     {
         EventManager.Instance.UnsubscribeOnDeath(RemoveHealthObjectFromList);
+        Instance = null;
     }
 }

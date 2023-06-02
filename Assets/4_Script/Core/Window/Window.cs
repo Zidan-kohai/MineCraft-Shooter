@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Window : MonoBehaviour
+public class Window : Manager
 {
 
 }

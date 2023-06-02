@@ -10,4 +10,9 @@ public class Manager : MonoBehaviour
     {
 
     }
+
+    public virtual void Destroy()
+    {
+
+    }
 }

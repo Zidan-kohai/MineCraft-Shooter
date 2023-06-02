@@ -11,4 +11,12 @@ public class Controller : MonoBehaviour
             manager.Init();
         }
     }
+
+    private void OnDestroy()
+    {
+        for(int i = managers.Count - 1; i >= 0; i--)
+        {
+            managers[i].Destroy();
+        }
+    }
 }

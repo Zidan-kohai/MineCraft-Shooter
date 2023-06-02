@@ -91,4 +91,9 @@ public class EventManager : Manager
         Death?.Invoke(obj);
     }
     #endregion
+
+    public override void Destroy()
+    {
+        Instance = null;
+    }
 }
