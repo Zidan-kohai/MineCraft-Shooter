@@ -14,6 +14,7 @@ public class PlayerData : HealthObject
 
     public override void Death()
     {
+        EventManager.Instance.OnDeath(this);
         Debug.Log("Player Death");
     }
 }

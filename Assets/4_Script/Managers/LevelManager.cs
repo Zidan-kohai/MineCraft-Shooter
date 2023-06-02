@@ -34,7 +34,7 @@ public class LevelManager : Manager
     {
         return positionToEnemySpawn[Random.Range(0, positionToEnemySpawn.Count)];
     }
-    public Transform GetRandomPositionForVillegerSpawn()
+    public Transform GetRandomPositionForVilleger()
     {
         return positionsToVillegerWalkAndSpawn[Random.Range(0, positionsToVillegerWalkAndSpawn.Count)];
     }

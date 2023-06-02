@@ -589,11 +589,12 @@ MonoBehaviour:
   jumpForce: 0.6
   gravityForce: -9.8
   isGround: 0
-  sphereRadius: 0
+  sphereRadius: 0.1
   rayLenght: 1.1
   groundCheckPosition: {fileID: 4624713274624258741}
   ofset: {x: 0, y: 0, z: 0}
-  groundTag: []
+  groundTag:
+  - Ground
 --- !u!114 &5664114272353951447
 MonoBehaviour:
   m_ObjectHideFlags: 0

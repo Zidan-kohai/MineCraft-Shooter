@@ -17,6 +17,7 @@ public class EventManager : Manager
 
     private Action<int, int,int> Shoot;
     private Action<bool> PlayerInteraction;
+    private Action<HealthObject> Death;
 
     #region Shoot
     public void SubscribeOnShoot(Action<int,int,int> sender)
@@ -65,5 +66,29 @@ public class EventManager : Manager
         PlayerInteraction?.Invoke(isInteraction);
     }
 
+    #endregion
+
+    #region Death
+    public void SubscribeOnDeath(Action<HealthObject> sender)
+    {
+        if (Death == null)
+        {
+            Death = sender;
+        }
+        else if (!Death.GetInvocationList().Contains(sender))
+        {
+            Death += sender;
+        }
+    }
+
+    public void UnsubscribeOnDeath(Action<HealthObject> sender)
+    {
+        Death -= sender;
+    }
+
+    public void OnDeath(HealthObject obj)
+    {
+        Death?.Invoke(obj);
+    }
     #endregion
 }

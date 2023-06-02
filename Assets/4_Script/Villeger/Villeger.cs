@@ -5,14 +5,13 @@ using UnityEngine.AI;
 public class Villeger : HealthObject
 {
     [SerializeField] private NavMeshAgent agent;
-    [SerializeField] private List<Transform> transforms;
     [SerializeField] private Transform target;
     [SerializeField] private float distanceToChooseNextTarget;
-    public override void Init(List<Transform> positions)
+    public override void Init()
     {
         agent = GetComponent<NavMeshAgent>();
-        transforms = positions;
     }
+
     public override void EveryFrame()
     {
         Walk();
@@ -21,8 +20,23 @@ public class Villeger : HealthObject
     {
         if (target == null || Mathf.Abs((target.position - transform.position).magnitude) < distanceToChooseNextTarget)
         {
-            target = transforms[Random.Range(0, transforms.Count)];
+            target = GameManager.Instance.GetNextPositionForVilleger();
             agent.destination = target.position;
         }
+    }
+    public override void GetDamage(int damage)
+    {
+        health -= damage;
+        health = Mathf.Clamp(health, 0, maxHealth);
+        if (health == 0)
+        {
+            Death();
+        }
+        Debug.Log("Enemy Getting Damage");
+    }
+    public override void Death()
+    {
+        EventManager.Instance.OnDeath(this);
+        Debug.Log("Enemy Death");
     }
 }

@@ -16,6 +16,12 @@ public class Enemy : HealthObject
     }
     private void Walk()
     {
+        if (target == null)
+        {
+            target = GameManager.Instance.GetNextVillegerForZombi(transform.position);
+            
+        }
+
         agent.destination = target.position;
     }
 
@@ -32,6 +38,7 @@ public class Enemy : HealthObject
 
     public override void Death()
     {
+        EventManager.Instance.OnDeath(this);
         Debug.Log("Enemy Death");
     }
 }
