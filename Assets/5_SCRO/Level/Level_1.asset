@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Level_1
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 6865219202673264043, guid: eb30352aca20ac04c85536939608223a, type: 3}
-  enemiesCountToSpawn: 2
+  enemiesCountToSpawn: 1
   playerPrefab: {fileID: 5664114272353951446, guid: b4526d730edccdc4e8510851e5508ad4, type: 3}
   villegerPrefab: {fileID: -6780780463443994710, guid: fa54fc0a76572e047b2f9877e8b57baa, type: 3}
-  villegersCountToSpawn: 2
+  villegersCountToSpawn: 1

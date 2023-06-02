@@ -3,8 +3,18 @@ using UnityEngine.AI;
 
 public class Enemy : HealthObject
 {
+    [Header("Components")]
     [SerializeField] private NavMeshAgent agent;
-    [SerializeField] private Transform target;
+
+    [Header("Target")]
+    [SerializeField] private HealthObject target;
+    [SerializeField] private float distanceToTarget;
+
+    
+    [SerializeField] private int damage;
+    [SerializeField] private float distanceToAttack;
+    [SerializeField] private float attackDelay;
+    [SerializeField] private float lastedTimeFromLastAttack;
     public override void Init()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -13,6 +23,11 @@ public class Enemy : HealthObject
     public override void EveryFrame()
     {
         Walk();
+        if(distanceToTarget < distanceToAttack && lastedTimeFromLastAttack > attackDelay)
+        {
+            Attack();
+        }
+        lastedTimeFromLastAttack += Time.deltaTime;
     }
     private void Walk()
     {
@@ -22,7 +37,14 @@ public class Enemy : HealthObject
             
         }
 
-        agent.destination = target.position;
+        agent.destination = target.transform.position;
+        distanceToTarget = (transform.position - target.transform.position).magnitude;
+    }
+
+    private void Attack()
+    {
+        target.GetDamage(damage);
+        lastedTimeFromLastAttack = 0;
     }
 
     public override void GetDamage(int damage)

@@ -69,16 +69,16 @@ public class GameManager : Manager
         return LevelManager.Instance.GetRandomPositionForVilleger();
     }
 
-    public Transform GetNextVillegerForZombi(Vector3 zombiePosition)
+    public HealthObject GetNextVillegerForZombi(Vector3 zombiePosition)
     {
         float newVillegerDistance = Mathf.Infinity;
-        Transform newVillegerTransform = null;
+        HealthObject newVillegerTransform = null;
         foreach (var villeger in villegers)
         {
             if((villeger.transform.position - zombiePosition).magnitude < newVillegerDistance)
             {
                 newVillegerDistance = (villeger.transform.position - zombiePosition).magnitude;
-                newVillegerTransform = villeger.transform;
+                newVillegerTransform = villeger;
             }
         }
 
