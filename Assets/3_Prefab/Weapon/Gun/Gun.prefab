@@ -82,14 +82,13 @@ MonoBehaviour:
   allPatrons: 25
   maxPatronsInMagazine: 7
   currentPatronsInMagazine: 0
-  position: {x: 0, y: 0, z: 0}
-  rotation: {x: 0, y: 90, z: -4}
+  position: {x: 0, y: 0, z: 0.15}
+  rotation: {x: 0, y: 95, z: 85}
   rechargeTime: 2
   isRecharge: 0
   delayBetweenShoot: 0.3
   canShoot: 1
   rb: {fileID: 2250845669609097163}
-  cam: {fileID: 0}
   bulletSpawnPosition: {fileID: 6761765448594312848}
   bulletPrefab: {fileID: 6970171171338320101, guid: 110440070f84fa948a13ee7defdb6168, type: 3}
   damage: 2
