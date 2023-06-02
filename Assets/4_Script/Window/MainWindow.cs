@@ -11,12 +11,14 @@ public class MainWindow : Window
     [SerializeField] private TMP_Text maxPatronsInMagazine;
 
     [Header("Interaction")]
-    [SerializeField] private GameObject tapEToUse;
+    [SerializeField] private Image target;
+    [SerializeField] private Sprite shootImage;
+    [SerializeField] private Sprite useImage;
 
     private void Start()
     {
         EventManager.Instance.SubscribeOnShoot(OnShoot);
-        EventManager.Instance.SubscribePlayerInteraction(TapEToUse);
+        EventManager.Instance.SubscribePlayerInteraction(SetTarget);
     }
     private void OnShoot(int currentPatronsInMagazine, int allPatrons, int maxPatronsInMagazine)
     {
@@ -25,14 +27,21 @@ public class MainWindow : Window
         this.maxPatronsInMagazine.text = maxPatronsInMagazine.ToString();
     }
 
-    private void TapEToUse(bool isInteraction)
+    private void SetTarget(bool isInteraction)
     {
-        tapEToUse.SetActive(isInteraction);
+        if (isInteraction)
+        {
+            target.sprite = useImage;
+        }
+        else
+        {
+            target.sprite = shootImage;
+        }
     }
 
     private void OnDestroy()
     {
         EventManager.Instance.UnsubscribeOnShoot(OnShoot);
-        EventManager.Instance.UnsubscribePlayerInteraction(TapEToUse);
+        EventManager.Instance.UnsubscribePlayerInteraction(SetTarget);
     }
 }
