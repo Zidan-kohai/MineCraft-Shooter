@@ -2,7 +2,7 @@ using DG.Tweening;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerInteraction : PlayerWeapon
+public class PlayerInteraction : PlayerData
 {
     [Header("Ray to check collide")]
     [SerializeField] private Transform originPosition;

@@ -629,7 +629,7 @@ MonoBehaviour:
   weapon: {fileID: 0}
   originPosition: {fileID: 5664114271353516608}
   direction: {x: 0, y: 0, z: 1}
-  length: 4
+  length: 8
   layerMask:
     serializedVersion: 2
     m_Bits: 512

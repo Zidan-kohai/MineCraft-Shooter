@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PlayerData : HealthObject
 {
+    [Header("Weapons")]
+    [SerializeField] protected Weapon weapon;
     public override void GetDamage(int damage)
     {
         health -= damage;
