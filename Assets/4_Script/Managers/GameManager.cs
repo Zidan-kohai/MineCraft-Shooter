@@ -5,15 +5,21 @@ using UnityEngine.SceneManagement;
 public class GameManager : Manager
 {
     public static GameManager Instance;
+
     [Header("Level")]
     [SerializeField] private Level currentLevel;
     [SerializeField] private PlayerInteraction player;
+    [SerializeField] private PlayerMovement playerMovement;
+    [SerializeField] private PlayerRotation playerRotation;
     [SerializeField] private List<Enemy> enemies;
     [SerializeField] private List<Villeger> villegers;
 
     [Header("Parents")]
     [SerializeField] private Transform enemyParent;
     [SerializeField] private Transform villegerParent;
+
+    [Header("Game Properties")]
+    [SerializeField] private bool isGameStop;
     public override void Init()
     {
         if (Instance != null)
@@ -33,6 +39,24 @@ public class GameManager : Manager
     }
     private void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Escape) && !isGameStop)
+        {
+            isGameStop = true;
+
+            StopGame();
+        }
+        if (Input.GetMouseButtonDown(0) && isGameStop)
+        {
+            isGameStop = false;
+            ResumeGame();
+        }
+
+        if(isGameStop)
+        {
+            return;
+        }
+        playerMovement.EvetyFrame();
+
         for(int i = 0; i < villegers.Count; i++)
         {
             villegers[i].EveryFrame();
@@ -43,8 +67,19 @@ public class GameManager : Manager
             enemies[i].EveryFrame();
         }
     }
+
+    public void LateUpdate()
+    {
+        if (isGameStop)
+        {
+            return;
+        }
+
+        playerRotation.AfterEveryFrame();
+    }
     public override void AfterInit()
     {
+
     }
 
     public void SpawnHealthObjectInLevel()
@@ -52,6 +87,11 @@ public class GameManager : Manager
         currentLevel = LevelManager.Instance.GetCurrentLevel();
 
         player = Instantiate(currentLevel.playerPrefab, LevelManager.Instance.playerPositionToSpawn.position, Quaternion.identity);
+        playerMovement = player.GetComponent<PlayerMovement>();
+        playerRotation = player.GetComponent<PlayerRotation>();
+
+        playerMovement.Init();
+        playerRotation.Init();
 
         for (int i = 0; i < currentLevel.villegersCountToSpawn; i++)
         {
@@ -104,6 +144,19 @@ public class GameManager : Manager
         {
             NextLevel();
         }
+    }
+
+    public void StopGame()
+    {
+        AudioListener.volume = 0f;
+        Time.timeScale = 0f;
+        Cursor.lockState = CursorLockMode.None;
+    }
+    public void ResumeGame()
+    {
+        AudioListener.volume = 1f;
+        Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void NextLevel()

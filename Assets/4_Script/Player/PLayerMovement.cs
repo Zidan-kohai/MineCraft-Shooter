@@ -20,16 +20,25 @@ public class PlayerMovement : MonoBehaviour
     private float Yvelocity;
     private CharacterController controller;
 
-    private void Awake()
+    public void Init()
     {
         Cursor.lockState = CursorLockMode.Locked;
         controller = GetComponent<CharacterController>();
     }
+    public void AfterInit()
+    {
+        
+    }
 
-    private void Update()
+    public void EvetyFrame()
     {
         Jump();
         Movement();
+    }
+
+    public void AfterEveryFrame()
+    {
+
     }
 
     private void Movement()

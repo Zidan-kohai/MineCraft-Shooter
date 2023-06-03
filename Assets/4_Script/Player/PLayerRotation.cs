@@ -11,13 +11,20 @@ public class PlayerRotation : MonoBehaviour
     private Vector3 originBodyRotation;
     private Vector3 originHeadRotation;
 
-    private void Start()
+    public void Init()
     {
         originBodyRotation = transform.localEulerAngles;
         originHeadRotation = head.localEulerAngles;
     }
+    public void AfterInit()
+    {
 
-    private void LateUpdate()
+    }
+    public void EveryFrame()
+    {
+
+    }
+    public void AfterEveryFrame()
     {
         float rotationoY = Input.GetAxis("Mouse X") * MouseYIntensivity;
         float rotationX = -Input.GetAxis("Mouse Y") * MouseXIntensivity;
@@ -30,4 +37,6 @@ public class PlayerRotation : MonoBehaviour
         transform.rotation = Quaternion.Euler(originBodyRotation);
         head.rotation = Quaternion.Euler(originBodyRotation + originHeadRotation);
     }
+
+    
 }
