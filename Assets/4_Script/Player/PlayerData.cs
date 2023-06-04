@@ -1,10 +1,11 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class PlayerData : HealthObject
 {
     [Header("Weapons")]
     [SerializeField] protected Weapon weapon;
-    public override void GetDamage(int damage)
+    public override void GetDamage(int damage, Vector3 direction)
     {
         health -= damage;
         health = Mathf.Clamp(health, 0, maxHealth);
@@ -12,6 +13,7 @@ public class PlayerData : HealthObject
         {
             Death();
         }
+        transform.DOMove(transform.position + (new Vector3(direction.x, 1, direction.z) * 1.3f), 0.3f);
     }
 
     public override void Death()

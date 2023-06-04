@@ -18,7 +18,7 @@ public class Bullet : MonoBehaviour
     {
         if(collision.transform.TryGetComponent(out Enemy enemy))
         {   
-            enemy.GetDamage(damage);
+            enemy.GetDamage(damage, (collision.transform.position - transform.position).normalized);
         }
         Destroy(gameObject);
     }

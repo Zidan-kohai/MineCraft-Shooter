@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -29,6 +30,7 @@ public class Enemy : HealthObject
         }
         lastedTimeFromLastAttack += Time.deltaTime;
     }
+
     private void Walk()
     {
         if (target == null)
@@ -43,11 +45,11 @@ public class Enemy : HealthObject
 
     private void Attack()
     {
-        target.GetDamage(damage);
+        target.GetDamage(damage, (target.transform.position - transform.position).normalized);
         lastedTimeFromLastAttack = 0;
     }
 
-    public override void GetDamage(int damage)
+    public override void GetDamage(int damage, Vector3 direction)
     {
         health -= damage;
         health = Mathf.Clamp(health, 0, maxHealth);
@@ -56,6 +58,8 @@ public class Enemy : HealthObject
             Death();
         }
         Debug.Log("Enemy Getting Damage");
+
+        transform.DOMove(transform.position + (new Vector3(direction.x, 1, direction.z) * 1.3f), 0.3f);
     }
 
     public override void Death()

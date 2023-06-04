@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -24,7 +25,7 @@ public class Villeger : HealthObject
             agent.destination = target.position;
         }
     }
-    public override void GetDamage(int damage)
+    public override void GetDamage(int damage, Vector3 direction)
     {
         health -= damage;
         health = Mathf.Clamp(health, 0, maxHealth);
@@ -33,6 +34,7 @@ public class Villeger : HealthObject
             Death();
         }
         Debug.Log("Enemy Getting Damage");
+        transform.DOMove(transform.position + (new Vector3(direction.x, 1, direction.z) * 1.3f), 0.3f);
     }
     public override void Death()
     {
