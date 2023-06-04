@@ -46,14 +46,11 @@ public class GameManager : Manager
     private void Update()
     {
         #region Stoping
+
         if (Input.GetKeyDown(KeyCode.Escape) && !isGameStop && !isGameMenu)
         {
-
             StopGame();
-        }
-        if (Input.GetMouseButtonDown(0) && isGameStop && !isGameMenu)
-        {
-            ResumeGame();
+            EventManager.Instance.OnStopGame();
         }
         #endregion
 
@@ -148,9 +145,15 @@ public class GameManager : Manager
 
         }
 
-        if(enemies.Count == 0 || villegers.Count == 0)
+
+        if (villegers.Count == 0)
         {
-            NextLevel();
+            EventManager.Instance.OnLoseGame();
+            StopGame();
+        }
+        else if(enemies.Count == 0)
+        {
+            Restart();
         }
     }
 
@@ -176,7 +179,12 @@ public class GameManager : Manager
         Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;
     }
-    private void NextLevel()
+
+    public void SetIsGameMenu(bool value)
+    {
+        isGameMenu = value;
+    }
+    public void Restart()
     {
         SceneManager.LoadScene(0);
     }

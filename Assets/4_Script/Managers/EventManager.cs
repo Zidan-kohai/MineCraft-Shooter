@@ -18,6 +18,8 @@ public class EventManager : Manager
     private Action<int, int,int> Shoot;
     private Action<bool> PlayerInteraction;
     private Action<HealthObject> Death;
+    private Action StopGame;
+    private Action LoseGame;
 
     #region Shoot
     public void SubscribeOnShoot(Action<int,int,int> sender)
@@ -90,6 +92,57 @@ public class EventManager : Manager
     {
         Death?.Invoke(obj);
     }
+    #endregion
+
+    #region PauseGame
+
+    public void SubscribeOnStopGame(Action sender)
+    {
+        if (StopGame == null)
+        {
+            StopGame = sender;
+        }
+        else if (!StopGame.GetInvocationList().Contains(sender))
+        {
+            StopGame += sender;
+        }
+    }
+
+    public void UnsubscribeOnStopGame(Action sender)
+    {
+        StopGame -= sender;
+    }
+
+    public void OnStopGame()
+    {
+        StopGame?.Invoke();
+    }
+
+    #endregion
+
+    #region LoseGame
+    public void SubscribeOnLoseGame(Action sender)
+    {
+        if (LoseGame == null)
+        {
+            LoseGame = sender;
+        }
+        else if (!LoseGame.GetInvocationList().Contains(sender))
+        {
+            LoseGame += sender;
+        }
+    }
+
+    public void UnsubscribeOnLoseGame(Action sender)
+    {
+        LoseGame -= sender;
+    }
+
+    public void OnLoseGame() 
+    { 
+        LoseGame?.Invoke();
+    }
+
     #endregion
 
     public override void Destroy()

@@ -19,15 +19,40 @@ public class MainWindowManager : Window
     [SerializeField] private TMP_Text VillegerCount;
     [SerializeField] private TMP_Text EnemyCount;
 
+    [Header("Game Menu")]
+    [SerializeField] private GameObject MainGameWindow;
+    [SerializeField] private GameObject PauseWindow;
+    [SerializeField] private GameObject OptionsWindow;
+    [SerializeField] private GameObject WinWindow;
+    [SerializeField] private GameObject LoseWindow;
+
+    [Header("Main Menu")]
+    [SerializeField] private GameObject MainMenuWindow;
+
     public override void Init()
     {
         EventManager.Instance.SubscribeOnShoot(OnShoot);
         EventManager.Instance.SubscribePlayerInteraction(SetTarget);
-        EventManager.Instance.SubscribeOnDeath(SetHealthObject);
+        EventManager.Instance.SubscribeOnDeath(SetHealthObjectCount);
+        EventManager.Instance.SubscribeOnStopGame(PauseGame);
+        EventManager.Instance.SubscribeOnLoseGame(LoseGame);
+
 
         EnemyCount.text = GameManager.Instance.GetEnemyCount().ToString();
         VillegerCount.text = GameManager.Instance.GetVillegerCount().ToString();
     }
+
+    public void PauseGame()
+    {
+        PauseWindow.SetActive(true);
+        MainGameWindow.SetActive(false);
+    }
+    public void LoseGame()
+    {
+        LoseWindow.SetActive(true);
+        MainGameWindow.SetActive(false);
+    }
+
     private void OnShoot(int currentPatronsInMagazine, int allPatrons, int maxPatronsInMagazine)
     {
         this.allPatrons.text =  allPatrons.ToString();
@@ -47,7 +72,7 @@ public class MainWindowManager : Window
         }
     }
 
-    private void SetHealthObject(HealthObject healthObject)
+    private void SetHealthObjectCount(HealthObject healthObject)
     {
         if(healthObject is Enemy)
         {
@@ -63,6 +88,8 @@ public class MainWindowManager : Window
     {
         EventManager.Instance.UnsubscribeOnShoot(OnShoot);
         EventManager.Instance.UnsubscribePlayerInteraction(SetTarget);
-        EventManager.Instance.UnsubscribeOnDeath(SetHealthObject);
+        EventManager.Instance.UnsubscribeOnDeath(SetHealthObjectCount);
+        EventManager.Instance.UnsubscribeOnStopGame(PauseGame);
+        EventManager.Instance.UnsubscribeOnLoseGame(LoseGame);
     }
 }
