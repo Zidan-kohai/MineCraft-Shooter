@@ -4,7 +4,6 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Weapon : Interactable
 {
-
     [Header("Patrons Properties")]
     [SerializeField] protected int allPatrons;
     [SerializeField] protected int maxPatronsInMagazine;

@@ -161,6 +161,7 @@ MonoBehaviour:
   distanceToAttack: 2
   attackDelay: 2
   lastedTimeFromLastAttack: 0
+  cost: 10
 --- !u!136 &8155614811226219603
 CapsuleCollider:
   m_ObjectHideFlags: 0

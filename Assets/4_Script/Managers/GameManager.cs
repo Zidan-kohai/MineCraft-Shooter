@@ -21,6 +21,8 @@ public class GameManager : Manager
     [Header("Game Properties")]
     [SerializeField] private bool isGameStop;
     [SerializeField] private bool isGameMenu = true;
+    [SerializeField] private int money;
+
     public override void Init()
     {
         if (Instance != null)
@@ -42,6 +44,7 @@ public class GameManager : Manager
         StopGame();
 
         EventManager.Instance.SubscribeOnDeath(RemoveHealthObjectFromList);
+        EventManager.Instance.SubscribeOnSetMoney(SetMoney);
     }
     private void Update()
     {
@@ -82,6 +85,7 @@ public class GameManager : Manager
 
         playerRotation.AfterEveryFrame();
     }
+
     public override void AfterInit()
     {
 
@@ -135,6 +139,7 @@ public class GameManager : Manager
         if (healthObject is Enemy)
         {
             enemies.Remove((Enemy)healthObject);
+
         }
         else if(healthObject is Villeger)
         {
@@ -144,7 +149,6 @@ public class GameManager : Manager
         {
 
         }
-
 
         if (villegers.Count == 0)
         {
@@ -164,6 +168,15 @@ public class GameManager : Manager
     public int GetVillegerCount()
     {
         return villegers.Count;
+    }
+    public void SetMoney(int money)
+    {
+        this.money = money;
+    }
+
+    public int GetMoney()
+    {
+        return money;
     }
     public void StopGame()
     {
@@ -192,6 +205,7 @@ public class GameManager : Manager
     public override void Destroy()
     {
         EventManager.Instance.UnsubscribeOnDeath(RemoveHealthObjectFromList);
+        EventManager.Instance.UnsubscribeOnSetMoney(SetMoney);
         Instance = null;
     }
 }

@@ -1,6 +1,7 @@
 using DG.Tweening;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerInteraction : PlayerData
 {
@@ -20,7 +21,7 @@ public class PlayerInteraction : PlayerData
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (weapon != null)
+            if (weapon != null && hit.collider != null && !hit.transform.TryGetComponent(out Interactable interactable))
             {
                 DropWeapon();
             }
@@ -58,13 +59,12 @@ public class PlayerInteraction : PlayerData
         {
             if (hit.transform.TryGetComponent(out Interactable interactable))
             {
-                EventManager.Instance.OnPlayerInteraction(true);
-                Debug.Log(hit.collider + "HEllo");
+                EventManager.Instance.OnPlayerInteraction(interactable);
             }
         }
         else
         {
-            EventManager.Instance.OnPlayerInteraction(false);
+            EventManager.Instance.OnPlayerInteraction(null);
         }
     }
     private void GetInteractibbleObject()
@@ -73,12 +73,18 @@ public class PlayerInteraction : PlayerData
         {
             if (hit.transform.TryGetComponent(out Weapon weapon))
             {
-                if (this.weapon != null)
+                bool canBuy = weapon.BuyOrIsBuyed(GameManager.Instance.GetMoney());
+
+                if (this.weapon != null && canBuy)
                 {
                     DropWeapon();
+
                 }
-                weapon.Interaction(hand.transform);
-                this.weapon = weapon;
+                if (canBuy)
+                {
+                    weapon.Interaction(hand.transform);
+                    this.weapon = weapon;
+                }
             }
             else
             {

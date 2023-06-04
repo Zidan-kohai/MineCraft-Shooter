@@ -11,11 +11,14 @@ public class Enemy : HealthObject
     [SerializeField] private HealthObject target;
     [SerializeField] private float distanceToTarget;
 
-    
+    [Header("Attack Properties")]
     [SerializeField] private int damage;
     [SerializeField] private float distanceToAttack;
     [SerializeField] private float attackDelay;
     [SerializeField] private float lastedTimeFromLastAttack;
+
+    [Header("Enemy Properties")]
+    [SerializeField] private int cost;
     public override void Init()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -57,7 +60,6 @@ public class Enemy : HealthObject
         {
             Death();
         }
-        Debug.Log("Enemy Getting Damage");
 
         transform.DOMove(transform.position + (new Vector3(direction.x, 1, direction.z) * 1.3f), 0.3f);
     }
@@ -65,7 +67,12 @@ public class Enemy : HealthObject
     public override void Death()
     {
         EventManager.Instance.OnDeath(this);
+        EventManager.Instance.OnSetMoney(GameManager.Instance.GetMoney() + cost);
         Destroy(gameObject);
-        Debug.Log("Enemy Death");
+    }
+
+    public int GetCost()
+    {
+        return cost;
     }
 }

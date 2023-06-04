@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,6 +15,9 @@ public class MainWindowManager : Window
     [SerializeField] private Image target;
     [SerializeField] private Sprite shootImage;
     [SerializeField] private Sprite useImage;
+    [SerializeField] private TMP_Text AllMoney;
+    [SerializeField] private GameObject buyUI;
+    [SerializeField] private TMP_Text cost;
 
     [Header("Health Objects")]
     [SerializeField] private TMP_Text VillegerCount;
@@ -36,10 +40,13 @@ public class MainWindowManager : Window
         EventManager.Instance.SubscribeOnDeath(SetHealthObjectCount);
         EventManager.Instance.SubscribeOnStopGame(PauseGame);
         EventManager.Instance.SubscribeOnLoseGame(LoseGame);
-
+        EventManager.Instance.SubscribeOnSetMoney(SetMoney);
 
         EnemyCount.text = GameManager.Instance.GetEnemyCount().ToString();
         VillegerCount.text = GameManager.Instance.GetVillegerCount().ToString();
+
+
+        GameManager.Instance.SetMoney(Convert.ToInt32(AllMoney.text));
     }
 
     public void PauseGame()
@@ -53,6 +60,11 @@ public class MainWindowManager : Window
         MainGameWindow.SetActive(false);
     }
 
+    private void SetMoney(int money)
+    {
+        AllMoney.text = money.ToString();
+    }
+
     private void OnShoot(int currentPatronsInMagazine, int allPatrons, int maxPatronsInMagazine)
     {
         this.allPatrons.text =  allPatrons.ToString();
@@ -60,15 +72,25 @@ public class MainWindowManager : Window
         this.maxPatronsInMagazine.text = maxPatronsInMagazine.ToString();
     }
 
-    private void SetTarget(bool isInteraction)
+    private void SetTarget(Interactable interaction)
     {
-        if (isInteraction)
-        {
-            target.sprite = useImage;
-        }
-        else
+        if (interaction == null)
         {
             target.sprite = shootImage;
+            if (buyUI.activeSelf)
+            {
+                buyUI.SetActive(false);
+            }
+        }
+        else if (interaction)
+        {
+            target.sprite = useImage;
+
+            if (!interaction.GetIsBuyed())
+            {
+                buyUI.SetActive(true);
+                cost.text = interaction.GetCost().ToString();
+            }
         }
     }
 
@@ -91,5 +113,6 @@ public class MainWindowManager : Window
         EventManager.Instance.UnsubscribeOnDeath(SetHealthObjectCount);
         EventManager.Instance.UnsubscribeOnStopGame(PauseGame);
         EventManager.Instance.UnsubscribeOnLoseGame(LoseGame);
+        EventManager.Instance.UnsubscribeOnSetMoney(SetMoney);
     }
 }

@@ -16,8 +16,9 @@ public class EventManager : Manager
     }
 
     private Action<int, int,int> Shoot;
-    private Action<bool> PlayerInteraction;
+    private Action<Interactable> PlayerInteraction;
     private Action<HealthObject> Death;
+    private Action<int> SetMoney;
     private Action StopGame;
     private Action LoseGame;
 
@@ -46,7 +47,7 @@ public class EventManager : Manager
     #endregion
 
     #region PlayerInteraction
-    public void SubscribePlayerInteraction(Action<bool> sender)
+    public void SubscribePlayerInteraction(Action<Interactable> sender)
     {
         if (PlayerInteraction == null)
         {
@@ -58,14 +59,14 @@ public class EventManager : Manager
         }
     }
 
-    public void UnsubscribePlayerInteraction(Action<bool> sender)
+    public void UnsubscribePlayerInteraction(Action<Interactable> sender)
     {
         PlayerInteraction -= sender;
     }
 
-    public void OnPlayerInteraction(bool isInteraction)
+    public void OnPlayerInteraction(Interactable interactable)
     {
-        PlayerInteraction?.Invoke(isInteraction);
+        PlayerInteraction?.Invoke(interactable);
     }
 
     #endregion
@@ -145,6 +146,29 @@ public class EventManager : Manager
 
     #endregion
 
+    #region SetMoney
+    public void SubscribeOnSetMoney(Action<int> sender)
+    {
+        if (SetMoney == null)
+        {
+            SetMoney = sender;
+        }
+        else if (!SetMoney.GetInvocationList().Contains(sender))
+        {
+            SetMoney += sender;
+        }
+    }
+
+    public void UnsubscribeOnSetMoney(Action<int> sender)
+    {
+        SetMoney -= sender;
+    }
+
+    public void OnSetMoney(int AddingMoney)
+    {
+        SetMoney?.Invoke(AddingMoney);
+    }
+    #endregion
     public override void Destroy()
     {
         Instance = null;
