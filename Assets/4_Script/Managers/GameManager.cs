@@ -20,6 +20,7 @@ public class GameManager : Manager
 
     [Header("Game Properties")]
     [SerializeField] private bool isGameStop;
+    [SerializeField] private bool isGameMenu = true;
     public override void Init()
     {
         if (Instance != null)
@@ -32,31 +33,34 @@ public class GameManager : Manager
         enemies = new List<Enemy>();
         villegers = new List<Villeger>();
 
+
+
         SpawnHealthObjectInLevel();
 
+        isGameMenu = true;
+        isGameStop = true;
+        StopGame();
 
         EventManager.Instance.SubscribeOnDeath(RemoveHealthObjectFromList);
     }
     private void Update()
     {
         #region Stoping
-        if (Input.GetKeyDown(KeyCode.Escape) && !isGameStop)
+        if (Input.GetKeyDown(KeyCode.Escape) && !isGameStop && !isGameMenu)
         {
-            isGameStop = true;
 
             StopGame();
         }
-        if (Input.GetMouseButtonDown(0) && isGameStop)
+        if (Input.GetMouseButtonDown(0) && isGameStop && !isGameMenu)
         {
-            isGameStop = false;
             ResumeGame();
         }
+        #endregion
 
-        if(isGameStop)
+        if (isGameStop)
         {
             return;
         }
-        #endregion
 
         player.EveryFrame();
         playerMovement.EveryFrame();
@@ -160,17 +164,18 @@ public class GameManager : Manager
     }
     public void StopGame()
     {
+        isGameStop = true;
         AudioListener.volume = 0f;
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None;
     }
     public void ResumeGame()
     {
+        isGameStop = false;
         AudioListener.volume = 1f;
         Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;
     }
-
     private void NextLevel()
     {
         SceneManager.LoadScene(0);
