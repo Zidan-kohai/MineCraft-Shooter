@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerRotation : MonoBehaviour
 {
+
     [Header("Rotation properties")]
     [SerializeField] private Transform head;
     [SerializeField] private float MouseYIntensivity;
@@ -29,7 +30,7 @@ public class PlayerRotation : MonoBehaviour
         float rotationoY = Input.GetAxis("Mouse X") * MouseYIntensivity;
         float rotationX = -Input.GetAxis("Mouse Y") * MouseXIntensivity;
 
-        originBodyRotation += new Vector3(0, rotationoY,0);
+        originBodyRotation += new Vector3(0, rotationoY, 0);
         originHeadRotation += new Vector3(rotationX, 0, 0);
 
         originHeadRotation.x = Mathf.Clamp(originHeadRotation.x, MinRotateX, MaxRotateX);
@@ -38,5 +39,5 @@ public class PlayerRotation : MonoBehaviour
         head.rotation = Quaternion.Euler(originBodyRotation + originHeadRotation);
     }
 
-    
+
 }

@@ -1,4 +1,3 @@
-using UnityEditor;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -30,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
-    public void EvetyFrame()
+    public void EveryFrame()
     {
         Jump();
         Movement();

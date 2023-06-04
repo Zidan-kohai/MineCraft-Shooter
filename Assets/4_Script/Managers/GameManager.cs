@@ -55,7 +55,7 @@ public class GameManager : Manager
         {
             return;
         }
-        playerMovement.EvetyFrame();
+        playerMovement.EveryFrame();
 
         for(int i = 0; i < villegers.Count; i++)
         {

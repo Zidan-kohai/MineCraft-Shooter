@@ -528,9 +528,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5664114272353951441}
   - component: {fileID: 5664114272353951445}
-  - component: {fileID: 5664114272353951444}
-  - component: {fileID: 5664114272353951447}
   - component: {fileID: 5664114272353951446}
+  - component: {fileID: 3617403536029417281}
+  - component: {fileID: 3712270531299318509}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -572,46 +572,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 2, z: 0.38}
---- !u!114 &5664114272353951444
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5664114272353951440}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b48d8eead0fe9c74fbdbcd9ea8f19d86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walkForce: 3
-  runForce: 6
-  jumpForce: 0.6
-  gravityForce: -9.8
-  isGround: 0
-  sphereRadius: 0.1
-  rayLenght: 1.1
-  groundCheckPosition: {fileID: 4624713274624258741}
-  ofset: {x: 0, y: 0, z: 0}
-  groundTag:
-  - Ground
---- !u!114 &5664114272353951447
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5664114272353951440}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07a565bc806be1f48bb3244ced5e8fe6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  head: {fileID: 7936506558573801705}
-  MouseYIntensivity: 2
-  MouseXIntensivity: 1
-  MinRotateX: -30
-  MaxRotateX: 45
 --- !u!114 &5664114272353951446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -634,6 +594,46 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   hand: {fileID: 5664114271613963535}
+--- !u!114 &3617403536029417281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5664114272353951440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b48d8eead0fe9c74fbdbcd9ea8f19d86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkForce: 6
+  runForce: 15
+  jumpForce: 1.3
+  gravityForce: -9.8
+  isGround: 0
+  sphereRadius: 0.2
+  rayLenght: 0.1
+  groundCheckPosition: {fileID: 4624713274624258741}
+  ofset: {x: 0, y: 0, z: 0}
+  groundTag:
+  - Ground
+--- !u!114 &3712270531299318509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5664114272353951440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07a565bc806be1f48bb3244ced5e8fe6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  head: {fileID: 7936506558573801705}
+  MouseYIntensivity: 2
+  MouseXIntensivity: 1
+  MinRotateX: -60
+  MaxRotateX: 60
 --- !u!1 &6721147404379968185
 GameObject:
   m_ObjectHideFlags: 0
