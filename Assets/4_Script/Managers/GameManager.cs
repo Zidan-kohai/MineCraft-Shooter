@@ -39,7 +39,8 @@ public class GameManager : Manager
     }
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape) && !isGameStop)
+        #region Stoping
+        if (Input.GetKeyDown(KeyCode.Escape) && !isGameStop)
         {
             isGameStop = true;
 
@@ -55,6 +56,7 @@ public class GameManager : Manager
         {
             return;
         }
+        #endregion
 
         player.EveryFrame();
         playerMovement.EveryFrame();
@@ -148,6 +150,14 @@ public class GameManager : Manager
         }
     }
 
+    public int GetEnemyCount()
+    {
+        return enemies.Count;
+    }
+    public int GetVillegerCount()
+    {
+        return villegers.Count;
+    }
     public void StopGame()
     {
         AudioListener.volume = 0f;

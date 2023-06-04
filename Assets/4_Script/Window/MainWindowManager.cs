@@ -15,10 +15,18 @@ public class MainWindowManager : Window
     [SerializeField] private Sprite shootImage;
     [SerializeField] private Sprite useImage;
 
-    private void Start()
+    [Header("Health Objects")]
+    [SerializeField] private TMP_Text VillegerCount;
+    [SerializeField] private TMP_Text EnemyCount;
+
+    public override void Init()
     {
         EventManager.Instance.SubscribeOnShoot(OnShoot);
         EventManager.Instance.SubscribePlayerInteraction(SetTarget);
+        EventManager.Instance.SubscribeOnDeath(SetHealthObject);
+
+        EnemyCount.text = GameManager.Instance.GetEnemyCount().ToString();
+        VillegerCount.text = GameManager.Instance.GetVillegerCount().ToString();
     }
     private void OnShoot(int currentPatronsInMagazine, int allPatrons, int maxPatronsInMagazine)
     {
@@ -39,9 +47,22 @@ public class MainWindowManager : Window
         }
     }
 
+    private void SetHealthObject(HealthObject healthObject)
+    {
+        if(healthObject is Enemy)
+        {
+            EnemyCount.text = GameManager.Instance.GetEnemyCount().ToString();
+        }
+        else if(healthObject is Villeger)
+        {
+             VillegerCount.text = GameManager.Instance.GetVillegerCount().ToString();
+        }
+    }
+
     public override void Destroy()
     {
         EventManager.Instance.UnsubscribeOnShoot(OnShoot);
         EventManager.Instance.UnsubscribePlayerInteraction(SetTarget);
+        EventManager.Instance.UnsubscribeOnDeath(SetHealthObject);
     }
 }
