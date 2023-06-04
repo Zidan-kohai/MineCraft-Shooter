@@ -55,6 +55,8 @@ public class GameManager : Manager
         {
             return;
         }
+
+        player.EveryFrame();
         playerMovement.EveryFrame();
 
         for(int i = 0; i < villegers.Count; i++)

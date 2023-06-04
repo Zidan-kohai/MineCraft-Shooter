@@ -14,7 +14,7 @@ public class PlayerInteraction : PlayerData
     [SerializeField] private Transform hand;
 
     RaycastHit hit;
-    public void Update()
+    public override void EveryFrame()
     {
         CheckInteractibleObject();
 
