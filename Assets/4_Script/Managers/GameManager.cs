@@ -105,6 +105,7 @@ public class GameManager : Manager
         playerMovement = player.GetComponent<PlayerMovement>();
         playerRotation = player.GetComponent<PlayerRotation>();
 
+        player.Init();
         playerMovement.Init();
         playerRotation.Init();
     }

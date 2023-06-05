@@ -1,5 +1,4 @@
 using DG.Tweening;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -14,10 +13,15 @@ public class PlayerInteraction : PlayerData
     [Header("Player Hand")]
     [SerializeField] private Transform hand;
 
+
     RaycastHit hit;
-    public override void EveryFrame()
+
+    public override void Init()
     {
         CheckInteractibleObject();
+    }
+    public override void EveryFrame()
+    {
 
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -67,6 +71,12 @@ public class PlayerInteraction : PlayerData
         {
             EventManager.Instance.OnPlayerInteraction(null);
         }
+
+        DOTween.Sequence()
+            .AppendInterval(0.5f).OnComplete(() =>
+            {
+                CheckInteractibleObject();
+            });
     }
     private void GetInteractibbleObject()
     {
