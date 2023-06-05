@@ -89,7 +89,7 @@ public class PlayerInteraction : PlayerData
             }
             else if(hit.transform.TryGetComponent(out ShopPatrons shopPatrons) && this.weapon != null)
             {
-                shopPatrons.Interaction();
+                shopPatrons.Interaction(this.weapon);
             }
 
         }

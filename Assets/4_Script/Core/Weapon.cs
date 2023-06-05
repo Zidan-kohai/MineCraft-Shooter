@@ -122,4 +122,9 @@ public class Weapon : Interactable
         return isBuyed;
     }
 
+    public void AddPatron(int addingPatron)
+    {
+        allPatrons += addingPatron;
+        EventManager.Instance.OnShoot(currentPatronsInMagazine, allPatrons, maxPatronsInMagazine);
+    }
 }

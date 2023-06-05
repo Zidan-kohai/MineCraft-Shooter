@@ -9180,6 +9180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 5
+  addingPatron: 7
 --- !u!1 &2133160921
 GameObject:
   m_ObjectHideFlags: 0

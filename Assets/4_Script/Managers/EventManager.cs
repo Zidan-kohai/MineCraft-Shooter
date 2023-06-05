@@ -166,9 +166,9 @@ public class EventManager : Manager
         SetMoney -= sender;
     }
 
-    public void OnSetMoney(int AddingMoney)
+    public void OnSetMoney(int money)
     {
-        SetMoney?.Invoke(AddingMoney);
+        SetMoney?.Invoke(money);
     }
     #endregion
 
