@@ -5,17 +5,17 @@ using UnityEngine.AI;
 public class Enemy : HealthObject
 {
     [Header("Components")]
-    [SerializeField] private NavMeshAgent agent;
+    [SerializeField] protected NavMeshAgent agent;
 
     [Header("Target")]
-    [SerializeField] private HealthObject target;
-    [SerializeField] private float distanceToTarget;
+    [SerializeField] protected HealthObject target;
+    [SerializeField] protected float distanceToTarget;
 
     [Header("Attack Properties")]
-    [SerializeField] private int damage;
-    [SerializeField] private float distanceToAttack;
-    [SerializeField] private float attackDelay;
-    [SerializeField] private float lastedTimeFromLastAttack;
+    [SerializeField] protected int damage;
+    [SerializeField] protected float distanceToAttack;
+    [SerializeField] protected float attackDelay;
+    [SerializeField] protected float lastedTimeFromLastAttack;
 
     [Header("Enemy Properties")]
     [SerializeField] private int cost;
@@ -46,7 +46,7 @@ public class Enemy : HealthObject
         distanceToTarget = (transform.position - target.transform.position).magnitude;
     }
 
-    private void Attack()
+    protected virtual void Attack()
     {
         target.GetDamage(damage, (target.transform.position - transform.position).normalized);
         lastedTimeFromLastAttack = 0;

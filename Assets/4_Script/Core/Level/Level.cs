@@ -8,9 +8,14 @@ public class Level : ScriptableObject
     [Header("Level Properties")]
     public int timeToNextWave;
 
-    [Header("Enemies")]
-    public Enemy enemyPrefab;
-    public int enemiesCountToSpawn;
+    [Header("Simple Enemies")]
+    public Enemy simpleEnemyPrefab;
+    public int simpleEnemiesCountToSpawn;
+
+
+    [Header("Archer Enemies")]
+    public Enemy archerEnemyPrefab;
+    public int archerEnemiesCountToSpawn;
 
     [Header("Player")]
     public PlayerInteraction playerPrefab;
