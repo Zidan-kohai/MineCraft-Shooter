@@ -37,7 +37,8 @@ public class GameManager : Manager
 
 
 
-        SpawnHealthObjectInLevel();
+        //SpawnHealthObjectInLevel();
+        PlayerInit();
 
         isGameMenu = true;
         isGameStop = true;
@@ -45,6 +46,8 @@ public class GameManager : Manager
 
         EventManager.Instance.SubscribeOnDeath(RemoveHealthObjectFromList);
         EventManager.Instance.SubscribeOnSetMoney(SetMoney);
+        EventManager.Instance.SubscribeOnNewWave(NewWave);
+
     }
     private void Update()
     {
@@ -90,17 +93,24 @@ public class GameManager : Manager
     {
 
     }
+    private void NewWave()
+    {
+        SpawnHealthObjectInLevel();
+    }
 
-    public void SpawnHealthObjectInLevel()
+    private void PlayerInit()
     {
         currentLevel = LevelManager.Instance.GetCurrentLevel();
-
         player = Instantiate(currentLevel.playerPrefab, LevelManager.Instance.playerPositionToSpawn.position, Quaternion.identity);
         playerMovement = player.GetComponent<PlayerMovement>();
         playerRotation = player.GetComponent<PlayerRotation>();
 
         playerMovement.Init();
         playerRotation.Init();
+    }
+    public void SpawnHealthObjectInLevel()
+    {
+        currentLevel = LevelManager.Instance.GetCurrentLevel();
 
         for (int i = 0; i < currentLevel.villegersCountToSpawn; i++)
         {
@@ -111,6 +121,8 @@ public class GameManager : Manager
         {
             enemies.Add(Instantiate(currentLevel.enemyPrefab, LevelManager.Instance.GetRandomPositionForEnemySpawn().position, Quaternion.identity, enemyParent));
         }
+
+        LevelManager.Instance.SetNextLevelIndex(LevelManager.Instance.GetCurrentLevelIndex() + 1);
     }
 
     public Transform GetNextPositionForVilleger()
@@ -157,7 +169,7 @@ public class GameManager : Manager
         }
         else if(enemies.Count == 0)
         {
-            Restart();
+            EventManager.Instance.OnEndWave(currentLevel.timeToNextWave);
         }
     }
 
@@ -178,6 +190,7 @@ public class GameManager : Manager
     {
         return money;
     }
+
     public void StopGame()
     {
         isGameStop = true;
@@ -185,6 +198,7 @@ public class GameManager : Manager
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None;
     }
+
     public void ResumeGame()
     {
         isGameStop = false;
@@ -197,6 +211,7 @@ public class GameManager : Manager
     {
         isGameMenu = value;
     }
+
     public void Restart()
     {
         SceneManager.LoadScene(0);
@@ -206,6 +221,7 @@ public class GameManager : Manager
     {
         EventManager.Instance.UnsubscribeOnDeath(RemoveHealthObjectFromList);
         EventManager.Instance.UnsubscribeOnSetMoney(SetMoney);
+        EventManager.Instance.UnsubscribeOnNewWave(NewWave);
         Instance = null;
     }
 }

@@ -21,10 +21,11 @@ public class PlayerInteraction : PlayerData
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (weapon != null && hit.collider != null && !hit.transform.TryGetComponent(out Interactable interactable))
+            if (weapon != null && hit.collider == null || weapon != null && !hit.transform.TryGetComponent(out Interactable interactable))
             {
                 DropWeapon();
             }
+
             GetInteractibbleObject();
         }
 
@@ -86,9 +87,9 @@ public class PlayerInteraction : PlayerData
                     this.weapon = weapon;
                 }
             }
-            else
+            else if(hit.transform.TryGetComponent(out ShopPatrons shopPatrons) && this.weapon != null)
             {
-                
+                shopPatrons.Interaction();
             }
 
         }

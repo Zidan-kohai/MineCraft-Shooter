@@ -4,6 +4,9 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Weapon : Interactable
 {
+    [Header("BuyProperties")]
+    [SerializeField] protected bool isBuyed;
+
     [Header("Patrons Properties")]
     [SerializeField] protected int allPatrons;
     [SerializeField] protected int maxPatronsInMagazine;
@@ -100,6 +103,23 @@ public class Weapon : Interactable
         transform.GetComponent<Collider>().enabled = true;
 
         EventManager.Instance.OnShoot(0, 0, 0);
+    }
+
+    public bool GetIsBuyed()
+    {
+        return isBuyed;
+    }
+
+    public bool BuyOrIsBuyed(int money)
+    {
+        if (money >= cost && !isBuyed)
+        {
+            isBuyed = true;
+            money -= cost;
+            EventManager.Instance.OnSetMoney(money);
+        }
+
+        return isBuyed;
     }
 
 }

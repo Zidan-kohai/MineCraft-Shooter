@@ -7,6 +7,7 @@ public class LevelManager : Manager
 
     [Header("Levels")]
     [SerializeField] private List<Level> levels;
+    [SerializeField] private int nextLevel = 0;
 
     [Header("SpawnPosition")]
     public List<Transform> positionToEnemySpawn;
@@ -27,9 +28,16 @@ public class LevelManager : Manager
 
     public Level GetCurrentLevel()
     {
-        return levels[0];
+        return levels[nextLevel];
     }
-
+    public void SetNextLevelIndex(int nextLevel)
+    {
+        this.nextLevel = nextLevel;
+    }
+    public int GetCurrentLevelIndex()
+    {
+        return nextLevel;
+    }
     public Transform GetRandomPositionForEnemySpawn()
     {
         return positionToEnemySpawn[Random.Range(0, positionToEnemySpawn.Count)];

@@ -21,6 +21,8 @@ public class EventManager : Manager
     private Action<int> SetMoney;
     private Action StopGame;
     private Action LoseGame;
+    private Action NewWave;
+    private Action<int> EndWave;
 
     #region Shoot
     public void SubscribeOnShoot(Action<int,int,int> sender)
@@ -169,6 +171,55 @@ public class EventManager : Manager
         SetMoney?.Invoke(AddingMoney);
     }
     #endregion
+
+    #region NewWave
+    public void SubscribeOnNewWave(Action sender)
+    {
+        if (NewWave == null)
+        {
+            NewWave = sender;
+        }
+        else if (!NewWave.GetInvocationList().Contains(sender))
+        {
+            NewWave += sender;
+        }
+    }
+
+    public void UnsubscribeOnNewWave(Action sender)
+    {
+        NewWave -= sender;
+    }
+
+    public void OnNewWave()
+    {
+        NewWave?.Invoke();
+    }
+    #endregion
+
+    #region EndWave
+    public void SubscribeOnEndWave(Action<int> sender)
+    {
+        if (EndWave == null)
+        {
+            EndWave = sender;
+        }
+        else if (!EndWave.GetInvocationList().Contains(sender))
+        {
+            EndWave += sender;
+        }
+    }
+
+    public void UnsubscribeOnEndWave(Action<int> sender)
+    {
+        EndWave -= sender;
+    }
+
+    public void OnEndWave(int timeToNextWave)
+    {
+        EndWave?.Invoke(timeToNextWave);
+    }
+    #endregion
+
     public override void Destroy()
     {
         Instance = null;

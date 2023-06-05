@@ -5,6 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Level", menuName = "Level")]
 public class Level : ScriptableObject
 {
+    [Header("Level Properties")]
+    public int timeToNextWave;
+
     [Header("Enemies")]
     public Enemy enemyPrefab;
     public int enemiesCountToSpawn;

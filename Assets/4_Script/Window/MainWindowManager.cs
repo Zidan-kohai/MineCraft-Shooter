@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using TMPro;
 using UnityEngine;
@@ -18,6 +19,7 @@ public class MainWindowManager : Window
     [SerializeField] private TMP_Text AllMoney;
     [SerializeField] private GameObject buyUI;
     [SerializeField] private TMP_Text cost;
+    [SerializeField] private TMP_Text timeToNextWave;
 
     [Header("Health Objects")]
     [SerializeField] private TMP_Text VillegerCount;
@@ -41,9 +43,8 @@ public class MainWindowManager : Window
         EventManager.Instance.SubscribeOnStopGame(PauseGame);
         EventManager.Instance.SubscribeOnLoseGame(LoseGame);
         EventManager.Instance.SubscribeOnSetMoney(SetMoney);
-
-        EnemyCount.text = GameManager.Instance.GetEnemyCount().ToString();
-        VillegerCount.text = GameManager.Instance.GetVillegerCount().ToString();
+        EventManager.Instance.SubscribeOnNewWave(NewWave);
+        EventManager.Instance.SubscribeOnEndWave(EndWave);
 
 
         GameManager.Instance.SetMoney(Convert.ToInt32(AllMoney.text));
@@ -86,7 +87,12 @@ public class MainWindowManager : Window
         {
             target.sprite = useImage;
 
-            if (!interaction.GetIsBuyed())
+            if (interaction is Weapon && !((Weapon)interaction).GetIsBuyed())
+            {
+                buyUI.SetActive(true);
+                cost.text = interaction.GetCost().ToString();
+            }
+            else if (interaction is ShopPatrons)
             {
                 buyUI.SetActive(true);
                 cost.text = interaction.GetCost().ToString();
@@ -106,6 +112,29 @@ public class MainWindowManager : Window
         }
     }
 
+    private void NewWave()
+    {
+        EnemyCount.text = GameManager.Instance.GetEnemyCount().ToString();
+        VillegerCount.text = GameManager.Instance.GetVillegerCount().ToString();
+    }
+
+    private void EndWave(int timeToNextWave)
+    {
+        this.timeToNextWave.text = timeToNextWave.ToString();
+        Sequence sequence = DOTween.Sequence();
+            sequence.AppendInterval(1).OnStepComplete(() =>
+            {
+                int newTime = (Convert.ToInt32(this.timeToNextWave.text) - 1);
+                this.timeToNextWave.text = newTime.ToString();
+
+                if(newTime <= 0)
+                {
+                    EventManager.Instance.OnNewWave();
+                    sequence.Kill();
+                }
+            }).SetLoops(-1);
+    }
+
     public override void Destroy()
     {
         EventManager.Instance.UnsubscribeOnShoot(OnShoot);
@@ -114,5 +143,7 @@ public class MainWindowManager : Window
         EventManager.Instance.UnsubscribeOnStopGame(PauseGame);
         EventManager.Instance.UnsubscribeOnLoseGame(LoseGame);
         EventManager.Instance.UnsubscribeOnSetMoney(SetMoney);
+        EventManager.Instance.UnsubscribeOnNewWave(NewWave);
+        EventManager.Instance.UnsubscribeOnEndWave(EndWave);
     }
 }
