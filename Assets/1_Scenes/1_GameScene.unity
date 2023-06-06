@@ -470,7 +470,7 @@ GameObject:
   - component: {fileID: 94457600}
   - component: {fileID: 94457602}
   - component: {fileID: 94457601}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: BuyPatrons
   m_TagString: Obstacle
   m_Icon: {fileID: 0}

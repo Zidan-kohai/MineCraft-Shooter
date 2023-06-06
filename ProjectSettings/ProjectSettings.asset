@@ -284,7 +284,7 @@ PlayerSettings:
     m_StaticBatching: 1
     m_DynamicBatching: 0
   - m_BuildTarget: WebGL
-    m_StaticBatching: 0
+    m_StaticBatching: 1
     m_DynamicBatching: 0
   m_BuildTargetShaderSettings: []
   m_BuildTargetGraphicsJobs:
@@ -356,7 +356,7 @@ PlayerSettings:
   - m_BuildTarget: tvOS
     m_EncodingQuality: 1
   - m_BuildTarget: WebGL
-    m_EncodingQuality: 1
+    m_EncodingQuality: 0
   m_BuildTargetGroupLightmapSettings: []
   m_BuildTargetNormalMapEncoding:
   - m_BuildTarget: Android
@@ -719,7 +719,7 @@ PlayerSettings:
     m_VersionCode: 1
     m_VersionName: 
   apiCompatibilityLevel: 6
-  activeInputHandler: 2
+  activeInputHandler: 0
   windowsGamepadBackendHint: 0
   cloudProjectId: 
   framebufferDepthMemorylessMode: 0
