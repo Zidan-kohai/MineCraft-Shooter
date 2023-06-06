@@ -28,17 +28,17 @@ public class Weapon : Interactable
     [SerializeField] private Rigidbody rb;
     public virtual void Idle() { }
 
-    public virtual void Shoot(Transform OriginPosition)
+    public virtual bool Shoot(Transform OriginPosition)
     {
         if(!canShoot)
         {
-            return;
+            return false;
         }
         canShoot = false;
         if (currentPatronsInMagazine == 0)
         {
             Recharge();
-            return;
+            return false;
         }
         currentPatronsInMagazine--;
 
@@ -49,6 +49,7 @@ public class Weapon : Interactable
             });
 
         EventManager.Instance.OnShoot(currentPatronsInMagazine,allPatrons,maxPatronsInMagazine);
+        return true;
     }
 
     public virtual void Inspect() { }
@@ -95,12 +96,14 @@ public class Weapon : Interactable
         transform.SetParent(parent);
         rb.isKinematic = true;
         transform.GetComponent<Collider>().enabled = false;
+        transform.GetChild(0).gameObject.SetActive(false);
     }
     public void RemoveFromPlayerHand()
     {
         transform.SetParent(null);
         rb.isKinematic = false;
         transform.GetComponent<Collider>().enabled = true;
+        transform.GetChild(0).gameObject.SetActive(true);
 
         EventManager.Instance.OnShoot(0, 0, 0);
     }

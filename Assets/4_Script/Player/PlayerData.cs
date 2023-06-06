@@ -5,6 +5,13 @@ public class PlayerData : HealthObject
 {
     [Header("Weapons")]
     [SerializeField] protected Weapon weapon;
+
+    [Header("Weapon Visual")]
+    [SerializeField] protected GameObject currentWeaponMeshRenderer;
+    [SerializeField] protected GameObject gunMeshRenderer;
+
+    [Header("Animator")]
+    [SerializeField] protected Animator animator;
     public override void GetDamage(int damage, Vector3 direction)
     {
         health -= damage;

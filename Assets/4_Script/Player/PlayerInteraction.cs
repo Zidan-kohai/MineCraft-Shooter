@@ -8,7 +8,6 @@ public class PlayerInteraction : PlayerData
     [SerializeField] private Transform originPosition;
     [SerializeField] private Vector3 direction;
     [SerializeField] private float length;
-    [SerializeField] private LayerMask layerMask;
 
     [Header("Player Hand")]
     [SerializeField] private Transform hand;
@@ -45,7 +44,10 @@ public class PlayerInteraction : PlayerData
 
     private void Shoot()
     {
-        weapon.Shoot(originPosition);
+        if (weapon.Shoot(originPosition))
+        {
+            animator.SetTrigger("GunShoot");
+        }
     }
     private void Recharge()
     {
@@ -56,15 +58,24 @@ public class PlayerInteraction : PlayerData
     {
         weapon.RemoveFromPlayerHand();
         weapon = null;
+        if(currentWeaponMeshRenderer != null)
+        {
+            currentWeaponMeshRenderer.SetActive(false);
+            currentWeaponMeshRenderer = null;
+        }
     }
-
+    
     private void CheckInteractibleObject()
     {
-        if (Physics.Raycast(originPosition.position, originPosition.TransformDirection(direction), out hit, length, layerMask))
+        if (Physics.Raycast(originPosition.position, originPosition.TransformDirection(direction), out hit, length))
         {
             if (hit.transform.TryGetComponent(out Interactable interactable))
             {
                 EventManager.Instance.OnPlayerInteraction(interactable);
+            }
+            else
+            {
+                EventManager.Instance.OnPlayerInteraction(null);
             }
         }
         else
@@ -73,7 +84,7 @@ public class PlayerInteraction : PlayerData
         }
 
         DOTween.Sequence()
-            .AppendInterval(0.5f).OnComplete(() =>
+            .AppendInterval(0.4f).OnComplete(() =>
             {
                 CheckInteractibleObject();
             });
@@ -89,18 +100,31 @@ public class PlayerInteraction : PlayerData
                 if (this.weapon != null && canBuy)
                 {
                     DropWeapon();
-
                 }
                 if (canBuy)
                 {
                     weapon.Interaction(hand.transform);
                     this.weapon = weapon;
+                    WeaponTurnOn(weapon);
                 }
             }
             else if(hit.transform.TryGetComponent(out ShopPatrons shopPatrons) && this.weapon != null)
             {
                 shopPatrons.Interaction(this.weapon);
             }
+
+        }
+    }
+
+    private void WeaponTurnOn(Weapon weapon)
+    {
+        if(weapon is Gun)
+        {
+            currentWeaponMeshRenderer = gunMeshRenderer;
+            currentWeaponMeshRenderer.SetActive(true);
+        }
+        else
+        {
 
         }
     }

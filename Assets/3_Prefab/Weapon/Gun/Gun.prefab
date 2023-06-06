@@ -79,16 +79,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8cdb4a79878861478083bdc2ac29121, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isBuyed: 0
   cost: 20
+  isBuyed: 0
   allPatrons: 25
   maxPatronsInMagazine: 7
   currentPatronsInMagazine: 0
-  position: {x: 0, y: 0, z: 0.15}
-  rotation: {x: 0, y: 95, z: 85}
+  position: {x: -0.136, y: 0.183, z: -0.155}
+  rotation: {x: 0, y: -90, z: 0}
   rechargeTime: 2
   isRecharge: 0
-  delayBetweenShoot: 0.3
+  delayBetweenShoot: 0.45
   canShoot: 1
   rb: {fileID: 2250845669609097163}
   bulletSpawnPosition: {fileID: 6761765448594312848}
