@@ -46,7 +46,7 @@ public class PlayerInteraction : PlayerData
     {
         if (weapon.Shoot(originPosition))
         {
-            animator.SetTrigger("GunShoot");
+            animator.SetTrigger("Shoot");
         }
     }
     private void Recharge()
@@ -58,11 +58,8 @@ public class PlayerInteraction : PlayerData
     {
         weapon.RemoveFromPlayerHand();
         weapon = null;
-        if(currentWeaponMeshRenderer != null)
-        {
-            currentWeaponMeshRenderer.SetActive(false);
-            currentWeaponMeshRenderer = null;
-        }
+
+        animator.SetTrigger("RemoveGun");
     }
     
     private void CheckInteractibleObject()
@@ -120,8 +117,7 @@ public class PlayerInteraction : PlayerData
     {
         if(weapon is Gun)
         {
-            currentWeaponMeshRenderer = gunMeshRenderer;
-            currentWeaponMeshRenderer.SetActive(true);
+            animator.SetTrigger("GetGun");
         }
         else
         {
