@@ -15,7 +15,7 @@ public class Weapon : Interactable
     [Header("Transform in Player Hand")]
     [SerializeField] private Vector3 position;
     [SerializeField] private Vector3 rotation;
-
+    [SerializeField] private bool isInPlayerHand = false;
     [Header("Recharge Properties")]
     [SerializeField] protected float rechargeTime;
     [SerializeField] protected bool isRecharge;
@@ -43,8 +43,15 @@ public class Weapon : Interactable
         canShoot = false;
         if (currentPatronsInMagazine == 0)
         {
-            Recharge();
-            return WeaponState.Recharge;
+            if (allPatrons > 0)
+            {
+                Recharge();
+                return WeaponState.Recharge;
+            }
+            else
+            {
+                return WeaponState.Idle;
+            }
         }
         currentPatronsInMagazine--;
 
@@ -53,8 +60,7 @@ public class Weapon : Interactable
             {
                 canShoot = true;
             });
-
-        EventManager.Instance.OnShoot(currentPatronsInMagazine,allPatrons,maxPatronsInMagazine);
+        EventManager.Instance.OnShoot(currentPatronsInMagazine, allPatrons, maxPatronsInMagazine);
         return WeaponState.Shoot;
     }
 
@@ -83,7 +89,11 @@ public class Weapon : Interactable
 
                 currentPatronsInMagazine += howManyPatronsWeCanAdd;
                 allPatrons -= howManyPatronsWeCanAdd;
-                EventManager.Instance.OnShoot(currentPatronsInMagazine, allPatrons, maxPatronsInMagazine);
+
+                if (isInPlayerHand)
+                {
+                    EventManager.Instance.OnShoot(currentPatronsInMagazine, allPatrons, maxPatronsInMagazine);
+                }
             });
         return WeaponState.Recharge;
     }
@@ -103,6 +113,7 @@ public class Weapon : Interactable
         rb.isKinematic = true;
         transform.GetComponent<Collider>().enabled = false;
         transform.GetChild(0).gameObject.SetActive(false);
+        isInPlayerHand = true;
     }
     public void RemoveFromPlayerHand()
     {
@@ -110,7 +121,7 @@ public class Weapon : Interactable
         rb.isKinematic = false;
         transform.GetComponent<Collider>().enabled = true;
         transform.GetChild(0).gameObject.SetActive(true);
-
+        isInPlayerHand = false;
         EventManager.Instance.OnShoot(0, 0, 0);
     }
 
@@ -134,6 +145,7 @@ public class Weapon : Interactable
     public void AddPatron(int addingPatron)
     {
         allPatrons += addingPatron;
+        canShoot = true;
         EventManager.Instance.OnShoot(currentPatronsInMagazine, allPatrons, maxPatronsInMagazine);
     }
 }

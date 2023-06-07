@@ -86,7 +86,7 @@ MonoBehaviour:
   currentPatronsInMagazine: 0
   position: {x: -0.136, y: 0.183, z: -0.155}
   rotation: {x: 0, y: -90, z: 0}
-  rechargeTime: 2
+  rechargeTime: 1.2
   isRecharge: 0
   delayBetweenShoot: 0.35
   canShoot: 1

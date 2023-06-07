@@ -48,6 +48,7 @@ public class PlayerInteraction : PlayerData
     private void Shoot()
     {
         WeaponState weaponState = weapon.Shoot(originPosition);
+
         if (weaponState == WeaponState.Shoot)
         {
             animator.SetTrigger("Shoot");
