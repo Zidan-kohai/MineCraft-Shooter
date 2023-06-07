@@ -9,24 +9,24 @@ public class Gun : Weapon
     [SerializeField] private float bulletSpeed;
     public override void Idle() { }
 
-    public override bool Shoot(Transform originPosition)
+    public override WeaponState Shoot(Transform originPosition)
     {
         bool canShoot = currentPatronsInMagazine > 0 && this.canShoot && !isRecharge;
         if (canShoot)
         {
             bulletSpawn(originPosition);
         }
-        base.Shoot(originPosition);
-
-        return canShoot;
         
+
+        return base.Shoot(originPosition);
+
     }
 
     public override void Inspect() { }
 
-    public override void Recharge()
+    public override WeaponState Recharge()
     {
-        base.Recharge();
+        return base.Recharge();
     }
 
     private void bulletSpawn(Transform originPosition)

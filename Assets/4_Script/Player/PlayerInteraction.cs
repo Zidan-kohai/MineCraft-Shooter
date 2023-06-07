@@ -47,15 +47,25 @@ public class PlayerInteraction : PlayerData
 
     private void Shoot()
     {
-        if (weapon.Shoot(originPosition))
+        WeaponState weaponState = weapon.Shoot(originPosition);
+        if (weaponState == WeaponState.Shoot)
         {
             animator.SetTrigger("Shoot");
             playerRotation.HeadShake(weapon.reboundDuration, weapon.reboundPositionForce, weapon.reboundRotationForce);
         }
+        else if(weaponState == WeaponState.Recharge)
+        {
+            animator.SetTrigger("Recharge");
+        }
     }
     private void Recharge()
     {
-        weapon.Recharge();
+        WeaponState weaponState = weapon.Recharge();
+
+        if(weaponState == WeaponState.Recharge)
+        {
+            animator.SetTrigger("Recharge");
+        }
     }
     
     private void DropWeapon()

@@ -34,17 +34,17 @@ public class Weapon : Interactable
     [SerializeField] private Rigidbody rb;
     public virtual void Idle() { }
 
-    public virtual bool Shoot(Transform OriginPosition)
+    public virtual WeaponState Shoot(Transform OriginPosition)
     {
         if(!canShoot)
         {
-            return false;
+            return WeaponState.Idle;
         }
         canShoot = false;
         if (currentPatronsInMagazine == 0)
         {
             Recharge();
-            return false;
+            return WeaponState.Recharge;
         }
         currentPatronsInMagazine--;
 
@@ -55,17 +55,17 @@ public class Weapon : Interactable
             });
 
         EventManager.Instance.OnShoot(currentPatronsInMagazine,allPatrons,maxPatronsInMagazine);
-        return true;
+        return WeaponState.Shoot;
     }
 
     public virtual void Inspect() { }
 
-    public virtual void Recharge()
+    public virtual WeaponState Recharge()
     {
         if (currentPatronsInMagazine == maxPatronsInMagazine || allPatrons == 0 || isRecharge)
         {
             Debug.Log("currentPatronsInMagazine equal maxPatronsInMagazine || allPatrons equal 0 || Recharging");
-            return;
+            return WeaponState.Idle;
         }
 
         isRecharge = true;
@@ -85,7 +85,7 @@ public class Weapon : Interactable
                 allPatrons -= howManyPatronsWeCanAdd;
                 EventManager.Instance.OnShoot(currentPatronsInMagazine, allPatrons, maxPatronsInMagazine);
             });
-        
+        return WeaponState.Recharge;
     }
 
     public override void Interaction(Transform parent)
@@ -136,4 +136,10 @@ public class Weapon : Interactable
         allPatrons += addingPatron;
         EventManager.Instance.OnShoot(currentPatronsInMagazine, allPatrons, maxPatronsInMagazine);
     }
+}
+public enum WeaponState
+{
+    Idle,
+    Shoot,
+    Recharge
 }
