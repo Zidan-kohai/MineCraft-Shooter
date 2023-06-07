@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Level_4
   m_EditorClassIdentifier: 
   timeToNextWave: 30
-  simpleEnemyPrefab: {fileID: 6865219202673264043, guid: eb30352aca20ac04c85536939608223a, type: 3}
+  simpleEnemyPrefab: {fileID: 4745729372041034687, guid: eb30352aca20ac04c85536939608223a, type: 3}
   simpleEnemiesCountToSpawn: 2
   archerEnemyPrefab: {fileID: 7597650400284940125, guid: c8778061b263cee4ca54d6b65c9cfaca, type: 3}
   archerEnemiesCountToSpawn: 1
