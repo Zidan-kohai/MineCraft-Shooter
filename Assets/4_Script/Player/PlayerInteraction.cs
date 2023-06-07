@@ -12,6 +12,9 @@ public class PlayerInteraction : PlayerData
     [Header("Player Hand")]
     [SerializeField] private Transform hand;
 
+    [Header("Conponents")]
+    [SerializeField] private PlayerRotation playerRotation;
+
 
     RaycastHit hit;
 
@@ -47,6 +50,7 @@ public class PlayerInteraction : PlayerData
         if (weapon.Shoot(originPosition))
         {
             animator.SetTrigger("Shoot");
+            playerRotation.HeadShake(weapon.reboundDuration, weapon.reboundPositionForce, weapon.reboundRotationForce);
         }
     }
     private void Recharge()

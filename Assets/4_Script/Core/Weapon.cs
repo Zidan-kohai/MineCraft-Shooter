@@ -24,6 +24,12 @@ public class Weapon : Interactable
     [SerializeField] private float delayBetweenShoot;
     [SerializeField] protected bool canShoot = true;
 
+
+    [Header("Rebound Properties")]
+    [SerializeField] public float reboundDuration;
+    [SerializeField] public float reboundPositionForce;
+    [SerializeField] public float reboundRotationForce;
+
     [Header("Components")]
     [SerializeField] private Rigidbody rb;
     public virtual void Idle() { }

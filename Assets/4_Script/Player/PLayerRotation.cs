@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class PlayerRotation : MonoBehaviour
@@ -39,5 +40,9 @@ public class PlayerRotation : MonoBehaviour
         head.rotation = Quaternion.Euler(originBodyRotation + originHeadRotation);
     }
 
-
+    public void HeadShake(float ReboundDuration, float ReboundPositionForce, float ReboundRotationForce)
+    {
+        head.transform.DOShakePosition(ReboundDuration, new Vector3(0,0, ReboundPositionForce), 5, 45, false, true, ShakeRandomnessMode.Harmonic);
+        head.transform.DOShakeRotation(ReboundDuration, new Vector3(ReboundRotationForce, 0, 0), 10, 60, true, ShakeRandomnessMode.Harmonic);
+    }
 }

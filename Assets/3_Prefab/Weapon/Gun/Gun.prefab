@@ -90,6 +90,9 @@ MonoBehaviour:
   isRecharge: 0
   delayBetweenShoot: 0.35
   canShoot: 1
+  reboundDuration: 0.2
+  reboundPositionForce: 0.5
+  reboundRotationForce: 30
   rb: {fileID: 2250845669609097163}
   bulletSpawnPosition: {fileID: 6761765448594312848}
   bulletPrefab: {fileID: 6970171171338320101, guid: 110440070f84fa948a13ee7defdb6168, type: 3}

@@ -502,13 +502,12 @@ MonoBehaviour:
   health: 100
   maxHealth: 100
   weapon: {fileID: 0}
-  currentWeaponMeshRenderer: {fileID: 0}
-  gunMeshRenderer: {fileID: 2099974669286804391}
   animator: {fileID: 3163873927558238229}
   originPosition: {fileID: 5664114271353516608}
   direction: {x: 0, y: 0, z: 1}
   length: 8
   hand: {fileID: 7575763137559990104}
+  playerRotation: {fileID: 3712270531299318509}
 --- !u!114 &3617403536029417281
 MonoBehaviour:
   m_ObjectHideFlags: 0
