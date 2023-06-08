@@ -35,7 +35,6 @@ public class Villeger : HealthObject
         {
             Death();
         }
-        Debug.Log("Enemy Getting Damage");
         transform.DOMove(transform.position + (new Vector3(direction.x, 1, direction.z) * 1.3f), 0.3f);
     }
     public override void Death()

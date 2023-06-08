@@ -59,7 +59,7 @@ public class Weapon : Interactable
             .AppendInterval(delayBetweenShoot).OnComplete(() =>
             {
                 canShoot = true;
-            });
+            }).SetLink(gameObject);
         EventManager.Instance.OnShoot(currentPatronsInMagazine, allPatrons, maxPatronsInMagazine);
         return WeaponState.Shoot;
     }
@@ -94,7 +94,7 @@ public class Weapon : Interactable
                 {
                     EventManager.Instance.OnShoot(currentPatronsInMagazine, allPatrons, maxPatronsInMagazine);
                 }
-            });
+            }).SetLink(gameObject);
         return WeaponState.Recharge;
     }
 

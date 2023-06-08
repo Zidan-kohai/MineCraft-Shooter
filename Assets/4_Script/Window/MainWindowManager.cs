@@ -132,7 +132,7 @@ public class MainWindowManager : Window
                     EventManager.Instance.OnNewWave();
                     sequence.Kill();
                 }
-            }).SetLoops(-1);
+            }).SetLoops(-1).SetLink(gameObject);
     }
 
     public override void Destroy()

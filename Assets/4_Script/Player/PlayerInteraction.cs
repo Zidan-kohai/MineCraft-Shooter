@@ -99,7 +99,7 @@ public class PlayerInteraction : PlayerData
             .AppendInterval(0.4f).OnComplete(() =>
             {
                 CheckInteractibleObject();
-            });
+            }).SetLink(gameObject);
     }
     private void GetInteractibbleObject()
     {
@@ -134,9 +134,9 @@ public class PlayerInteraction : PlayerData
         {
             animator.SetTrigger("GetGun");
         }
-        else
+        else if(weapon is MK)
         {
-
+            animator.SetTrigger("GetMK");
         }
     }
 
