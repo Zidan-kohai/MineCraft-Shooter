@@ -8,6 +8,7 @@ public class Villeger : HealthObject
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private Transform target;
     [SerializeField] private float distanceToChooseNextTarget;
+    [SerializeField] private Animator animator;
     public override void Init()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -23,6 +24,7 @@ public class Villeger : HealthObject
         {
             target = GameManager.Instance.GetNextPositionForVilleger();
             agent.destination = target.position;
+            animator.SetTrigger("Walk");
         }
     }
     public override void GetDamage(int damage, Vector3 direction)
