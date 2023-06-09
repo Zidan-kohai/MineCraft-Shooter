@@ -2,6 +2,7 @@ using DG.Tweening;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(AudioSource))]
 public class Weapon : Interactable
 {
     [Header("BuyProperties")]
@@ -32,6 +33,10 @@ public class Weapon : Interactable
 
     [Header("Components")]
     [SerializeField] private Rigidbody rb;
+
+    [Header("Sound Properties")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip shootSound;
     public virtual void Idle() { }
 
     public virtual WeaponState Shoot(Transform OriginPosition)
@@ -54,6 +59,9 @@ public class Weapon : Interactable
             }
         }
         currentPatronsInMagazine--;
+
+        audioSource.clip = shootSound;
+        audioSource.Play();
 
         DOTween.Sequence()
             .AppendInterval(delayBetweenShoot).OnComplete(() =>

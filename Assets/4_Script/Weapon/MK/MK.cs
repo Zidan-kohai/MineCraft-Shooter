@@ -8,6 +8,7 @@ public class MK : Weapon
     [SerializeField] private int damage;
     [SerializeField] private float bulletSpeed;
 
+
     public override WeaponState Shoot(Transform originPosition)
     {
         bool canShoot = currentPatronsInMagazine > 0 && this.canShoot && !isRecharge;

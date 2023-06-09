@@ -430,14 +430,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1201485596}
     m_Modifications:
-    - target: {fileID: 671679800990541417, guid: 6be11c5a24c2d7e488333dd9373ad775, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1440577832157327926, guid: 6be11c5a24c2d7e488333dd9373ad775, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2250845669609097162, guid: 6be11c5a24c2d7e488333dd9373ad775, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -482,29 +474,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -94.831
       objectReference: {fileID: 0}
-    - target: {fileID: 2250845669609097164, guid: 6be11c5a24c2d7e488333dd9373ad775, type: 3}
-      propertyPath: delayBetweenShoot
-      value: 0.35
-      objectReference: {fileID: 0}
     - target: {fileID: 2250845669609097167, guid: 6be11c5a24c2d7e488333dd9373ad775, type: 3}
       propertyPath: m_Name
       value: Gun (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2250845669609097167, guid: 6be11c5a24c2d7e488333dd9373ad775, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6392709044487760751, guid: 6be11c5a24c2d7e488333dd9373ad775, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6717419184145473373, guid: 6be11c5a24c2d7e488333dd9373ad775, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7201396331350589972, guid: 6be11c5a24c2d7e488333dd9373ad775, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6be11c5a24c2d7e488333dd9373ad775, type: 3}
