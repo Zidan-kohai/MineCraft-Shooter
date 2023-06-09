@@ -196,12 +196,12 @@ MonoBehaviour:
   allPatrons: 150
   maxPatronsInMagazine: 30
   currentPatronsInMagazine: 0
-  position: {x: 0, y: 0.264, z: -1.367}
+  position: {x: 0, y: 0.354, z: -0.094}
   rotation: {x: -90, y: 0, z: 0}
   isInPlayerHand: 0
-  rechargeTime: 2.5
+  rechargeTime: 2.3
   isRecharge: 0
-  delayBetweenShoot: 0.3
+  delayBetweenShoot: 0.2
   canShoot: 1
   reboundDuration: 0.2
   reboundPositionForce: 0.6
