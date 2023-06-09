@@ -3,15 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(AudioSource))]
 public class Villeger : HealthObject
 {
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private Transform target;
     [SerializeField] private float distanceToChooseNextTarget;
     [SerializeField] private Animator animator;
+
+
+    [Header("Sound Properties")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip roarSound;
+    [SerializeField] private AudioClip diethSound;
+    [SerializeField] private AudioClip getDamageSound;
+    [SerializeField] private float minTimeToRoar;
+    [SerializeField] private float maxTimeToRoar;
+    [SerializeField] private float chooseTimeToRoar;
     public override void Init()
     {
         agent = GetComponent<NavMeshAgent>();
+        Roar();
     }
 
     public override void EveryFrame()
@@ -27,6 +39,20 @@ public class Villeger : HealthObject
             animator.SetTrigger("Walk");
         }
     }
+
+    private void Roar()
+    {
+        audioSource.clip = roarSound;
+        audioSource.Play();
+        chooseTimeToRoar = Random.Range(minTimeToRoar, maxTimeToRoar);
+
+        DOTween.Sequence()
+            .AppendInterval(chooseTimeToRoar).OnComplete(() =>
+            {
+                Roar();
+            }).SetLink(gameObject);
+    }
+
     public override void GetDamage(int damage, Vector3 direction)
     {
         health -= damage;
@@ -35,6 +61,9 @@ public class Villeger : HealthObject
         {
             Death();
         }
+        audioSource.clip = getDamageSound;
+        audioSource.Play();
+
         transform.DOMove(transform.position + (new Vector3(direction.x, 1, direction.z) * 1.3f), 0.3f);
     }
     public override void Death()

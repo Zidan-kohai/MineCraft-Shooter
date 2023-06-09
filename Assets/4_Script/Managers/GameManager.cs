@@ -115,17 +115,23 @@ public class GameManager : Manager
 
         for (int i = 0; i < currentLevel.villegersCountToSpawn; i++)
         {
-            villegers.Add(Instantiate(currentLevel.villegerPrefab, LevelManager.Instance.GetRandomPositionForVilleger().position, Quaternion.identity, villegerParent));
+            Villeger villeger = Instantiate(currentLevel.villegerPrefab, LevelManager.Instance.GetRandomPositionForVilleger().position, Quaternion.identity, villegerParent);
+            villegers.Add(villeger);
+            villeger.Init();
         }
 
         for (int i = 0; i < currentLevel.simpleEnemiesCountToSpawn; i++)
         {
-            enemies.Add(Instantiate(currentLevel.simpleEnemyPrefab, LevelManager.Instance.GetRandomPositionForEnemySpawn().position, Quaternion.identity, enemyParent));
+            Enemy enemy = Instantiate(currentLevel.simpleEnemyPrefab, LevelManager.Instance.GetRandomPositionForEnemySpawn().position, Quaternion.identity, enemyParent);
+            enemies.Add(enemy);
+            enemy.Init();
         }
 
         for (int i = 0; i < currentLevel.archerEnemiesCountToSpawn; i++)
         {
-            enemies.Add(Instantiate(currentLevel.archerEnemyPrefab, LevelManager.Instance.GetRandomPositionForEnemySpawn().position, Quaternion.identity, enemyParent));
+            Enemy enemy = Instantiate(currentLevel.archerEnemyPrefab, LevelManager.Instance.GetRandomPositionForEnemySpawn().position, Quaternion.identity, enemyParent);
+            enemies.Add(enemy);
+            enemy.Init();
         }
 
         LevelManager.Instance.SetNextLevelIndex(LevelManager.Instance.GetCurrentLevelIndex() + 1);
