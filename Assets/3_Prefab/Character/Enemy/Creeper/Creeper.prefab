@@ -325,7 +325,7 @@ MonoBehaviour:
   maxHealth: 60
   agent: {fileID: -2095590438266463023}
   target: {fileID: 0}
-  distanceToTarget: 3
+  distanceToTarget: 5
   damage: 50
   distanceToAttack: 3
   attackDelay: 0
