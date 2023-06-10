@@ -47,8 +47,13 @@ public class GameManager : Manager
         EventManager.Instance.SubscribeOnDeath(RemoveHealthObjectFromList);
         EventManager.Instance.SubscribeOnSetMoney(SetMoney);
         EventManager.Instance.SubscribeOnNewWave(NewWave);
-
     }
+
+    public override void AfterInit()
+    {
+        player.AfterInit();
+    }
+
     private void Update()
     {
         #region Stoping
@@ -87,11 +92,6 @@ public class GameManager : Manager
         }
 
         playerRotation.AfterEveryFrame();
-    }
-
-    public override void AfterInit()
-    {
-
     }
     private void NewWave()
     {

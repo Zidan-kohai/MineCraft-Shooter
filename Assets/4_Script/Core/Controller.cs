@@ -10,6 +10,10 @@ public class Controller : MonoBehaviour
         {
             manager.Init();
         }
+        foreach (var manager in managers)
+        {
+            manager.AfterInit();
+        }
     }
 
     private void OnDestroy()

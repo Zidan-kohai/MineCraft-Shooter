@@ -78,9 +78,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 5020985902458967606}
   speed: 20
-  damage: 20
+  damage: 50
   sphereRadius: 7
-  timeToExplosion: 2
+  timeToExplosion: 4
 --- !u!1001 &3065135022386981516
 PrefabInstance:
   m_ObjectHideFlags: 0

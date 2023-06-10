@@ -11,6 +11,7 @@ public class MainWindowManager : Window
     [SerializeField] private TMP_Text allPatrons;
     [SerializeField] private TMP_Text currentPatronsInMagazine;
     [SerializeField] private TMP_Text maxPatronsInMagazine;
+    [SerializeField] private TMP_Text currentGrenade;
 
     [Header("Interaction")]
     [SerializeField] private Image target;
@@ -45,6 +46,7 @@ public class MainWindowManager : Window
         EventManager.Instance.SubscribeOnSetMoney(SetMoney);
         EventManager.Instance.SubscribeOnNewWave(NewWave);
         EventManager.Instance.SubscribeOnEndWave(EndWave);
+        EventManager.Instance.SubscribeOnUseBlowUp(OnUseBlowUpThing);
 
 
         GameManager.Instance.SetMoney(Convert.ToInt32(AllMoney.text));
@@ -71,6 +73,11 @@ public class MainWindowManager : Window
         this.allPatrons.text =  allPatrons.ToString();
         this.currentPatronsInMagazine.text = currentPatronsInMagazine.ToString();
         this.maxPatronsInMagazine.text = maxPatronsInMagazine.ToString();
+    }
+
+    private void OnUseBlowUpThing(int grenadeCount)
+    {
+        currentGrenade.text = grenadeCount.ToString();
     }
 
     private void SetTarget(Interactable interaction)
@@ -145,5 +152,6 @@ public class MainWindowManager : Window
         EventManager.Instance.UnsubscribeOnSetMoney(SetMoney);
         EventManager.Instance.UnsubscribeOnNewWave(NewWave);
         EventManager.Instance.UnsubscribeOnEndWave(EndWave);
+        EventManager.Instance.UnsubscribeOnUseBlowUp(OnUseBlowUpThing);
     }
 }

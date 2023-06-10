@@ -588,7 +588,7 @@ MonoBehaviour:
   maxHealth: 100
   weapon: {fileID: 0}
   granade: {fileID: -4513893000646550690, guid: 70272b2480ccd5140ace5930f5fae7a0, type: 3}
-  granadeCount: 5
+  granadeCount: 25
   animator: {fileID: 3163873927558238229}
   originPosition: {fileID: 5664114271353516608}
   direction: {x: 0, y: 0, z: 1}

@@ -22,6 +22,11 @@ public class PlayerInteraction : PlayerData
     {
         CheckInteractibleObject();
     }
+
+    public override void AfterInit()
+    {
+        EventManager.Instance.OnUseBlowUp(granadeCount);
+    }
     public override void EveryFrame()
     {
 
@@ -54,11 +59,12 @@ public class PlayerInteraction : PlayerData
     }
     private void spawnGranade()
     {
-
         Granade currentGrande = Instantiate(granade, hand.transform.position + -hand.transform.forward, Quaternion.identity);
         currentGrande.Init(-hand.transform.forward);
         granadeCount--;
         WeaponTurnOn(weapon);
+
+        EventManager.Instance.OnUseBlowUp(granadeCount);
     }
     private void Shoot()
     {
