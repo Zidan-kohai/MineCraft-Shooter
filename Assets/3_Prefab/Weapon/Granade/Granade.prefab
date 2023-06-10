@@ -81,6 +81,7 @@ MonoBehaviour:
   damage: 50
   sphereRadius: 7
   timeToExplosion: 4
+  ExplosionParticle: {fileID: 4506195184279574762, guid: 6487f49bfb4724c42b66fa33783882b3, type: 3}
 --- !u!1001 &3065135022386981516
 PrefabInstance:
   m_ObjectHideFlags: 0
