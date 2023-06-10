@@ -78,6 +78,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 4880018750917547873}
   damage: 10
+  getDamageParticle: {fileID: 8375162596811672430, guid: 5fb68d198a122f145b7e3b34bd6a5b78, type: 3}
 --- !u!1 &4880018751427255362
 GameObject:
   m_ObjectHideFlags: 0
