@@ -11,9 +11,14 @@ public class Creeper : Enemy
     [SerializeField] private Vector3 scaleCurrentExplosion;
     [SerializeField] private float scaleDuration;
     [SerializeField] private float sphereRadius;
+
+    [Header("Components")]
+    [SerializeField] protected Animator animator;
     public override void EveryFrame()
     {
         base.Walk();
+        animator.SetFloat("distance", distanceToTarget);
+
         if (distanceToTarget < distanceToAttack && !isAttacked)
         {
             Attack();
@@ -26,6 +31,9 @@ public class Creeper : Enemy
         isAttacked = true;
         audioSource.clip = diethSound;
         audioSource.Play();
+
+        animator.SetTrigger("attack");
+
         DOTween.Sequence()
             .Append(transform.DOScale(scaleCurrentExplosion, scaleDuration)).SetEase(Ease.Linear)
             .Append(transform.DOScale(1f, scaleDuration)).SetEase(Ease.Linear)
