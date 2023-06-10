@@ -134,6 +134,13 @@ public class GameManager : Manager
             enemy.Init();
         }
 
+        for (int i = 0; i < currentLevel.creeperEnemiesCountToSpawn; i++)
+        {
+            Enemy enemy = Instantiate(currentLevel.creeperEnemyPrefab, LevelManager.Instance.GetRandomPositionForEnemySpawn().position, Quaternion.identity, enemyParent);
+            enemies.Add(enemy);
+            enemy.Init();
+        }
+
         LevelManager.Instance.SetNextLevelIndex(LevelManager.Instance.GetCurrentLevelIndex() + 1);
     }
 

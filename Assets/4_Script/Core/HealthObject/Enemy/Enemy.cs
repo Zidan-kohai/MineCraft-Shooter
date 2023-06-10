@@ -23,10 +23,10 @@ public class Enemy : HealthObject
     [SerializeField] private int cost;
 
     [Header("Sound Properties")]
-    [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioClip roarSound;
-    [SerializeField] private AudioClip diethSound;
-    [SerializeField] private AudioClip getDamageSound;
+    [SerializeField] protected AudioSource audioSource;
+    [SerializeField] protected AudioClip roarSound;
+    [SerializeField] protected AudioClip diethSound;
+    [SerializeField] protected AudioClip getDamageSound;
     [SerializeField] private float minTimeToRoar;
     [SerializeField] private float maxTimeToRoar;
     [SerializeField] private float chooseTimeToRoar;
@@ -46,7 +46,7 @@ public class Enemy : HealthObject
         lastedTimeFromLastAttack += Time.deltaTime;
     }
 
-    private void Walk()
+    protected void Walk()
     {
         if (target == null)
         {

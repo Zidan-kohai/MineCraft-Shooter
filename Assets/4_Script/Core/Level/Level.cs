@@ -17,6 +17,10 @@ public class Level : ScriptableObject
     public Enemy archerEnemyPrefab;
     public int archerEnemiesCountToSpawn;
 
+    [Header("Creeper Enemies")]
+    public Enemy creeperEnemyPrefab;
+    public int creeperEnemiesCountToSpawn;
+
     [Header("Player")]
     public PlayerInteraction playerPrefab;
  
