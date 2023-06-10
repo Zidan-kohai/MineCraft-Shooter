@@ -38,7 +38,11 @@ public class Enemy : HealthObject
 
     public override void EveryFrame()
     {
-        Walk();
+        DOTween.Sequence()
+            .AppendInterval(1).OnComplete(() =>
+            {
+                Walk();
+            });
         if(distanceToTarget < distanceToAttack && lastedTimeFromLastAttack > attackDelay)
         {
             Attack();
