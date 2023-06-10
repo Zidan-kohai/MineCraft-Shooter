@@ -5,10 +5,12 @@ public class PlayerData : HealthObject
 {
     [Header("Weapons")]
     [SerializeField] protected Weapon weapon;
+    [SerializeField] protected Granade granade;
+    [SerializeField] protected int granadeCount;
 
     [Header("Animator")]
     [SerializeField] protected Animator animator;
-    public override void GetDamage(int damage, Vector3 direction)
+    public override void GetDamage(int damage, Vector3 direction, float force)
     {
         health -= damage;
         health = Mathf.Clamp(health, 0, maxHealth);
@@ -16,7 +18,7 @@ public class PlayerData : HealthObject
         {
             Death();
         }
-        transform.DOMove(transform.position + (new Vector3(direction.x, 1, direction.z) * 1.3f), 0.3f);
+        transform.DOMove(transform.position + new Vector3(direction.x * force, 1, direction.z * force), 0.3f);
     }
 
     public override void Death()

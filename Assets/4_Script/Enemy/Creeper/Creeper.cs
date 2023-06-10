@@ -1,4 +1,3 @@
-
 using DG.Tweening;
 using UnityEngine;
 
@@ -14,6 +13,7 @@ public class Creeper : Enemy
 
     [Header("Components")]
     [SerializeField] protected Animator animator;
+
     public override void EveryFrame()
     {
         base.Walk();
@@ -45,7 +45,7 @@ public class Creeper : Enemy
                 {
                     if(collider.gameObject.TryGetComponent(out HealthObject healthObject))
                     {
-                        healthObject.GetDamage(damage, (healthObject.transform.position - transform.position).normalized);
+                        healthObject.GetDamage(damage, (healthObject.transform.position - transform.position).normalized, damage / 7);
                     }
                 }
                 base.Death();

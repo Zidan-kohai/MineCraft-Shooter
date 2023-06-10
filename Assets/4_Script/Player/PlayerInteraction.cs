@@ -35,6 +35,14 @@ public class PlayerInteraction : PlayerData
             GetInteractibbleObject();
         }
 
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            if(granadeCount > 0)
+            {
+                animator.SetTrigger("ThrowGranade");
+            }
+        }
+
         if (Input.GetMouseButton(0) && weapon != null)
         {
             Shoot();
@@ -44,7 +52,14 @@ public class PlayerInteraction : PlayerData
             Recharge();
         }
     }
+    private void spawnGranade()
+    {
 
+        Granade currentGrande = Instantiate(granade, hand.transform.position + -hand.transform.forward, Quaternion.identity);
+        currentGrande.Init(-hand.transform.forward);
+        granadeCount--;
+        WeaponTurnOn(weapon);
+    }
     private void Shoot()
     {
         WeaponState weaponState = weapon.Shoot(originPosition);
@@ -133,11 +148,15 @@ public class PlayerInteraction : PlayerData
         if(weapon is Gun)
         {
             animator.SetTrigger("GetGun");
+            return;
         }
         else if(weapon is MK)
         {
             animator.SetTrigger("GetMK");
+            return;
         }
+
+        animator.SetTrigger("RemoveGun");
     }
 
     private void OnDrawGizmos()

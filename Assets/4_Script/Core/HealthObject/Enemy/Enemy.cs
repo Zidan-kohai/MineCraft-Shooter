@@ -72,11 +72,11 @@ public class Enemy : HealthObject
     }
     protected virtual void Attack()
     {
-        target.GetDamage(damage, (target.transform.position - transform.position).normalized);
+        target.GetDamage(damage, (target.transform.position - transform.position).normalized, damage / 7);
         lastedTimeFromLastAttack = 0;
     }
 
-    public override void GetDamage(int damage, Vector3 direction)
+    public override void GetDamage(int damage, Vector3 direction, float force)
     {
         health -= damage;
         health = Mathf.Clamp(health, 0, maxHealth);
@@ -87,7 +87,7 @@ public class Enemy : HealthObject
         audioSource.clip = getDamageSound;
         audioSource.Play();
 
-        transform.DOMove(transform.position + (new Vector3(direction.x, 1, direction.z) * 1.3f), 0.3f);
+        transform.DOMove(transform.position + new Vector3(direction.x * force, 1, direction.z * force), 0.3f);
     }
 
     public override void Death()

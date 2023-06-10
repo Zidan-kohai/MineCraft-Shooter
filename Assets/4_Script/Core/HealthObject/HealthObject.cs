@@ -30,5 +30,5 @@ public abstract class HealthObject : MonoBehaviour
     }
 
     public virtual void Death() {  }
-    public virtual void GetDamage(int damage, Vector3 direction) { }
+    public virtual void GetDamage(int damage, Vector3 direction, float force) { }
 }

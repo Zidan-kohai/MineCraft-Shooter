@@ -17,6 +17,7 @@ public class Weapon : Interactable
     [SerializeField] private Vector3 position;
     [SerializeField] private Vector3 rotation;
     [SerializeField] private bool isInPlayerHand = false;
+
     [Header("Recharge Properties")]
     [SerializeField] protected float rechargeTime;
     [SerializeField] protected bool isRecharge;
@@ -24,7 +25,6 @@ public class Weapon : Interactable
     [Header("Shoot Properties")]
     [SerializeField] private float delayBetweenShoot;
     [SerializeField] protected bool canShoot = true;
-
 
     [Header("Rebound Properties")]
     [SerializeField] public float reboundDuration;
