@@ -589,6 +589,11 @@ MonoBehaviour:
   weapon: {fileID: 0}
   granade: {fileID: -4513893000646550690, guid: 70272b2480ccd5140ace5930f5fae7a0, type: 3}
   granadeCount: 25
+  mine: {fileID: -5335988113761224915, guid: b3296c9cf393c28429211bf8b324970b, type: 3}
+  mineCount: 15
+  layerToPutMine:
+    serializedVersion: 2
+    m_Bits: 192
   animator: {fileID: 3163873927558238229}
   originPosition: {fileID: 5664114271353516608}
   direction: {x: 0, y: 0, z: 1}

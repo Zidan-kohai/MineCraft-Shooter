@@ -47,6 +47,14 @@ public class PlayerInteraction : PlayerData
                 animator.SetTrigger("ThrowGranade");
             }
         }
+        else if (Input.GetKeyDown(KeyCode.H))
+        {
+            if (mineCount > 0)
+            {
+                PutMine();
+                mineCount--;
+            }
+        }
 
         if (Input.GetMouseButton(0) && weapon != null)
         {
@@ -65,6 +73,15 @@ public class PlayerInteraction : PlayerData
         WeaponTurnOn(weapon);
 
         EventManager.Instance.OnUseBlowUp(granadeCount);
+    }
+
+    private void PutMine()
+    {
+        if(Physics.Raycast(originPosition.position, originPosition.TransformDirection(direction), out hit, length, layerToPutMine))
+        {
+            Mine mine =  Instantiate(this.mine, hit.point, Quaternion.identity);
+            mine.transform.up = hit.normal;
+        }
     }
     private void Shoot()
     {

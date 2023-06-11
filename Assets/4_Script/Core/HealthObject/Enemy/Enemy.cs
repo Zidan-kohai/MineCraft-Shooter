@@ -1,5 +1,6 @@
 using DG.Tweening;
 using JetBrains.Annotations;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -39,7 +40,7 @@ public class Enemy : HealthObject
     public override void EveryFrame()
     {
         DOTween.Sequence()
-            .AppendInterval(1).OnComplete(() =>
+            .AppendInterval(0.3f).OnComplete(() =>
             {
                 Walk();
             });
@@ -57,9 +58,11 @@ public class Enemy : HealthObject
             target = GameManager.Instance.GetNextVillegerForZombi(transform.position);
             
         }
-
-        agent.destination = target.transform.position;
-        distanceToTarget = (transform.position - target.transform.position).magnitude;
+        if (agent.isOnNavMesh)
+        {
+            agent.destination = target.transform.position;
+            distanceToTarget = (transform.position - target.transform.position).magnitude;
+        }
     }
 
     private void Roar()

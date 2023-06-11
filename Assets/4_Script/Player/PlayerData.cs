@@ -7,6 +7,9 @@ public class PlayerData : HealthObject
     [SerializeField] protected Weapon weapon;
     [SerializeField] protected Granade granade;
     [SerializeField] protected int granadeCount;
+    [SerializeField] protected Mine mine;
+    [SerializeField] protected int mineCount;
+    [SerializeField] protected LayerMask layerToPutMine;
 
     [Header("Animator")]
     [SerializeField] protected Animator animator;
