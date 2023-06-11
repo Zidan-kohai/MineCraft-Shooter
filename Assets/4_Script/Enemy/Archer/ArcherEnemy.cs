@@ -4,6 +4,9 @@ public class ArcherEnemy : Enemy
 {
     [Header("Components")]
     [SerializeField] protected Animator animator;
+    [SerializeField] protected Bullet arrow;
+    [SerializeField] protected Transform arrowPosition;
+    [SerializeField] protected float arrowSpeed;
     public override void EveryFrame()
     {
         base.EveryFrame();
@@ -12,6 +15,14 @@ public class ArcherEnemy : Enemy
     }
     protected override void Attack()
     {
+        animator.SetTrigger("attack");
         lastedTimeFromLastAttack = 0;
+    }
+
+    private void Shoot()
+    {
+        Bullet bullet = Instantiate(arrow, arrowPosition.position, Quaternion.identity, arrowPosition);
+        bullet.transform.SetParent(null);
+        bullet.Init((target.transform.position -  transform.position).normalized, damage, arrowSpeed);
     }
 }

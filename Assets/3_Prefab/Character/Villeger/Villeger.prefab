@@ -94,10 +94,10 @@ GameObject:
   - component: {fileID: 1149773732569037594}
   - component: {fileID: 1149773732569037595}
   - component: {fileID: -6780780463443994710}
-  - component: {fileID: 1258624324367757328}
   - component: {fileID: 1622561181287934119}
   - component: {fileID: 4026023989758712515}
-  m_Layer: 0
+  - component: {fileID: 814094913136207757}
+  m_Layer: 10
   m_Name: Villeger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,20 +167,6 @@ MonoBehaviour:
   minTimeToRoar: 7
   maxTimeToRoar: 15
   chooseTimeToRoar: 0
---- !u!136 &1258624324367757328
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1149773732569037597}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 4
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!95 &1622561181287934119
 Animator:
   serializedVersion: 5
@@ -298,6 +284,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &814094913136207757
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1149773732569037597}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 3.5, z: 1}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &1967101612192156200
 GameObject:
   m_ObjectHideFlags: 0

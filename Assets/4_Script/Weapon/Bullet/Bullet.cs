@@ -1,7 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
 
-
 [RequireComponent (typeof(Rigidbody))]
 public class Bullet : MonoBehaviour
 {
@@ -18,7 +17,7 @@ public class Bullet : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.transform.TryGetComponent(out Enemy enemy))
+        if(collision.transform.TryGetComponent(out HealthObject enemy))
         {   
             enemy.GetDamage(damage, (collision.transform.position - transform.position).normalized, damage / 7);
             ParticleSystem particle = Instantiate(getDamageParticle, transform.position, Quaternion.identity);
