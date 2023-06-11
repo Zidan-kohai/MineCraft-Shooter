@@ -23,7 +23,7 @@ public class EventManager : Manager
     private Action LoseGame;
     private Action NewWave;
     private Action<int> EndWave;
-    private Action<int> UseBlowUp;
+    private Action<int, int> UseBlowUp;
     #region Shoot
     public void SubscribeOnShoot(Action<int,int,int> sender)
     {
@@ -221,7 +221,7 @@ public class EventManager : Manager
     #endregion
 
     #region UseBlowUp
-    public void SubscribeOnUseBlowUp(Action<int> sender)
+    public void SubscribeOnUseBlowUp(Action<int, int> sender)
     {
         if (UseBlowUp == null)
         {
@@ -233,14 +233,14 @@ public class EventManager : Manager
         }
     }
 
-    public void UnsubscribeOnUseBlowUp(Action<int> sender)
+    public void UnsubscribeOnUseBlowUp(Action<int, int> sender)
     {
         UseBlowUp -= sender;
     }
 
-    public void OnUseBlowUp(int granadeCount)
+    public void OnUseBlowUp(int granadeCount, int mineCount)
     {
-        UseBlowUp?.Invoke(granadeCount);
+        UseBlowUp?.Invoke(granadeCount, mineCount);
     }
     #endregion
     public override void Destroy()

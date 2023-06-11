@@ -25,7 +25,7 @@ public class PlayerInteraction : PlayerData
 
     public override void AfterInit()
     {
-        EventManager.Instance.OnUseBlowUp(granadeCount);
+        EventManager.Instance.OnUseBlowUp(granadeCount, mineCount);
     }
     public override void EveryFrame()
     {
@@ -72,7 +72,7 @@ public class PlayerInteraction : PlayerData
         granadeCount--;
         WeaponTurnOn(weapon);
 
-        EventManager.Instance.OnUseBlowUp(granadeCount);
+        EventManager.Instance.OnUseBlowUp(granadeCount, mineCount);
     }
 
     private void PutMine()

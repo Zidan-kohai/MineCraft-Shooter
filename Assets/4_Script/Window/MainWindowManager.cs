@@ -12,6 +12,7 @@ public class MainWindowManager : Window
     [SerializeField] private TMP_Text currentPatronsInMagazine;
     [SerializeField] private TMP_Text maxPatronsInMagazine;
     [SerializeField] private TMP_Text currentGrenade;
+    [SerializeField] private TMP_Text currentMine;
 
     [Header("Interaction")]
     [SerializeField] private Image target;
@@ -75,9 +76,10 @@ public class MainWindowManager : Window
         this.maxPatronsInMagazine.text = maxPatronsInMagazine.ToString();
     }
 
-    private void OnUseBlowUpThing(int grenadeCount)
+    private void OnUseBlowUpThing(int grenadeCount, int mineCount)
     {
         currentGrenade.text = grenadeCount.ToString();
+        currentMine.text = mineCount.ToString();
     }
 
     private void SetTarget(Interactable interaction)
