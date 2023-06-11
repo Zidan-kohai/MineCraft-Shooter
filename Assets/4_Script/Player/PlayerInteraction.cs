@@ -51,8 +51,8 @@ public class PlayerInteraction : PlayerData
         {
             if (mineCount > 0)
             {
-                PutMine();
                 mineCount--;
+                PutMine();
             }
         }
 
@@ -82,6 +82,7 @@ public class PlayerInteraction : PlayerData
             Mine mine =  Instantiate(this.mine, hit.point, Quaternion.identity);
             mine.transform.up = hit.normal;
         }
+        EventManager.Instance.OnUseBlowUp(granadeCount, mineCount);
     }
     private void Shoot()
     {
