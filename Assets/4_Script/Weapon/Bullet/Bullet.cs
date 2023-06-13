@@ -11,7 +11,7 @@ public class Bullet : MonoBehaviour
     public void Init(Vector3 direction, int damage, float speed)
     {
         this.damage = damage;
-
+        transform.rotation = Quaternion.LookRotation(direction);
         rb.velocity = direction * speed;
 
     }

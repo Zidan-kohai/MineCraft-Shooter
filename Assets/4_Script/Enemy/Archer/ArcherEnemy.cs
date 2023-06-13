@@ -21,8 +21,9 @@ public class ArcherEnemy : Enemy
 
     private void Shoot()
     {
+        transform.forward = (target.transform.position - transform.position).normalized;
         Bullet bullet = Instantiate(arrow, arrowPosition.position, Quaternion.identity, arrowPosition);
         bullet.transform.SetParent(null);
-        bullet.Init((target.transform.position -  transform.position).normalized, damage, arrowSpeed);
+        bullet.Init(transform.forward, damage, arrowSpeed);
     }
 }
