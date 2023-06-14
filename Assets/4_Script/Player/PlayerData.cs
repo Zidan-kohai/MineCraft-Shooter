@@ -23,6 +23,18 @@ public class PlayerData : HealthObject
         }
         transform.DOMove(transform.position + new Vector3(direction.x * force, 1, direction.z * force), 0.3f);
     }
+    public void addGrenade(int count)
+    {
+        granadeCount += count;
+        EventManager.Instance.OnUseBlowUp(granadeCount, mineCount);
+    }
+    public void addMine(int count)
+    {
+        mineCount += count;
+        EventManager.Instance.OnUseBlowUp(granadeCount, mineCount);
+    }
+
+    public Weapon getWeapon() { return weapon; }
 
     public override void Death()
     {

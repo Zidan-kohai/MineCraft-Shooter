@@ -60,7 +60,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 5
-  addingPatron: 7
+  adding: 7
+  type: 0
 --- !u!1 &531229935873113934
 GameObject:
   m_ObjectHideFlags: 0

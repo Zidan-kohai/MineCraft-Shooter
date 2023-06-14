@@ -159,9 +159,9 @@ public class PlayerInteraction : PlayerData
                     WeaponTurnOn(weapon);
                 }
             }
-            else if(hit.transform.TryGetComponent(out ShopPatrons shopPatrons) && this.weapon != null)
+            else if(hit.transform.TryGetComponent(out Shop shop) && this.weapon != null)
             {
-                shopPatrons.Interaction(this.weapon);
+                shop.Interaction(this);
             }
 
         }

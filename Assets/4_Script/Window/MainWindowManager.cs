@@ -101,7 +101,7 @@ public class MainWindowManager : Window
                 buyUI.SetActive(true);
                 cost.text = interaction.GetCost().ToString();
             }
-            else if (interaction is ShopPatrons)
+            else if (interaction is Shop)
             {
                 buyUI.SetActive(true);
                 cost.text = interaction.GetCost().ToString();

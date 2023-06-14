@@ -6,7 +6,7 @@ public abstract class Interactable : MonoBehaviour
     [Header("Buying Properties")] 
     [SerializeField] protected int cost;
     public virtual void Interaction(Transform parent) { }
-    public virtual void Interaction(Weapon weapon) { }
+    public virtual void Interaction(PlayerData playerData) { }
     public int GetCost()
     {
         return cost;
