@@ -612,8 +612,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b48d8eead0fe9c74fbdbcd9ea8f19d86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkForce: 6
-  runForce: 15
+  walkForce: 9
+  runForce: 18
   jumpForce: 1.3
   gravityForce: -9.8
   isGround: 0

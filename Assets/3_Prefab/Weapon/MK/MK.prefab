@@ -192,7 +192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2d3fb109cf78d041aeedb4138f7d44f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: 20
+  cost: 100
   isBuyed: 0
   allPatrons: 150
   maxPatronsInMagazine: 30
@@ -212,7 +212,7 @@ MonoBehaviour:
   shootSound: {fileID: 8300000, guid: acf0c12623014a54d85cdf4ce1cc00f7, type: 3}
   bulletSpawnPosition: {fileID: 5308400261014350191}
   bulletPrefab: {fileID: 6970171171338320101, guid: 110440070f84fa948a13ee7defdb6168, type: 3}
-  damage: 5
+  damage: 10
   bulletSpeed: 70
 --- !u!82 &6173572055180401454
 AudioSource:

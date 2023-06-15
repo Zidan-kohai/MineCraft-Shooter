@@ -100,7 +100,7 @@ MonoBehaviour:
   shootSound: {fileID: 8300000, guid: 063c916781e078b45820c6366110d578, type: 3}
   bulletSpawnPosition: {fileID: 6761765448594312848}
   bulletPrefab: {fileID: 6970171171338320101, guid: 110440070f84fa948a13ee7defdb6168, type: 3}
-  damage: 10
+  damage: 8
   bulletSpeed: 60
 --- !u!54 &2250845669609097163
 Rigidbody:

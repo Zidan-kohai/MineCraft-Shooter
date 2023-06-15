@@ -6,7 +6,7 @@ OcclusionCullingSettings:
   serializedVersion: 2
   m_OcclusionBakeSettings:
     smallestOccluder: 2.08
-    smallestHole: 0.25
+    smallestHole: 0.13
     backfaceThreshold: 100
   m_SceneGUID: 9fc0d4010bbf28b4594072e72b8655ab
   m_OcclusionCullingData: {fileID: 36300000, guid: cabc83b38ab49444ebe325bd4e6aac6e, type: 2}
@@ -10691,10 +10691,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1201485596}
     m_Modifications:
-    - target: {fileID: 5308400262050837362, guid: 862461028fa209549a1e6dd1543c5fd8, type: 3}
-      propertyPath: cost
-      value: 100
-      objectReference: {fileID: 0}
     - target: {fileID: 5308400262050837372, guid: 862461028fa209549a1e6dd1543c5fd8, type: 3}
       propertyPath: m_RootOrder
       value: 5
