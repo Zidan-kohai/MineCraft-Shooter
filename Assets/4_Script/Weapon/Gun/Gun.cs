@@ -12,6 +12,7 @@ public class Gun : Weapon
     public override WeaponState Shoot(Transform originPosition)
     {
         bool canShoot = currentPatronsInMagazine > 0 && this.canShoot && !isRecharge;
+
         if (canShoot)
         {
             bulletSpawn(originPosition);

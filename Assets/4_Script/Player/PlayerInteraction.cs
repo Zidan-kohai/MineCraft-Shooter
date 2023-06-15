@@ -179,6 +179,11 @@ public class PlayerInteraction : PlayerData
             animator.SetTrigger("GetMK");
             return;
         }
+        else if (weapon is Shotgun)
+        {
+            animator.SetTrigger("GetShotgun");
+            return;
+        }
 
         animator.SetTrigger("RemoveGun");
     }

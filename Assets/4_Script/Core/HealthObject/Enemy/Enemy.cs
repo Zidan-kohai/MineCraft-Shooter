@@ -87,6 +87,8 @@ public class Enemy : HealthObject
 
     public override void GetDamage(int damage, Vector3 direction, float force)
     {
+        if (health == 0) return;
+
         health -= damage;
         health = Mathf.Clamp(health, 0, maxHealth);
         if (health == 0)
