@@ -1,5 +1,4 @@
 using DG.Tweening;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Shotgun : Weapon
@@ -49,7 +48,11 @@ public class Shotgun : Weapon
             {
                 if(hit.transform.TryGetComponent(out Enemy enemy))
                 {
-                    enemy.GetDamage((int)(damage / hit.distance), (enemy.transform.position - transform.position).normalized, (damage / hit.distance));
+                    float distance = Mathf.Clamp(hit.distance - 2, 1, this.distance);
+
+                    int damage = (int)(this.damage / distance);
+
+                    enemy.GetDamage(damage, (enemy.transform.position - transform.position).normalized, damage);
 
 
                     ParticleSystem particles = Instantiate(particleDamage, hit.point, Quaternion.identity);
