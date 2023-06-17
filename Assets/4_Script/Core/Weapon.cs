@@ -37,6 +37,9 @@ public class Weapon : Interactable
     [Header("Sound Properties")]
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip shootSound;
+
+    [Header("Particles")]
+    [SerializeField] private ParticleSystem shootParticle;
     public virtual void Idle() { }
 
     public virtual WeaponState Shoot(Transform OriginPosition)
@@ -61,8 +64,8 @@ public class Weapon : Interactable
         currentPatronsInMagazine--;
 
         audioSource.clip = shootSound;
+        shootParticle.Play();
         audioSource.Play();
-
         DOTween.Sequence()
             .AppendInterval(delayBetweenShoot).OnComplete(() =>
             {
