@@ -164,4 +164,4 @@ MonoBehaviour:
   damage: 50
   sphereRadius: 7
   timeToExplosion: 4
-  ExplosionParticle: {fileID: 4506195184279574762, guid: 6487f49bfb4724c42b66fa33783882b3, type: 3}
+  ExplosionParticle: {fileID: 181834431457663550, guid: e3645eb8ac8403f41a51c902e14c7b55, type: 3}

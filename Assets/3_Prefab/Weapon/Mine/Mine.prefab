@@ -131,7 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 65
   timeToExplosion: 3
-  explosionParticle: {fileID: 4506195184279574762, guid: 6487f49bfb4724c42b66fa33783882b3, type: 3}
+  explosionParticle: {fileID: 5552397431202196905, guid: 4236c8f33c790a449be04ee865a7e292, type: 3}
   sphereRadius: 10
   audioSource: {fileID: 7455972106128122806}
   clip: {fileID: 8300000, guid: e2906da7a6a6331458c35c9f91d1ec12, type: 3}
