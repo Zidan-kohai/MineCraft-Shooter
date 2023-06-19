@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 456682056655055180}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: shotgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,6 +67,7 @@ Transform:
   - {fileID: 5414633825233376823}
   - {fileID: 6871662831798370207}
   - {fileID: 1081784381634323490}
+  - {fileID: 8446468844348441729}
   m_Father: {fileID: 8465424220606397414}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
@@ -160,7 +161,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7575763137559990104}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: GunPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -193,7 +194,7 @@ GameObject:
   - component: {fileID: 1178321144427904711}
   - component: {fileID: 2879461812711715170}
   - component: {fileID: 4802713244861864}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: MK
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -274,7 +275,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1616593776235041053}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -310,7 +311,7 @@ GameObject:
   - component: {fileID: 1081784381634323490}
   - component: {fileID: 7861433767701998762}
   - component: {fileID: 4698621994104227247}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: HandRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -393,7 +394,7 @@ GameObject:
   - component: {fileID: 7455963535471129341}
   - component: {fileID: 5468899107160878929}
   - component: {fileID: 2989375165388674464}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: shotgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -872,7 +873,7 @@ GameObject:
   - component: {fileID: 8195894490237943115}
   - component: {fileID: 7358305710060508906}
   - component: {fileID: 4871713658413961033}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: mag_Cube.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -955,7 +956,7 @@ GameObject:
   - component: {fileID: 4354717388245629420}
   - component: {fileID: 8560997182198352078}
   - component: {fileID: 3238881817981711011}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: body_Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1039,7 +1040,7 @@ GameObject:
   - component: {fileID: 6023689845388177560}
   - component: {fileID: 1332866690718089109}
   - component: {fileID: 6321546052230608483}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: shotgun_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1122,7 +1123,7 @@ GameObject:
   - component: {fileID: 6871662831798370207}
   - component: {fileID: 7238514240320312558}
   - component: {fileID: 4761567997048995075}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: HandLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1198,6 +1199,90 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &7611071177204307223
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8446468844348441729}
+  - component: {fileID: 4027789189309463979}
+  - component: {fileID: 4042679913101954936}
+  m_Layer: 12
+  m_Name: HandCamera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8446468844348441729
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7611071177204307223}
+  m_LocalRotation: {x: 0.7071069, y: -0, z: -0, w: 0.70710677}
+  m_LocalPosition: {x: 0.002678448, y: 0.20981286, z: 0.45000017}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2286916876293224805}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &4027789189309463979
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7611071177204307223}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 3
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4096
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!81 &4042679913101954936
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7611071177204307223}
+  m_Enabled: 1
 --- !u!1 &7865838002601638789
 GameObject:
   m_ObjectHideFlags: 0
@@ -1209,7 +1294,7 @@ GameObject:
   - component: {fileID: 7940856896320989474}
   - component: {fileID: 1403542485733054461}
   - component: {fileID: 1606227302468126307}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: reload_Cube.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
