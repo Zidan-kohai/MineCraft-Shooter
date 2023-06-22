@@ -206,7 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62852cfcb34697e429cc69d866d51ff8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: 5
+  cost: 120
   isBuyed: 0
   allPatrons: 35
   maxPatronsInMagazine: 2
