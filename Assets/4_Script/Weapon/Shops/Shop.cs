@@ -31,6 +31,8 @@ public class Shop : Interactable
             }
         }
     }
+
+    public ShopType GetShopType() => type;
 }
 
 public enum ShopType{

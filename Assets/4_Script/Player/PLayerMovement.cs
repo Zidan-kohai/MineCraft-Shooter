@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Movement()
     {
-        Vector3 direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        Vector3 direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
 
         float moveVelocity = walkForce;
 
