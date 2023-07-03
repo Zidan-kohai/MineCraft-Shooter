@@ -3421,6 +3421,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   managers:
   - {fileID: 1989229005}
+  - {fileID: 1989229009}
   - {fileID: 1989229008}
   - {fileID: 1989229007}
   - {fileID: 440378635}
@@ -3812,7 +3813,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Play
+  m_text: Return
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -6281,18 +6282,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1989229005}
-        m_TargetAssemblyTypeName: EventManager, Assembly-CSharp
-        m_MethodName: OnNewWave
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1470547418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8506,6 +8495,7 @@ GameObject:
   - component: {fileID: 1989229005}
   - component: {fileID: 1989229008}
   - component: {fileID: 1989229007}
+  - component: {fileID: 1989229009}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -8598,6 +8588,18 @@ MonoBehaviour:
   - {fileID: 60567368}
   - {fileID: 1534669467}
   - {fileID: 1245114834}
+--- !u!114 &1989229009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1989229004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6424def5680d9347a4f3d6a2719a981, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2001836098
 GameObject:
   m_ObjectHideFlags: 0

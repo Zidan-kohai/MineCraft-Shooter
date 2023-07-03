@@ -1,5 +1,4 @@
 using DG.Tweening;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -70,6 +69,6 @@ public class Villeger : HealthObject
     {
         EventManager.Instance.OnDeath(this);
         Destroy(gameObject);
-        Debug.Log("Enemy Death");
+        Debug.Log("Villeger Death");
     }
 }

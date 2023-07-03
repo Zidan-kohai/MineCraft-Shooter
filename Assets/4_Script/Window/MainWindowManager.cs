@@ -48,11 +48,18 @@ public class MainWindowManager : Window
         EventManager.Instance.SubscribeOnNewWave(NewWave);
         EventManager.Instance.SubscribeOnEndWave(EndWave);
         EventManager.Instance.SubscribeOnUseBlowUp(OnUseBlowUpThing);
+        EventManager.Instance.SubscribeOnStart(StartGame);
 
 
         GameManager.Instance.SetMoney(Convert.ToInt32(AllMoney.text));
     }
 
+
+    private void StartGame()
+    {
+        EnemyCount.text = GameManager.Instance.GetEnemyCount().ToString();
+        VillegerCount.text = GameManager.Instance.GetVillegerCount().ToString();
+    }
     public void PauseGame()
     {
         PauseWindow.SetActive(true);
@@ -155,5 +162,6 @@ public class MainWindowManager : Window
         EventManager.Instance.UnsubscribeOnNewWave(NewWave);
         EventManager.Instance.UnsubscribeOnEndWave(EndWave);
         EventManager.Instance.UnsubscribeOnUseBlowUp(OnUseBlowUpThing);
+        EventManager.Instance.UnsubscribeOnStart(StartGame);
     }
 }

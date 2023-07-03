@@ -23,8 +23,14 @@ public class LevelManager : Manager
         }
 
         Instance = this;
+
+        InitData();
     }
 
+    private void InitData()
+    {
+        nextLevel = DataManager.Instance.GetCurrentLevel();
+    }
 
     public Level GetCurrentLevel()
     {

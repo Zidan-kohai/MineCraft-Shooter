@@ -14,7 +14,7 @@ public class EventManager : Manager
 
         Instance = this;
     }
-
+    private Action Start;
     private Action<int, int,int> Shoot;
     private Action<Interactable> PlayerInteraction;
     private Action<HealthObject> Death;
@@ -24,6 +24,31 @@ public class EventManager : Manager
     private Action NewWave;
     private Action<int> EndWave;
     private Action<int, int> UseBlowUp;
+
+    #region Start
+    public void SubscribeOnStart(Action sender)
+    {
+        if (Start == null)
+        {
+            Start = sender;
+        }
+        else if (!Start.GetInvocationList().Contains(sender))
+        {
+            Start += sender;
+        }
+    }
+
+    public void UnsubscribeOnStart(Action sender)
+    {
+        Start -= sender;
+    }
+
+    public void OnStart()
+    {
+        Start?.Invoke();
+    }
+    #endregion
+
     #region Shoot
     public void SubscribeOnShoot(Action<int,int,int> sender)
     {
