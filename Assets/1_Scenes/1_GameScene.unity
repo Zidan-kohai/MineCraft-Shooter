@@ -9604,11 +9604,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 531229934587746349, guid: 4bd1950b7a4d3fb4cb197146eb99974d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 93.33
+      value: 92.986
       objectReference: {fileID: 0}
     - target: {fileID: 531229934587746349, guid: 4bd1950b7a4d3fb4cb197146eb99974d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.95
+      value: 3.219
       objectReference: {fileID: 0}
     - target: {fileID: 531229934587746349, guid: 4bd1950b7a4d3fb4cb197146eb99974d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9616,27 +9616,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 531229934587746349, guid: 4bd1950b7a4d3fb4cb197146eb99974d, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 531229934587746349, guid: 4bd1950b7a4d3fb4cb197146eb99974d, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 531229934587746349, guid: 4bd1950b7a4d3fb4cb197146eb99974d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 531229934587746349, guid: 4bd1950b7a4d3fb4cb197146eb99974d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 531229934587746349, guid: 4bd1950b7a4d3fb4cb197146eb99974d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 531229934587746349, guid: 4bd1950b7a4d3fb4cb197146eb99974d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 531229934587746349, guid: 4bd1950b7a4d3fb4cb197146eb99974d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
