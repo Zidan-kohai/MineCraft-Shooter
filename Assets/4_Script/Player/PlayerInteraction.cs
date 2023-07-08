@@ -26,6 +26,24 @@ public class PlayerInteraction : PlayerData
     public override void AfterInit()
     {
         EventManager.Instance.OnUseBlowUp(granadeCount, mineCount);
+
+        if (DataManager.Instance.GetWeaponInPLayerHand() != Data.WeaponInPlayerHand.None)
+        {
+            switch(DataManager.Instance.GetWeaponInPLayerHand())
+            {
+                case Data.WeaponInPlayerHand.Gun:
+                    weapon = WeaponManager.Instance.GetGunPrefab();
+                    break;
+                case Data.WeaponInPlayerHand.MK:
+                    weapon = WeaponManager.Instance.GetMKPrefab();
+                    break;
+                case Data.WeaponInPlayerHand.Shotgun:
+                    weapon = WeaponManager.Instance.GetShotgunPrefab();
+                    break;
+            }
+            weapon.Interaction(hand.transform);
+            WeaponTurnOn(weapon);
+        }
     }
     public override void EveryFrame()
     {
@@ -114,6 +132,7 @@ public class PlayerInteraction : PlayerData
         weapon = null;
 
         animator.SetTrigger("RemoveGun");
+        DataManager.Instance.SetWeaponInPLayerHand(null);
     }
     
     private void CheckInteractibleObject()
@@ -183,20 +202,25 @@ public class PlayerInteraction : PlayerData
         if(weapon is Gun)
         {
             animator.SetTrigger("GetGun");
+            DataManager.Instance.SetWeaponInPLayerHand(WeaponManager.Instance.GetGunPrefab());
             return;
         }
         else if(weapon is MK)
         {
             animator.SetTrigger("GetMK");
+            DataManager.Instance.SetWeaponInPLayerHand(WeaponManager.Instance.GetMKPrefab());
             return;
         }
         else if (weapon is Shotgun)
         {
             animator.SetTrigger("GetShotgun");
+            DataManager.Instance.SetWeaponInPLayerHand(WeaponManager.Instance.GetShotgunPrefab());
             return;
         }
 
         animator.SetTrigger("RemoveGun");
+
+        DataManager.Instance.SetWeaponInPLayerHand(null);
     }
 
     private void OnDrawGizmos()

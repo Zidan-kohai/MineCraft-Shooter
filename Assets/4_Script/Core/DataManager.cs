@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using System.Linq;
 
 public class DataManager : Manager
 {
@@ -121,6 +119,77 @@ public class DataManager : Manager
         return data.SimpleEnemiesCount + data.ArcherEnemiesCount + data.CreeperEnemyCount + data.VillegerCount;
     }
 
+    #endregion
+
+    #region Weapon
+
+    public Data.WeaponInPlayerHand GetWeaponInPLayerHand()
+    {
+        return data.weaponInPlayerHand;
+    }
+
+    public void SetWeaponInPLayerHand(Weapon weapon)
+    {
+        if (weapon == null)
+        {
+            data.weaponInPlayerHand = Data.WeaponInPlayerHand.None;
+            Debug.Log("None");
+            return; 
+        }
+
+        else if (weapon is Gun)
+        {
+            data.weaponInPlayerHand = Data.WeaponInPlayerHand.Gun;
+            Debug.Log("Gun");
+            return;
+        }
+        else if (weapon is MK)
+        {
+            data.weaponInPlayerHand = Data.WeaponInPlayerHand.MK;
+            Debug.Log("MK");
+            return;
+        }
+        else if (weapon is Shotgun)
+        {
+            data.weaponInPlayerHand = Data.WeaponInPlayerHand.Shotgun;
+            Debug.Log("Shotgun");
+            return;
+        }
+
+    }
+
+    public void SetWeapons(List<Weapon> weapon)
+    {
+        foreach(Weapon weaponItem in weapon)
+        {
+            if (weaponItem is Gun)
+            {
+                data.GunPosition = weaponItem.transform.position;
+                data.GunRotation = weaponItem.transform.rotation;
+            }
+            else if (weaponItem is MK)
+            {
+                data.MKPosition = weaponItem.transform.position;
+                data.MKRotation = weaponItem.transform.rotation;
+            }
+            else if (weaponItem is Shotgun)
+            {
+                data.ShotgunPosition = weaponItem.transform.position;
+                data.ShotgunRotation = weaponItem.transform.rotation;
+            }
+        }
+    }
+
+    public void GetWeaponPositionAndRotation(ref List<Vector3> Position, ref List<Quaternion> Rotation)
+    {
+        Position.Add(data.GunPosition);
+        Position.Add(data.MKPosition);
+        Position.Add(data.ShotgunPosition);
+
+        Rotation.Add(data.GunRotation);
+        Rotation.Add(data.MKRotation);
+        Rotation.Add(data.ShotgunRotation);
+    }
     #endregion
 
     private void LoadData()

@@ -1,6 +1,5 @@
 using DG.Tweening;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -58,15 +57,20 @@ public class GameManager : Manager
         {
             SpawnSavedHealthObjectInLevel();
 
+            EventManager.Instance.OnSetMoney(DataManager.Instance.GetCoin());
+
             if (enemies.Count == 0)
             {
                 EventManager.Instance.OnEndWave(currentLevel.timeToNextWave);
             }
+
         }
 
         else
         {
             EventManager.Instance.OnNewWave();
+
+            EventManager.Instance.OnSetMoney(30);
         }
 
 
@@ -289,6 +293,8 @@ public class GameManager : Manager
     public void SetMoney(int money)
     {
         this.money = money;
+
+        DataManager.Instance.SetCoin(money);
     }
 
     public int GetMoney()

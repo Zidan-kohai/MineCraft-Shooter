@@ -50,8 +50,6 @@ public class MainWindowManager : Window
         EventManager.Instance.SubscribeOnUseBlowUp(OnUseBlowUpThing);
         EventManager.Instance.SubscribeOnStart(StartGame);
 
-
-        GameManager.Instance.SetMoney(Convert.ToInt32(AllMoney.text));
     }
 
 
