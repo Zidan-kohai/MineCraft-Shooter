@@ -33,12 +33,15 @@ public class Data
 
     public Vector3 GunPosition;
     public Quaternion GunRotation;
+    public int allPatronInGun, currentPatronInMagazineOfGun;
 
     public Vector3 MKPosition;
     public Quaternion MKRotation;
+    public int allPatronInMK, currentPatronInMagazineOfMK;
 
     public Vector3 ShotgunPosition;
     public Quaternion ShotgunRotation;
+    public int allPatronInShotgun, currentPatronInMagazineOfShotgun;
 
     public enum WeaponInPlayerHand
     {

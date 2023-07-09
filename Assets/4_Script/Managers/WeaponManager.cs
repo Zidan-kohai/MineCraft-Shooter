@@ -60,6 +60,17 @@ public class WeaponManager : Manager
         gunPrefab = Instantiate(gunPrefab, spawnPosition[0], rotates[0]);
         mkPrefab = Instantiate(mkPrefab, spawnPosition[1], rotates[1]);
         ShotgunPrefab = Instantiate(ShotgunPrefab, spawnPosition[2], rotates[2]);
+
+        int allPatron = 0, currentPatron = 0;
+
+        DataManager.Instance.GetPatrons(gunPrefab, ref allPatron, ref currentPatron);
+        gunPrefab.ChangePatron(allPatron, currentPatron);
+
+        DataManager.Instance.GetPatrons(mkPrefab, ref allPatron, ref currentPatron);
+        mkPrefab.ChangePatron(allPatron, currentPatron);
+
+        DataManager.Instance.GetPatrons(ShotgunPrefab, ref allPatron, ref currentPatron);
+        ShotgunPrefab.ChangePatron(allPatron, currentPatron);
     }
 
     private void SpawnWeapon()

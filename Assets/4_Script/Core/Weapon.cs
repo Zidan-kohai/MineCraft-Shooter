@@ -72,6 +72,9 @@ public class Weapon : Interactable
                 canShoot = true;
             }).SetLink(gameObject);
         EventManager.Instance.OnShoot(currentPatronsInMagazine, allPatrons, maxPatronsInMagazine);
+
+        DataManager.Instance.SetPatrons(this, allPatrons, currentPatronsInMagazine);
+
         return WeaponState.Shoot;
     }
 
@@ -104,6 +107,7 @@ public class Weapon : Interactable
                 if (isInPlayerHand)
                 {
                     EventManager.Instance.OnShoot(currentPatronsInMagazine, allPatrons, maxPatronsInMagazine);
+                    DataManager.Instance.SetPatrons(this, allPatrons, currentPatronsInMagazine);
                 }
             }).SetLink(gameObject);
         return WeaponState.Recharge;
@@ -158,6 +162,12 @@ public class Weapon : Interactable
         allPatrons += addingPatron;
         canShoot = true;
         EventManager.Instance.OnShoot(currentPatronsInMagazine, allPatrons, maxPatronsInMagazine);
+    }
+
+    public void ChangePatron(int allPatron, int currentPatronInMagazine)
+    {
+        allPatrons = allPatron;
+        currentPatronsInMagazine = currentPatronInMagazine;
     }
 }
 public enum WeaponState

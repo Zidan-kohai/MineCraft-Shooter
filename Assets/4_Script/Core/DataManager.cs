@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Common;
 using UnityEngine;
 
 public class DataManager : Manager
@@ -189,6 +190,63 @@ public class DataManager : Manager
         Rotation.Add(data.GunRotation);
         Rotation.Add(data.MKRotation);
         Rotation.Add(data.ShotgunRotation);
+    }
+
+    public void GetPatrons(Weapon weapon, ref int allPatron, ref int currentPatronInMagazine)
+    {
+        switch(weapon)
+        {
+            case Gun:
+
+                allPatron = data.allPatronInGun;
+                currentPatronInMagazine = data.currentPatronInMagazineOfGun;
+
+                break;
+
+            case MK:
+
+                allPatron = data.allPatronInMK;
+                currentPatronInMagazine = data.currentPatronInMagazineOfMK;
+
+                break;
+
+            case Shotgun:
+
+                allPatron = data.allPatronInShotgun;
+                currentPatronInMagazine = data.currentPatronInMagazineOfShotgun;
+
+                break;
+
+        }
+    }
+
+    public void SetPatrons(Weapon weapon, int allPatron, int currentPatronInMagazine)
+    {
+        switch (weapon)
+        {
+            case Gun:
+
+                data.allPatronInGun = allPatron;
+                data.currentPatronInMagazineOfGun = currentPatronInMagazine;
+
+                break;
+
+            case MK:
+
+                data.allPatronInMK = allPatron;
+                data.currentPatronInMagazineOfMK = currentPatronInMagazine;
+
+                break;
+
+            case Shotgun:
+
+                data.allPatronInShotgun = allPatron;
+                data.currentPatronInMagazineOfShotgun = currentPatronInMagazine;
+
+                break;
+        }
+
+        SaveData();
     }
     #endregion
 

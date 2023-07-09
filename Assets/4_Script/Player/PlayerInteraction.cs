@@ -110,10 +110,12 @@ public class PlayerInteraction : PlayerData
         {
             animator.SetTrigger("Shoot");
             playerRotation.HeadShake(weapon.reboundDuration, weapon.reboundPositionForce, weapon.reboundRotationForce);
+
         }
         else if(weaponState == WeaponState.Recharge)
         {
             animator.SetTrigger("Recharge");
+
         }
     }
     private void Recharge()
