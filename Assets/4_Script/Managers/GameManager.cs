@@ -42,9 +42,9 @@ public class GameManager : Manager
 
         PlayerInit();
 
-        isGameMenu = true;
-        isGameStop = true;
-        StopGame();
+        //isGameMenu = true;
+        //isGameStop = true;
+        //StopGame();
 
         EventManager.Instance.SubscribeOnDeath(RemoveHealthObjectFromList);
         EventManager.Instance.SubscribeOnSetMoney(SetMoney);
@@ -166,7 +166,6 @@ public class GameManager : Manager
     private void NewWave()
     {
         SpawnHealthObjectInLevel();
-
     }
 
     private void PlayerInit()
@@ -176,9 +175,21 @@ public class GameManager : Manager
         playerMovement = player.GetComponent<PlayerMovement>();
         playerRotation = player.GetComponent<PlayerRotation>();
 
+
         player.Init();
         playerMovement.Init();
         playerRotation.Init();
+
+        if(DataManager.Instance.GetHealthObjectCount() > 0)
+        {
+            Vector3 playerPosition = new Vector3();
+            Quaternion playerRotation = new Quaternion();
+
+            DataManager.Instance.GetPlayerTransform(ref playerPosition, ref playerRotation);
+
+            player.transform.position = playerPosition;
+            player.transform.rotation = playerRotation;
+        }
     }
     public void SpawnHealthObjectInLevel()
     {
@@ -251,13 +262,6 @@ public class GameManager : Manager
             creeperEnemy.Init();
         }
 
-        Vector3 playerPosition = new Vector3();
-        Quaternion playerRotation = new Quaternion();
-
-        DataManager.Instance.GetPlayerTransform(ref playerPosition, ref playerRotation);
-
-        player.transform.position = playerPosition;
-        player.transform.rotation = playerRotation; 
 
         DataManager.Instance.SetCurrentLevel(LevelManager.Instance.GetCurrentLevelIndex());
 
@@ -386,6 +390,7 @@ public class GameManager : Manager
 
     public void Restart()
     {
+        DataManager.Instance.ResetSave();
         SceneManager.LoadScene(0);
     }
 

@@ -44,7 +44,6 @@ public class PlayerInteraction : PlayerData
     }
     public override void EveryFrame()
     {
-
         if (Input.GetKeyDown(KeyCode.E))
         {
             if (weapon != null && hit.collider == null || weapon != null && !hit.transform.TryGetComponent(out Interactable interactable))

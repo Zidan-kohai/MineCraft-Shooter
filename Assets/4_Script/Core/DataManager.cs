@@ -328,7 +328,7 @@ public class DataManager : Manager
         Debug.Log("Save: " + JsonUtility.ToJson(data));
     }
 
-    internal void ResetSave()
+    public void ResetSave()
     {
         data = new Data { };
         SaveData();
