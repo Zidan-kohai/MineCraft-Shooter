@@ -1,5 +1,6 @@
 using DG.Tweening;
 using System.Collections.Generic;
+using UnityEditor.Experimental.Rendering;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -23,6 +24,8 @@ public class GameManager : Manager
     [SerializeField] private bool isGameStop;
     [SerializeField] private bool isGameMenu = true;
     [SerializeField] private int money;
+    [SerializeField] private List<Mine> mines;
+    [SerializeField] private Mine minePrefab;
 
     public override void Init()
     {
@@ -35,7 +38,7 @@ public class GameManager : Manager
         Instance = this;
         enemies = new List<Enemy>();
         villegers = new List<Villeger>();
-
+        mines = new List<Mine>();
 
         PlayerInit();
 
@@ -56,7 +59,7 @@ public class GameManager : Manager
         if (DataManager.Instance.GetHealthObjectCount() > 0)
         {
             SpawnSavedHealthObjectInLevel();
-
+            SpawnMine();
             EventManager.Instance.OnSetMoney(DataManager.Instance.GetCoin());
 
             if (enemies.Count == 0)
@@ -64,6 +67,7 @@ public class GameManager : Manager
                 EventManager.Instance.OnEndWave(currentLevel.timeToNextWave);
             }
 
+            player.SetBlowUp(DataManager.Instance.GetGranadeCount(), DataManager.Instance.GetMineInPlayerHand());
         }
 
         else
@@ -71,12 +75,45 @@ public class GameManager : Manager
             EventManager.Instance.OnNewWave();
 
             EventManager.Instance.OnSetMoney(30);
+            player.SetBlowUp(7, 5);
         }
 
 
         SaveHealtObject();
 
         EventManager.Instance.OnStart();
+    }
+    
+    public void AddMine(Mine mine)
+    {
+        mines.Add(mine);
+        
+        List<Vector3> position = new List<Vector3>();
+        List<Quaternion> rotation = new List<Quaternion>();
+
+        foreach (var item in mines)
+        {
+            position.Add(item.transform.position);
+            rotation.Add(item.transform.rotation);
+        }
+
+        DataManager.Instance.SetPutMineCount(mines.Count, position, rotation);
+    }
+
+    public void RemoveMine(Mine mine)
+    {
+        mines.Remove(mine);
+
+        List<Vector3> position = new List<Vector3>();
+        List<Quaternion> rotation = new List<Quaternion>();
+
+        foreach (var item in mines)
+        {
+            position.Add(item.transform.position);
+            rotation.Add(item.transform.rotation);
+        }
+
+        DataManager.Instance.SetPutMineCount(mines.Count, position, rotation);
     }
 
     private void Update()
@@ -217,6 +254,20 @@ public class GameManager : Manager
         DataManager.Instance.SetCurrentLevel(LevelManager.Instance.GetCurrentLevelIndex());
 
         LevelManager.Instance.SetNextLevelIndex(LevelManager.Instance.GetCurrentLevelIndex() + 1);
+    }
+
+    public void SpawnMine()
+    {
+        List<Vector3> position = new List<Vector3>();
+        List<Quaternion> rotation = new List<Quaternion>();
+
+        int count = DataManager.Instance.GetPutMine(ref position, ref rotation);
+
+        for(int i = 0; i < count; i++)
+        {
+            Mine mine = Instantiate(this.minePrefab, position[i], rotation[i]);
+            AddMine(mine);
+        }
     }
     public Transform GetNextPositionForVilleger()
     {

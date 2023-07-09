@@ -71,6 +71,7 @@ public class Mine : MonoBehaviour
                 Destroy(particle.gameObject);
             }).SetLink(particle.gameObject);
 
+        GameManager.Instance.RemoveMine(this);
         Destroy(gameObject);
     }
 

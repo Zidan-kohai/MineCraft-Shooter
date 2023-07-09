@@ -8480,6 +8480,8 @@ MonoBehaviour:
   isGameStop: 0
   isGameMenu: 0
   money: 0
+  mines: []
+  minePrefab: {fileID: -5335988113761224915, guid: b3296c9cf393c28429211bf8b324970b, type: 3}
 --- !u!114 &1989229008
 MonoBehaviour:
   m_ObjectHideFlags: 0

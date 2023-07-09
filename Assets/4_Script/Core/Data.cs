@@ -43,6 +43,13 @@ public class Data
     public Quaternion ShotgunRotation;
     public int allPatronInShotgun, currentPatronInMagazineOfShotgun;
 
+    public int GranadeCount;
+
+    public int PutMineCount;
+    public List<Vector3> MinesPosition;
+    public List<Quaternion> MinesRotation;
+
+    public int mineCountInPlayerHand;
     public enum WeaponInPlayerHand
     {
         None,

@@ -27,11 +27,15 @@ public class PlayerData : HealthObject
     {
         granadeCount += count;
         EventManager.Instance.OnUseBlowUp(granadeCount, mineCount);
+
+        DataManager.Instance.SetGranadeCount(granadeCount);
     }
     public void addMine(int count)
     {
         mineCount += count;
         EventManager.Instance.OnUseBlowUp(granadeCount, mineCount);
+
+        DataManager.Instance.SetMineInPlayerHand(mineCount);
     }
 
     public Weapon getWeapon() { return weapon; }
@@ -40,5 +44,17 @@ public class PlayerData : HealthObject
     {
         EventManager.Instance.OnDeath(this);
         Debug.Log("Player Death");
+    }
+
+
+    public void SetBlowUp(int granadeCount, int mineCount)
+    {
+        this.granadeCount = granadeCount;
+        this.mineCount = mineCount;
+
+        EventManager.Instance.OnUseBlowUp(granadeCount, mineCount);
+
+        DataManager.Instance.SetMineInPlayerHand(mineCount);
+        DataManager.Instance.SetGranadeCount(granadeCount);
     }
 }

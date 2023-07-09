@@ -248,6 +248,47 @@ public class DataManager : Manager
 
         SaveData();
     }
+
+    public int GetPutMine(ref List<Vector3> position, ref List<Quaternion> rotation)
+    {
+
+        position = data.MinesPosition; 
+        rotation = data.MinesRotation;
+
+        return data.PutMineCount;
+    }
+
+    public int GetGranadeCount()
+    {
+        return data.GranadeCount;
+    }
+
+    public int GetMineInPlayerHand()
+    {
+        return data.mineCountInPlayerHand;
+    }
+    public void SetMineInPlayerHand(int count)
+    {
+        data.mineCountInPlayerHand = count;
+        SaveData();
+    }
+    public void SetGranadeCount(int count)
+    {
+        data.GranadeCount = count;
+        SaveData();
+    }
+
+    public void SetPutMineCount(int count, List<Vector3> position, List<Quaternion> Rotation)
+    {
+        data.MinesPosition.Clear();
+        data.MinesRotation.Clear();
+
+        data.PutMineCount = count;
+        data.MinesPosition = position;
+        data.MinesRotation = Rotation;
+
+        SaveData();
+    }
     #endregion
 
     private void LoadData()

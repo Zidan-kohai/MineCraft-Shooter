@@ -1,6 +1,5 @@
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class PlayerInteraction : PlayerData
 {
@@ -25,8 +24,6 @@ public class PlayerInteraction : PlayerData
 
     public override void AfterInit()
     {
-        EventManager.Instance.OnUseBlowUp(granadeCount, mineCount);
-
         if (DataManager.Instance.GetWeaponInPLayerHand() != Data.WeaponInPlayerHand.None)
         {
             switch(DataManager.Instance.GetWeaponInPLayerHand())
@@ -91,6 +88,8 @@ public class PlayerInteraction : PlayerData
         WeaponTurnOn(weapon);
 
         EventManager.Instance.OnUseBlowUp(granadeCount, mineCount);
+
+        DataManager.Instance.SetGranadeCount(granadeCount);
     }
 
     private void PutMine()
@@ -99,8 +98,12 @@ public class PlayerInteraction : PlayerData
         {
             Mine mine =  Instantiate(this.mine, hit.point, Quaternion.identity);
             mine.transform.up = hit.normal;
+
+            GameManager.Instance.AddMine(mine);
         }
         EventManager.Instance.OnUseBlowUp(granadeCount, mineCount);
+
+        DataManager.Instance.SetMineInPlayerHand(mineCount);
     }
     private void Shoot()
     {
@@ -159,6 +162,7 @@ public class PlayerInteraction : PlayerData
             .AppendInterval(0.4f).OnComplete(() =>
             {
                 CheckInteractibleObject();
+
             }).SetLink(gameObject);
     }
     private void GetInteractibbleObject()
