@@ -220,7 +220,7 @@ public class GameManager : Manager
     public void SpawnSavedHealthObjectInLevel()
     {
         currentLevel = LevelManager.Instance.GetCurrentLevel();
-
+        
         List<Vector3Int> position = new List<Vector3Int>();
 
         for(int i = 0; i < DataManager.Instance.GetVillegerCount(out position); i++)
@@ -251,6 +251,14 @@ public class GameManager : Manager
             creeperEnemy.Init();
         }
 
+        Vector3 playerPosition = new Vector3();
+        Quaternion playerRotation = new Quaternion();
+
+        DataManager.Instance.GetPlayerTransform(ref playerPosition, ref playerRotation);
+
+        player.transform.position = playerPosition;
+        player.transform.rotation = playerRotation; 
+
         DataManager.Instance.SetCurrentLevel(LevelManager.Instance.GetCurrentLevelIndex());
 
         LevelManager.Instance.SetNextLevelIndex(LevelManager.Instance.GetCurrentLevelIndex() + 1);
@@ -263,10 +271,10 @@ public class GameManager : Manager
 
         int count = DataManager.Instance.GetPutMine(ref position, ref rotation);
 
-        for(int i = 0; i < count; i++)
+        for (int i = 0; i < count; i++)
         {
-            Mine mine = Instantiate(this.minePrefab, position[i], rotation[i]);
-            AddMine(mine);
+            Mine mine = Instantiate(minePrefab, position[i], rotation[i]);
+            mines.Add(mine);
         }
     }
     public Transform GetNextPositionForVilleger()
@@ -326,6 +334,8 @@ public class GameManager : Manager
         healthObjects.AddRange(enemies);
 
         DataManager.Instance.SetHealtObjects(healthObjects);
+
+        DataManager.Instance.SetPlayerTransform(player.transform.position, player.transform.rotation);
 
         DOTween.Sequence().AppendInterval(1).OnComplete(() =>
         {

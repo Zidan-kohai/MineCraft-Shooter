@@ -119,6 +119,19 @@ public class DataManager : Manager
         return data.SimpleEnemiesCount + data.ArcherEnemiesCount + data.CreeperEnemyCount + data.VillegerCount;
     }
 
+    public void SetPlayerTransform(Vector3 position, Quaternion rotation)
+    {
+        data.PlayerPosition = position;
+        data.PlayerRotation = rotation;
+
+        SaveData();
+    }
+
+    public void GetPlayerTransform(ref Vector3 position, ref Quaternion rotation)
+    {
+        position = data.PlayerPosition;
+        rotation = data.PlayerRotation;
+    }
     #endregion
 
     #region Weapon

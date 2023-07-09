@@ -11,6 +11,9 @@ public class Data
 
     #region HealtObject
 
+    public Vector3 PlayerPosition;
+    public Quaternion PlayerRotation;
+
     public int VillegerCount;
     public List<Vector3Int> VillegerPositions;
 

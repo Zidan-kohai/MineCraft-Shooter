@@ -66,7 +66,6 @@ public class PlayerInteraction : PlayerData
         {
             if (mineCount > 0)
             {
-                mineCount--;
                 PutMine();
             }
         }
@@ -96,6 +95,7 @@ public class PlayerInteraction : PlayerData
     {
         if(Physics.Raycast(originPosition.position, originPosition.TransformDirection(direction), out hit, length, layerToPutMine))
         {
+            mineCount--;
             Mine mine =  Instantiate(this.mine, hit.point, Quaternion.identity);
             mine.transform.up = hit.normal;
 
