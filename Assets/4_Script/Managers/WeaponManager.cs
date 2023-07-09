@@ -78,6 +78,10 @@ public class WeaponManager : Manager
         gunPrefab = Instantiate(gunPrefab, gunDefaultPosition, Quaternion.Euler(gunDefaultRotation));
         mkPrefab = Instantiate(mkPrefab, mkDefaultPosition, Quaternion.Euler(mkDefaultRotation));
         ShotgunPrefab = Instantiate(ShotgunPrefab, ShotgunDefaultPosition, Quaternion.Euler(ShotgunDefaultRotation));
+
+        gunPrefab.ChangePatron(25, 6);
+        mkPrefab.ChangePatron(120, 25);
+        ShotgunPrefab.ChangePatron(35, 2);
     }
 
     private void SaveWeaponDate()
