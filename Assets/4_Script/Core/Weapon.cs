@@ -71,7 +71,7 @@ public class Weapon : Interactable
             {
                 canShoot = true;
             }).SetLink(gameObject);
-        EventManager.Instance.OnShoot(currentPatronsInMagazine, allPatrons, maxPatronsInMagazine);
+        EventManager.Instance.OnShoot(currentPatronsInMagazine, allPatrons, maxPatronsInMagazine, this);
 
         DataManager.Instance.SetPatrons(this, allPatrons, currentPatronsInMagazine);
 
@@ -106,7 +106,7 @@ public class Weapon : Interactable
 
                 if (isInPlayerHand)
                 {
-                    EventManager.Instance.OnShoot(currentPatronsInMagazine, allPatrons, maxPatronsInMagazine);
+                    EventManager.Instance.OnShoot(currentPatronsInMagazine, allPatrons, maxPatronsInMagazine, this);
                     DataManager.Instance.SetPatrons(this, allPatrons, currentPatronsInMagazine);
                 }
             }).SetLink(gameObject);
@@ -119,7 +119,7 @@ public class Weapon : Interactable
         transform.localPosition = position;
         transform.localRotation = Quaternion.Euler(rotation);
 
-        EventManager.Instance.OnShoot(currentPatronsInMagazine, allPatrons, maxPatronsInMagazine);
+        EventManager.Instance.OnShoot(currentPatronsInMagazine, allPatrons, maxPatronsInMagazine, this);
     }
 
     public void AddToPlayerHand(Transform parent)
@@ -137,7 +137,7 @@ public class Weapon : Interactable
         transform.GetComponent<Collider>().enabled = true;
         transform.GetChild(0).gameObject.SetActive(true);
         isInPlayerHand = false;
-        EventManager.Instance.OnShoot(0, 0, 0);
+        EventManager.Instance.OnShoot(0, 0, 0, new Weapon());
     }
 
     public bool GetIsBuyed()
@@ -157,11 +157,15 @@ public class Weapon : Interactable
         return isBuyed;
     }
 
+    public void SetIsBuyed(bool isBuyed)
+    {
+        this.isBuyed = isBuyed;
+    }
     public void AddPatron(int addingPatron)
     {
         allPatrons += addingPatron;
         canShoot = true;
-        EventManager.Instance.OnShoot(currentPatronsInMagazine, allPatrons, maxPatronsInMagazine);
+        EventManager.Instance.OnShoot(currentPatronsInMagazine, allPatrons, maxPatronsInMagazine, this);
     }
 
     public void ChangePatron(int allPatron, int currentPatronInMagazine)

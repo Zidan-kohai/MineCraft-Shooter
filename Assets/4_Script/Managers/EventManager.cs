@@ -15,7 +15,7 @@ public class EventManager : Manager
         Instance = this;
     }
     private Action Start;
-    private Action<int, int,int> Shoot;
+    private Action<int, int,int, Weapon> Shoot;
     private Action<Interactable> PlayerInteraction;
     private Action<HealthObject> Death;
     private Action<int> SetMoney;
@@ -50,7 +50,7 @@ public class EventManager : Manager
     #endregion
 
     #region Shoot
-    public void SubscribeOnShoot(Action<int,int,int> sender)
+    public void SubscribeOnShoot(Action<int,int,int, Weapon> sender)
     {
         if(Shoot == null)
         {
@@ -61,14 +61,14 @@ public class EventManager : Manager
         }
     }
 
-    public void UnsubscribeOnShoot(Action<int,int,int> sender)
+    public void UnsubscribeOnShoot(Action<int,int,int, Weapon> sender)
     {
         Shoot -= sender;
     }
 
-    public void OnShoot(int currentPatronsInMagazine, int allPatrons, int maxPatronsInMagazine)
+    public void OnShoot(int currentPatronsInMagazine, int allPatrons, int maxPatronsInMagazine, Weapon weapon)
     {
-        Shoot?.Invoke(currentPatronsInMagazine, allPatrons, maxPatronsInMagazine);
+        Shoot?.Invoke(currentPatronsInMagazine, allPatrons, maxPatronsInMagazine, weapon);
     }
 
     #endregion

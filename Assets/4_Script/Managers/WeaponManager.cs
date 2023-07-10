@@ -65,12 +65,15 @@ public class WeaponManager : Manager
 
         DataManager.Instance.GetPatrons(gunPrefab, ref allPatron, ref currentPatron);
         gunPrefab.ChangePatron(allPatron, currentPatron);
+        gunPrefab.SetIsBuyed(DataManager.Instance.GetIsGunBuyed());
 
         DataManager.Instance.GetPatrons(mkPrefab, ref allPatron, ref currentPatron);
         mkPrefab.ChangePatron(allPatron, currentPatron);
+        mkPrefab.SetIsBuyed(DataManager.Instance.GetIsMKBuyed());
 
         DataManager.Instance.GetPatrons(ShotgunPrefab, ref allPatron, ref currentPatron);
         ShotgunPrefab.ChangePatron(allPatron, currentPatron);
+        ShotgunPrefab.SetIsBuyed(DataManager.Instance.GetIsShotgunBuyed());
     }
 
     private void SpawnWeapon()

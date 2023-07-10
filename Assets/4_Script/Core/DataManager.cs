@@ -179,16 +179,19 @@ public class DataManager : Manager
             {
                 data.GunPosition = weaponItem.transform.position;
                 data.GunRotation = weaponItem.transform.rotation;
+                data.isGunBuy = weaponItem.GetIsBuyed();
             }
             else if (weaponItem is MK)
             {
                 data.MKPosition = weaponItem.transform.position;
                 data.MKRotation = weaponItem.transform.rotation;
+                data.isMKBuy = weaponItem.GetIsBuyed();
             }
             else if (weaponItem is Shotgun)
             {
                 data.ShotgunPosition = weaponItem.transform.position;
                 data.ShotgunRotation = weaponItem.transform.rotation;
+                data.isShotgunBuy = weaponItem.GetIsBuyed();
             }
         }
     }
@@ -230,6 +233,21 @@ public class DataManager : Manager
                 break;
 
         }
+    }
+
+    public bool GetIsGunBuyed()
+    {
+        return data.isGunBuy;
+    }
+
+    public bool GetIsMKBuyed()
+    {
+        return data.isMKBuy;
+    }
+
+    public bool GetIsShotgunBuyed()
+    {
+        return data.isShotgunBuy;
     }
 
     public void SetPatrons(Weapon weapon, int allPatron, int currentPatronInMagazine)

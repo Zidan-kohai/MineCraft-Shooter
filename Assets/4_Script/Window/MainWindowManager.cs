@@ -1,6 +1,8 @@
 using DG.Tweening;
 using System;
+using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +15,8 @@ public class MainWindowManager : Window
     [SerializeField] private TMP_Text maxPatronsInMagazine;
     [SerializeField] private TMP_Text currentGrenade;
     [SerializeField] private TMP_Text currentMine;
+    [SerializeField] private Image weaponImage;
+    [SerializeField] private List<Sprite> weaponSprites;
 
     [Header("Interaction")]
     [SerializeField] private Image target;
@@ -74,8 +78,36 @@ public class MainWindowManager : Window
         AllMoney.text = money.ToString();
     }
 
-    private void OnShoot(int currentPatronsInMagazine, int allPatrons, int maxPatronsInMagazine)
+    private void OnShoot(int currentPatronsInMagazine, int allPatrons, int maxPatronsInMagazine, Weapon weapon)
     {
+        weaponImage.color = new Color(1, 1, 1, 1);
+        countPatronShowPanel.gameObject.SetActive(true);
+        switch (weapon)
+        {
+            case Gun:
+                weaponImage.sprite = weaponSprites[0];
+                weaponImage.rectTransform.sizeDelta = new Vector2(300, 300);
+                break;
+
+            case MK:
+                weaponImage.sprite = weaponSprites[1];
+                weaponImage.rectTransform.sizeDelta = new Vector2(300, 200);
+                break;
+
+            case Shotgun:
+                weaponImage.sprite = weaponSprites[2];
+                weaponImage.rectTransform.sizeDelta = new Vector2(300, 200);
+                break;
+
+            case Weapon:
+                countPatronShowPanel.gameObject.SetActive(false);
+                this.allPatrons.text = allPatrons.ToString();
+                this.currentPatronsInMagazine.text = currentPatronsInMagazine.ToString();
+                this.maxPatronsInMagazine.text = maxPatronsInMagazine.ToString();
+                weaponImage.color = new Color(1, 1, 1, 0);
+                return;
+        }
+
         this.allPatrons.text =  allPatrons.ToString();
         this.currentPatronsInMagazine.text = currentPatronsInMagazine.ToString();
         this.maxPatronsInMagazine.text = maxPatronsInMagazine.ToString();
