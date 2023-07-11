@@ -68,6 +68,7 @@ Transform:
   - {fileID: 6871662831798370207}
   - {fileID: 1081784381634323490}
   - {fileID: 8446468844348441729}
+  - {fileID: 3670141865276041384}
   m_Father: {fileID: 8465424220606397414}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
@@ -383,6 +384,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &4793224077466197535
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3670141865276041384}
+  m_Layer: 0
+  m_Name: GranadeThrow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3670141865276041384
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4793224077466197535}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.505, y: 0.212, z: 0.17}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2286916876293224805}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4871386910595717683
 GameObject:
   m_ObjectHideFlags: 0
@@ -718,6 +750,7 @@ MonoBehaviour:
   length: 8
   hand: {fileID: 7575763137559990104}
   playerRotation: {fileID: 3712270531299318509}
+  granadeThrowPosition: {fileID: 3670141865276041384}
 --- !u!114 &3617403536029417281
 MonoBehaviour:
   m_ObjectHideFlags: 0

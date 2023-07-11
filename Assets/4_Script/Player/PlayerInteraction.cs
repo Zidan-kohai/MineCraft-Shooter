@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerInteraction : PlayerData
@@ -13,6 +14,9 @@ public class PlayerInteraction : PlayerData
 
     [Header("Conponents")]
     [SerializeField] private PlayerRotation playerRotation;
+
+    [Header("Granade Throw Position")]
+    [SerializeField] private Transform granadeThrowPosition;
 
 
     RaycastHit hit;
@@ -80,7 +84,7 @@ public class PlayerInteraction : PlayerData
     }
     private void spawnGranade()
     {
-        Granade currentGrande = Instantiate(granade, hand.transform.position + -hand.transform.forward, Quaternion.identity);
+        Granade currentGrande = Instantiate(granade, granadeThrowPosition.transform.position + -hand.transform.forward, Quaternion.identity);
         currentGrande.Init(-hand.transform.forward);
         granadeCount--;
         WeaponTurnOn(weapon);
