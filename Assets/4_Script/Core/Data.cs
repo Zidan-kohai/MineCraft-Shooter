@@ -8,6 +8,7 @@ public class Data
 {
     public int CurrentLevel;
     public int Coin;
+    public Langauge langauge;
 
     #region HealtObject
 
@@ -66,4 +67,9 @@ public class Data
 
     #endregion
 
+}
+public enum Langauge
+{
+    Russian,
+    English
 }

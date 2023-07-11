@@ -321,6 +321,21 @@ public class DataManager : Manager
     }
     #endregion
 
+    #region Language
+
+    public Langauge GetLangauge()
+    {
+        return data.langauge;
+    }
+
+    public void SetLanguage(Langauge langauge)
+    {
+        data.langauge = langauge;
+        SaveData();
+    }
+
+    #endregion
+
     private void LoadData()
     {
         if(!PlayerPrefs.HasKey("Data"))
@@ -348,7 +363,12 @@ public class DataManager : Manager
 
     public void ResetSave()
     {
+        Langauge langauge = data.langauge;
+
         data = new Data { };
+
+        data.langauge = langauge;
+
         SaveData();
 
         Debug.Log("Reset: " + JsonUtility.ToJson(data));

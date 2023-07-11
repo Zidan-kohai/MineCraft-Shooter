@@ -41,9 +41,6 @@ public class GameManager : Manager
 
         PlayerInit();
 
-        //isGameMenu = true;
-        //isGameStop = true;
-        //StopGame();
 
         EventManager.Instance.SubscribeOnDeath(RemoveHealthObjectFromList);
         EventManager.Instance.SubscribeOnSetMoney(SetMoney);
