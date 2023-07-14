@@ -85,7 +85,7 @@ public class PlayerInteraction : PlayerData
     private void spawnGranade()
     {
         Granade currentGrande = Instantiate(granade, granadeThrowPosition.transform.position + -hand.transform.forward, Quaternion.identity);
-        currentGrande.Init(-hand.transform.forward);
+        currentGrande.Init(-granadeThrowPosition.transform.forward);
         granadeCount--;
         WeaponTurnOn(weapon);
 
