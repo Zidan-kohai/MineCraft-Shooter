@@ -2439,7 +2439,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Restart
+  m_text: New Game
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -2528,8 +2528,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2b593cc8a09ef0488be55b2649d820f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rus: "\u041D\u0430\u0447\u0430\u0442\u044C \u0417\u0430\u043D\u043E\u0432\u043E"
-  eng: Restart
+  rus: "\u041D\u043E\u0432\u0430\u044F \u0438\u0433\u0440\u0430"
+  eng: New Game
   TMP: {fileID: 510815781}
 --- !u!1 &514809469
 GameObject:
