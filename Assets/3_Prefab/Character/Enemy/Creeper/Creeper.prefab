@@ -330,7 +330,7 @@ MonoBehaviour:
   distanceToAttack: 3
   attackDelay: 0
   lastedTimeFromLastAttack: 0
-  cost: 25
+  cost: 10
   audioSource: {fileID: 1868880800756917824}
   roarSound: {fileID: 8300000, guid: 1a6cb21f97950334f9a5dcf256628e54, type: 3}
   diethSound: {fileID: 8300000, guid: 4e41c2a8ea6116b4fb5188933a9ba133, type: 3}

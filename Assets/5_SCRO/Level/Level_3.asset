@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeToNextWave: 25
   simpleEnemyPrefab: {fileID: 4745729372041034687, guid: eb30352aca20ac04c85536939608223a, type: 3}
-  simpleEnemiesCountToSpawn: 3
+  simpleEnemiesCountToSpawn: 15
   archerEnemyPrefab: {fileID: 7597650400284940125, guid: c8778061b263cee4ca54d6b65c9cfaca, type: 3}
   archerEnemiesCountToSpawn: 1
   creeperEnemyPrefab: {fileID: 1868880800756917823, guid: 7623fa23a2942ed46bf8cfb771a1f102, type: 3}

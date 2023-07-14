@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db502e1bd5eb6a04c9dd72fbdb9dcb72, type: 3}
-  m_Name: Level_4
+  m_Name: Level_20
   m_EditorClassIdentifier: 
   timeToNextWave: 30
   simpleEnemyPrefab: {fileID: 4745729372041034687, guid: eb30352aca20ac04c85536939608223a, type: 3}
-  simpleEnemiesCountToSpawn: 30
+  simpleEnemiesCountToSpawn: 5
   archerEnemyPrefab: {fileID: 7597650400284940125, guid: c8778061b263cee4ca54d6b65c9cfaca, type: 3}
-  archerEnemiesCountToSpawn: 0
+  archerEnemiesCountToSpawn: 5
   creeperEnemyPrefab: {fileID: 1868880800756917823, guid: 7623fa23a2942ed46bf8cfb771a1f102, type: 3}
-  creeperEnemiesCountToSpawn: 0
+  creeperEnemiesCountToSpawn: 35
   playerPrefab: {fileID: 5664114272353951446, guid: b4526d730edccdc4e8510851e5508ad4, type: 3}
   villegerPrefab: {fileID: -6780780463443994710, guid: fa54fc0a76572e047b2f9877e8b57baa, type: 3}
   villegersCountToSpawn: 0

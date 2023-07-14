@@ -3193,7 +3193,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 689666748}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 70.8, y: 2, z: 68.9}
+  m_LocalPosition: {x: 92.31, y: 2, z: 55.24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10639,6 +10639,19 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8f5a1832d43f3fb44ba275b15ef21028, type: 2}
   - {fileID: 11400000, guid: df6debffba448b141b9124423044755f, type: 2}
   - {fileID: 11400000, guid: 3a4a01b7739f11a48a1e280812f68eb3, type: 2}
+  - {fileID: 11400000, guid: d69eeb27a2bee25428ac3d64dcfaf64c, type: 2}
+  - {fileID: 11400000, guid: 097e9c388309bd54e9ffa3ceea372c55, type: 2}
+  - {fileID: 11400000, guid: c1123202cf036824eb6954cde4029c3d, type: 2}
+  - {fileID: 11400000, guid: e62ab4a81a21dbd47b3821ef6100bd9f, type: 2}
+  - {fileID: 11400000, guid: 4e4c829b06583fd47bd932154343c91f, type: 2}
+  - {fileID: 11400000, guid: f359b246f79415d45a34f8c775a19ad5, type: 2}
+  - {fileID: 11400000, guid: 84afc665f6489e64fac9625a7c7acdd1, type: 2}
+  - {fileID: 11400000, guid: 235395249ecfaf14686509e57feaae92, type: 2}
+  - {fileID: 11400000, guid: dd65a51b2f5291744be4abc68e15a632, type: 2}
+  - {fileID: 11400000, guid: a3a82a357e9ec124598b2e1abc66490f, type: 2}
+  - {fileID: 11400000, guid: 61a6992121d6b5f4b9b7a0abbaa97af2, type: 2}
+  - {fileID: 11400000, guid: 1e30d50be70068a4ba5af24d9ea08819, type: 2}
+  - {fileID: 11400000, guid: d77db42d30b13024ea90074317de7c5a, type: 2}
   nextLevel: 0
   positionToEnemySpawn:
   - {fileID: 1704143619}
