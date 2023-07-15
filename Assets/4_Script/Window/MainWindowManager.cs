@@ -70,7 +70,7 @@ public class MainWindowManager : Window
             .SetLoops(5).OnComplete(() =>
             {
                 SaveVillegerText.gameObject.SetActive(false);
-            });
+            }).SetLink(gameObject);
     }
     public void PauseGame()
     {

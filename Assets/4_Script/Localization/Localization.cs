@@ -9,13 +9,34 @@ public class Localization : MonoBehaviour
 
     public void ChangeLanguage(Langauge langauge)
     {
+        TMP.text = "";
         switch (langauge)
         {
             case Langauge.Russian:
-                TMP.text = rus;
+                foreach (var item in rus)
+                {
+                    if (item == '/')
+                    {
+                        TMP.text += "\n";
+                    }
+                    else
+                    {
+                        TMP.text += item;
+                    }
+                }
                 break;
             case Langauge.English:
-                TMP.text = eng;
+                foreach (var item in eng)
+                {
+                    if (item == '/')
+                    {
+                        TMP.text += "\n";
+                    }
+                    else
+                    {
+                        TMP.text += item;
+                    }
+                }
                 break;
         }
     }
