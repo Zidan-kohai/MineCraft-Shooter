@@ -30,6 +30,7 @@ public class MainWindowManager : Window
     [Header("Health Objects")]
     [SerializeField] private TMP_Text VillegerCount;
     [SerializeField] private TMP_Text EnemyCount;
+    [SerializeField] private TMP_Text SaveVillegerText;
 
     [Header("Game Menu")]
     [SerializeField] private GameObject MainGameWindow;
@@ -61,6 +62,15 @@ public class MainWindowManager : Window
     {
         EnemyCount.text = GameManager.Instance.GetEnemyCount().ToString();
         VillegerCount.text = GameManager.Instance.GetVillegerCount().ToString();
+
+        SaveVillegerText.gameObject.SetActive(true);
+        DOTween.Sequence()
+            .Append(SaveVillegerText.transform.DOScale(1.3f, 0.3f))
+            .Append(SaveVillegerText.transform.DOScale(1f, 0.3f))
+            .SetLoops(5).OnComplete(() =>
+            {
+                SaveVillegerText.gameObject.SetActive(false);
+            });
     }
     public void PauseGame()
     {
@@ -162,6 +172,7 @@ public class MainWindowManager : Window
     {
         EnemyCount.text = GameManager.Instance.GetEnemyCount().ToString();
         VillegerCount.text = GameManager.Instance.GetVillegerCount().ToString();
+
     }
 
     private void EndWave(int timeToNextWave)

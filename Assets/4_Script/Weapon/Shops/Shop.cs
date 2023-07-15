@@ -5,6 +5,9 @@ public class Shop : Interactable
     [Header("Shop Properties")]
     [SerializeField] private int adding;
     [SerializeField] private ShopType type;
+
+    [SerializeField] private GameObject ruText;
+    [SerializeField] private GameObject engText;
     public override void Interaction(PlayerData playerData) 
     {
         int allmoney = GameManager.Instance.GetMoney();
@@ -29,6 +32,21 @@ public class Shop : Interactable
                     playerData.addMine(adding);
                     break;
             }
+        }
+    }
+
+    public void changeLanguage(Langauge langauge)
+    {
+        switch (langauge)
+        {
+            case Langauge.Russian:
+                ruText.SetActive(true);
+                engText.SetActive(false);
+                break;
+            case Langauge.English:
+                ruText.SetActive(false);
+                engText.SetActive(true);
+                break;
         }
     }
 
