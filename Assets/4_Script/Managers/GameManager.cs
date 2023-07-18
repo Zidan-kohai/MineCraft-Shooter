@@ -1,10 +1,18 @@
 using DG.Tweening;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : Manager
 {
+
+    [DllImport("__Internal")]
+    private static extern void ShowFullScreenAdvExtern();
+
+    [DllImport("__Internal")]
+    private static extern void ShowRewardedAdvExtern();
+
     public static GameManager Instance;
 
     [Header("Level")]
@@ -94,6 +102,12 @@ public class GameManager : Manager
         }
 
         DataManager.Instance.SetPutMineCount(mines.Count, position, rotation);
+    }
+
+
+    public void ShowRewardedAdv()
+    {
+        ShowRewardedAdvExtern();
     }
 
     public void RemoveMine(Mine mine)
@@ -224,6 +238,15 @@ public class GameManager : Manager
         LevelManager.Instance.SetNextLevelIndex(LevelManager.Instance.GetCurrentLevelIndex() + 1);
     }
 
+
+    public void SpawnVilleger() {
+        Villeger villeger = Instantiate(currentLevel.villegerPrefab, LevelManager.Instance.GetRandomPositionForVilleger().position, Quaternion.identity, villegerParent);
+        villegers.Add(villeger);
+        villeger.Init();
+        Debug.Log("Spawn Villeger");
+
+        EventManager.Instance.OnStart();
+    }
     public void SpawnSavedHealthObjectInLevel()
     {
         currentLevel = LevelManager.Instance.GetCurrentLevel();
@@ -321,6 +344,13 @@ public class GameManager : Manager
         }
         else if(enemies.Count == 0)
         {
+#if !UNITY_WEBGL
+            if (currentLevel.ShowADV)
+            {
+                ShowFullScreenAdv();
+                StopGame();
+            }
+#endif
             EventManager.Instance.OnEndWave(currentLevel.timeToNextWave);
         }
 

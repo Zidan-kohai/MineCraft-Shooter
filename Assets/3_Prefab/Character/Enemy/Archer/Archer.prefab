@@ -167,8 +167,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47a8b110bd8963046bc8e2a4c0f3f667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 55
-  maxHealth: 55
+  health: 50
+  maxHealth: 50
   agent: {fileID: 1483141816335322367}
   target: {fileID: 0}
   distanceToTarget: 0
@@ -176,7 +176,7 @@ MonoBehaviour:
   distanceToAttack: 15
   attackDelay: 3
   lastedTimeFromLastAttack: 0
-  cost: 5
+  cost: 7
   audioSource: {fileID: 1361938290160154107}
   roarSound: {fileID: 8300000, guid: ade44d5fb1689ce4281dff1e9133d0ef, type: 3}
   diethSound: {fileID: 8300000, guid: 46bc29ff35c21ea4ea6d39dca45ff159, type: 3}

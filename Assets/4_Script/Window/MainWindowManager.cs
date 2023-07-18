@@ -54,7 +54,6 @@ public class MainWindowManager : Window
         EventManager.Instance.SubscribeOnEndWave(EndWave);
         EventManager.Instance.SubscribeOnUseBlowUp(OnUseBlowUpThing);
         EventManager.Instance.SubscribeOnStart(StartGame);
-
     }
 
 
@@ -81,6 +80,13 @@ public class MainWindowManager : Window
     {
         LoseWindow.SetActive(true);
         MainGameWindow.SetActive(false);
+    }
+
+
+    public void OnSawRewardedAdv()
+    {
+        LoseWindow.SetActive(false);
+        MainGameWindow.SetActive(true);
     }
 
     private void SetMoney(int money)

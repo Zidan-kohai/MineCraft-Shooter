@@ -20,7 +20,7 @@ public class PlayerInteraction : PlayerData
 
 
     RaycastHit hit;
-
+    private bool isThrowGrenade;
     public override void Init()
     {
         CheckInteractibleObject();
@@ -60,8 +60,9 @@ public class PlayerInteraction : PlayerData
 
         if (Input.GetKeyDown(KeyCode.G))
         {
-            if(granadeCount > 0)
+            if(granadeCount > 0 && !isThrowGrenade)
             {
+                isThrowGrenade = true;
                 animator.SetTrigger("ThrowGranade");
             }
         }
@@ -84,6 +85,7 @@ public class PlayerInteraction : PlayerData
     }
     private void spawnGranade()
     {
+        isThrowGrenade = false;
         Granade currentGrande = Instantiate(granade, granadeThrowPosition.transform.position + -hand.transform.forward, Quaternion.identity);
         currentGrande.Init(-granadeThrowPosition.transform.forward);
         granadeCount--;
@@ -147,6 +149,7 @@ public class PlayerInteraction : PlayerData
     {
         if (Physics.Raycast(originPosition.position, originPosition.TransformDirection(direction), out hit, length))
         {
+            
             if (hit.transform.TryGetComponent(out Interactable interactable))
             {
                 EventManager.Instance.OnPlayerInteraction(interactable);
