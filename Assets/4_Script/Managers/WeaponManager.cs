@@ -118,7 +118,7 @@ public class WeaponManager : Manager
         DataManager.Instance.SetWeapons(weapons);
 
         DOTween.Sequence()
-            .AppendInterval(1).OnStepComplete(() =>
+            .AppendInterval(2).OnStepComplete(() =>
             {
                 SaveWeaponDate();
             }).SetLink(gameObject);

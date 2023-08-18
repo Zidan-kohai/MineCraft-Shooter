@@ -38,7 +38,7 @@ public class Villeger : HealthObject
             animator.SetTrigger("Walk");
         }
     }
-
+    
     private void Roar()
     {
         audioSource.clip = roarSound;

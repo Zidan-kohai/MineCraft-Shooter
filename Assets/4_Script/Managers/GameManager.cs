@@ -375,7 +375,7 @@ public class GameManager : Manager
 
         DataManager.Instance.SetPlayerTransform(player.transform.position, player.transform.rotation);
 
-        DOTween.Sequence().AppendInterval(1).OnComplete(() =>
+        DOTween.Sequence().AppendInterval(2).OnComplete(() =>
         {
             SaveHealtObject();
         });

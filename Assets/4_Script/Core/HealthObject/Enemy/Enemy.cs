@@ -40,7 +40,7 @@ public class Enemy : HealthObject
     public override void EveryFrame()
     {
         DOTween.Sequence()
-            .AppendInterval(0.4f).OnComplete(() =>
+            .AppendInterval(0.3f).OnComplete(() =>
             {
                 Walk();
             });
