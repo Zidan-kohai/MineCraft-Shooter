@@ -27,7 +27,7 @@ public class LevelManager : Manager
         InitData();
     }
 
-    private void InitData()
+    public void InitData()
     {
         nextLevel = DataManager.Instance.GetCurrentLevel();
     }

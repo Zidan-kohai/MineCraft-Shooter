@@ -136,8 +136,9 @@ public class PlayerInteraction : PlayerData
         }
     }
     
-    private void DropWeapon()
+    public void DropWeapon()
     {
+        if (weapon == null) return;
         weapon.RemoveFromPlayerHand();
         weapon = null;
 

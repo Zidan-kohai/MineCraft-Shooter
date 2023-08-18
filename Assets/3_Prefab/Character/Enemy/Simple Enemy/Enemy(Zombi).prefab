@@ -641,8 +641,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e66ddb22f58b404887857d83101a3db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 60
-  maxHealth: 60
+  health: 45
+  maxHealth: 45
   agent: {fileID: 6865219202673264042}
   target: {fileID: 0}
   distanceToTarget: 0

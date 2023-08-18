@@ -6,6 +6,7 @@ using UnityEngine;
 [Serializable]
 public class Data
 {
+
     public int CurrentLevel;
     public int Coin;
     public Langauge langauge;

@@ -2,7 +2,6 @@ using DG.Tweening;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameManager : Manager
 {
@@ -50,9 +49,11 @@ public class GameManager : Manager
         PlayerInit();
 
 
+        
         EventManager.Instance.SubscribeOnDeath(RemoveHealthObjectFromList);
         EventManager.Instance.SubscribeOnSetMoney(SetMoney);
         EventManager.Instance.SubscribeOnNewWave(NewWave);
+
     }
 
     public override void AfterInit()
@@ -84,6 +85,8 @@ public class GameManager : Manager
 
 
         SaveHealtObject();
+
+        StopGame();
 
         EventManager.Instance.OnStart();
     }
@@ -344,11 +347,10 @@ public class GameManager : Manager
         }
         else if(enemies.Count == 0)
         {
-#if !UNITY_WEBGL
+#if UNITY_WEBGL && !UNITY_EDITOR
             if (currentLevel.ShowADV)
             {
-                ShowFullScreenAdv();
-                StopGame();
+                EventManager.Instance.OnShowADV();
             }
 #endif
             EventManager.Instance.OnEndWave(currentLevel.timeToNextWave);
@@ -356,6 +358,12 @@ public class GameManager : Manager
 
     }
 
+
+    public void ShowADV()
+    {
+        ShowFullScreenAdvExtern();
+        StopGame();
+    }
     private void SaveHealtObject()
     {
         List<HealthObject> healthObjects = new List<HealthObject>();
@@ -416,8 +424,42 @@ public class GameManager : Manager
 
     public void Restart()
     {
+        DOTween.KillAll();
+
+        foreach (var item in mines)
+        {
+            Destroy(item.gameObject);
+        }
+        foreach(var enemy in enemies)
+        {
+            Destroy(enemy.gameObject);
+        }
+        foreach(var vic in villegers)
+        {
+            Destroy(vic.gameObject);
+        }
+
+        mines.Clear();
+        villegers.Clear();
+        enemies.Clear();
+
         DataManager.Instance.ResetSave();
-        SceneManager.LoadScene(0);
+        LevelManager.Instance.InitData();
+        SpawnHealthObjectInLevel();
+
+        player.DropWeapon();
+        Destroy(player.gameObject);
+        PlayerInit();
+
+
+
+        EventManager.Instance.OnSetMoney(30);
+        player.SetBlowUp(7, 5);
+        WeaponManager.Instance.WeaponRestart();
+        EventManager.Instance.OnStart();
+
+        SaveHealtObject();
+        WeaponManager.Instance.SaveWeaponDate();
     }
 
     public override void Destroy()

@@ -1,6 +1,7 @@
 ﻿using DG.Tweening;
 using System;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -37,7 +38,6 @@ public class WeaponManager : Manager
         }
         Instance = this;
 
-
         if (DataManager.Instance.GetHealthObjectCount() > 0)
         {
             spawnSavedWeapon();
@@ -48,6 +48,7 @@ public class WeaponManager : Manager
         }
 
         SaveWeaponDate();
+
     }
 
     private void spawnSavedWeapon()
@@ -78,6 +79,7 @@ public class WeaponManager : Manager
 
     private void SpawnWeapon()
     {
+
         gunPrefab = Instantiate(gunPrefab, gunDefaultPosition, Quaternion.Euler(gunDefaultRotation));
         mkPrefab = Instantiate(mkPrefab, mkDefaultPosition, Quaternion.Euler(mkDefaultRotation));
         ShotgunPrefab = Instantiate(ShotgunPrefab, ShotgunDefaultPosition, Quaternion.Euler(ShotgunDefaultRotation));
@@ -87,7 +89,26 @@ public class WeaponManager : Manager
         ShotgunPrefab.ChangePatron(35, 2);
     }
 
-    private void SaveWeaponDate()
+    public void WeaponRestart()
+    {
+        gunPrefab.transform.position = gunDefaultPosition;
+        gunPrefab.transform.rotation = Quaternion.Euler(gunDefaultRotation);
+        gunPrefab.SetIsBuyed(false);
+
+        mkPrefab.transform.position = mkDefaultPosition;
+        mkPrefab.transform.rotation = Quaternion.Euler(mkDefaultRotation);
+        mkPrefab.SetIsBuyed(false);
+
+        ShotgunPrefab.transform.position = ShotgunDefaultPosition;
+        ShotgunPrefab.transform.rotation = Quaternion.Euler(ShotgunDefaultRotation);
+        ShotgunPrefab.SetIsBuyed(false);
+
+        gunPrefab.ChangePatron(25, 6);
+        mkPrefab.ChangePatron(120, 25);
+        ShotgunPrefab.ChangePatron(35, 2);
+    }
+
+    public void SaveWeaponDate()
     {
         List<Weapon> weapons = new List<Weapon>();
         weapons.Add(gunPrefab);

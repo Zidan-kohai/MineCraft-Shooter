@@ -312,7 +312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15ac3421f2cbeba46aed6c1922a1634e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: 15
+  cost: 8
   adding: 1
   type: 1
   ruText: {fileID: 1452203892}

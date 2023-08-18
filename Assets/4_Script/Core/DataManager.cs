@@ -50,10 +50,10 @@ public class DataManager : Manager
     public void SetHealtObjects(List<HealthObject> healthObjects)
     {
         int VillegerCount = 0, SimpleEnemyCount = 0, ArcherEnemyCount = 0, CreeperEnemyCount = 0;
-        data.VillegerPositions.Clear();
-        data.SimpleEnemyPositions.Clear();
-        data.ArcherEnemyPositions.Clear();
-        data.CreeperEnemyPositions.Clear();
+        data.VillegerPositions = new List<Vector3Int>();
+        data.SimpleEnemyPositions = new List<Vector3Int>();
+        data.ArcherEnemyPositions = new List<Vector3Int>();
+        data.CreeperEnemyPositions = new List<Vector3Int>();
 
         foreach (HealthObject healthObject in healthObjects)
         {
@@ -310,8 +310,8 @@ public class DataManager : Manager
 
     public void SetPutMineCount(int count, List<Vector3> position, List<Quaternion> Rotation)
     {
-        data.MinesPosition.Clear();
-        data.MinesRotation.Clear();
+        data.MinesPosition = new List<Vector3>();
+        data.MinesRotation = new List<Quaternion>();
 
         data.PutMineCount = count;
         data.MinesPosition = position;

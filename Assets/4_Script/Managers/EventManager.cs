@@ -24,6 +24,7 @@ public class EventManager : Manager
     private Action NewWave;
     private Action<int> EndWave;
     private Action<int, int> UseBlowUp;
+    private Action ShowADV;
 
     #region Start
     public void SubscribeOnStart(Action sender)
@@ -268,6 +269,31 @@ public class EventManager : Manager
         UseBlowUp?.Invoke(granadeCount, mineCount);
     }
     #endregion
+
+    #region ShowADV
+    public void SubscribeOnShowADV(Action sender)
+    {
+        if (ShowADV == null)
+        {
+            ShowADV = sender;
+        }
+        else if (!ShowADV.GetInvocationList().Contains(sender))
+        {
+            ShowADV += sender;
+        }
+    }
+
+    public void UnsubscribeShowADV(Action sender)
+    {
+        ShowADV -= sender;
+    }
+
+    public void OnShowADV()
+    {
+        ShowADV?.Invoke();
+    }
+    #endregion
+
     public override void Destroy()
     {
         Instance = null;

@@ -26,6 +26,8 @@ public class MainWindowManager : Window
     [SerializeField] private GameObject buyUI;
     [SerializeField] private TMP_Text cost;
     [SerializeField] private TMP_Text timeToNextWave;
+    [SerializeField] private TMP_Text TextShowADV;
+    [SerializeField] private TMP_Text TimeTextShowADV;
 
     [Header("Health Objects")]
     [SerializeField] private TMP_Text VillegerCount;
@@ -54,6 +56,7 @@ public class MainWindowManager : Window
         EventManager.Instance.SubscribeOnEndWave(EndWave);
         EventManager.Instance.SubscribeOnUseBlowUp(OnUseBlowUpThing);
         EventManager.Instance.SubscribeOnStart(StartGame);
+        EventManager.Instance.SubscribeOnShowADV(OnShowADV);
     }
 
 
@@ -70,6 +73,7 @@ public class MainWindowManager : Window
             {
                 SaveVillegerText.gameObject.SetActive(false);
             }).SetLink(gameObject);
+
     }
     public void PauseGame()
     {
@@ -162,6 +166,33 @@ public class MainWindowManager : Window
         }
     }
 
+    [ContextMenu("OnShowADV")]
+    private void OnShowADV()
+    {
+        TextShowADV.gameObject.SetActive(true);
+        TimeTextShowADV.gameObject.SetActive(true);
+        TimeTextShowADV.text = "5";
+
+
+        Sequence sequence = DOTween.Sequence();
+        sequence.AppendInterval(1).OnStepComplete(() =>
+        {
+            int newTime = (Convert.ToInt32(this.TimeTextShowADV.text) - 1);
+            this.TimeTextShowADV.text = newTime.ToString();
+
+            if (newTime <= 0)
+            {
+                GameManager.Instance.ShowADV();
+                sequence.Kill();
+            }
+        }).SetLoops(-1).SetLink(gameObject).OnKill(() =>
+        {
+            this.TimeTextShowADV.text = "0";
+
+            TextShowADV.gameObject.SetActive(false);
+            TimeTextShowADV.gameObject.SetActive(false);
+        });
+    }
     private void SetHealthObjectCount(HealthObject healthObject)
     {
         if(healthObject is Enemy)
@@ -195,7 +226,10 @@ public class MainWindowManager : Window
                     EventManager.Instance.OnNewWave();
                     sequence.Kill();
                 }
-            }).SetLoops(-1).SetLink(gameObject);
+            }).SetLoops(-1).SetLink(gameObject).OnKill(() =>
+            {
+                this.timeToNextWave.text = "0";
+            });
     }
 
     public override void Destroy()
