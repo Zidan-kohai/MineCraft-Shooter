@@ -14,283 +14,284 @@ public class EventManager : Manager
 
         Instance = this;
     }
-    private Action Start;
-    private Action<int, int,int, Weapon> Shoot;
-    private Action<Interactable> PlayerInteraction;
-    private Action<HealthObject> Death;
-    private Action<int> SetMoney;
-    private Action StopGame;
-    private Action LoseGame;
-    private Action NewWave;
-    private Action<int> EndWave;
-    private Action<int, int> UseBlowUp;
-    private Action ShowADV;
+    private Action start;
+    private Action<int, int,int, Weapon> shoot;
+    private Action<Interactable> playerInteraction;
+    private Action<HealthObject> death;
+    private Action<int> setMoney;
+    private Action stopGame;
+    private Action loseGame;
+    private Action newWave;
+    private Action<int> endWave;
+    private Action<int, int> useBlowUp;
+    private Action showADV;
 
     #region Start
-    public void SubscribeOnStart(Action sender)
+    public void SubscribeOnStart(Action startAction)
     {
-        if (Start == null)
+        if (start == null)
         {
-            Start = sender;
+            start = startAction;
         }
-        else if (!Start.GetInvocationList().Contains(sender))
+        else if (!start.GetInvocationList().Contains(startAction))
         {
-            Start += sender;
+            start += startAction;
         }
     }
 
-    public void UnsubscribeOnStart(Action sender)
+    public void UnsubscribeOnStart(Action startAction)
     {
-        Start -= sender;
+        start -= startAction;
     }
 
     public void OnStart()
     {
-        Start?.Invoke();
+        start?.Invoke();
     }
     #endregion
 
     #region Shoot
-    public void SubscribeOnShoot(Action<int,int,int, Weapon> sender)
+    public void SubscribeOnShoot(Action<int,int,int, Weapon> shootAction)
     {
-        if(Shoot == null)
+        if(shoot == null)
         {
-            Shoot = sender;
-        }else if (!Shoot.GetInvocationList().Contains(sender))
+            shoot = shootAction;
+
+        }else if (!shoot.GetInvocationList().Contains(shootAction))
         {
-            Shoot += sender;
+            shoot += shootAction;
         }
     }
 
-    public void UnsubscribeOnShoot(Action<int,int,int, Weapon> sender)
+    public void UnsubscribeOnShoot(Action<int,int,int, Weapon> shootAction)
     {
-        Shoot -= sender;
+        shoot -= shootAction;
     }
 
     public void OnShoot(int currentPatronsInMagazine, int allPatrons, int maxPatronsInMagazine, Weapon weapon)
     {
-        Shoot?.Invoke(currentPatronsInMagazine, allPatrons, maxPatronsInMagazine, weapon);
+        shoot?.Invoke(currentPatronsInMagazine, allPatrons, maxPatronsInMagazine, weapon);
     }
 
     #endregion
 
     #region PlayerInteraction
-    public void SubscribePlayerInteraction(Action<Interactable> sender)
+    public void SubscribePlayerInteraction(Action<Interactable> playerInteractionAction)
     {
-        if (PlayerInteraction == null)
+        if (playerInteraction == null)
         {
-            PlayerInteraction = sender;
+            playerInteraction = playerInteractionAction;
         }
-        else if (!PlayerInteraction.GetInvocationList().Contains(sender))
+        else if (!playerInteraction.GetInvocationList().Contains(playerInteractionAction))
         {
-            PlayerInteraction += sender;
+            playerInteraction += playerInteractionAction;
         }
     }
 
-    public void UnsubscribePlayerInteraction(Action<Interactable> sender)
+    public void UnsubscribePlayerInteraction(Action<Interactable> playerInteractionAction)
     {
-        PlayerInteraction -= sender;
+        playerInteraction -= playerInteractionAction;
     }
 
     public void OnPlayerInteraction(Interactable interactable)
     {
-        PlayerInteraction?.Invoke(interactable);
+        playerInteraction?.Invoke(interactable);
     }
 
     #endregion
 
     #region Death
-    public void SubscribeOnDeath(Action<HealthObject> sender)
+    public void SubscribeOnDeath(Action<HealthObject> deathAction)
     {
-        if (Death == null)
+        if (death == null)
         {
-            Death = sender;
+            death = deathAction;
         }
-        else if (!Death.GetInvocationList().Contains(sender))
+        else if (!death.GetInvocationList().Contains(deathAction))
         {
-            Death += sender;
+            death += deathAction;
         }
     }
 
-    public void UnsubscribeOnDeath(Action<HealthObject> sender)
+    public void UnsubscribeOnDeath(Action<HealthObject> deathAction)
     {
-        Death -= sender;
+        death -= deathAction;
     }
 
     public void OnDeath(HealthObject obj)
     {
-        Death?.Invoke(obj);
+        death?.Invoke(obj);
     }
     #endregion
 
-    #region PauseGame
-
-    public void SubscribeOnStopGame(Action sender)
+    #region SetMoney
+    public void SubscribeOnSetMoney(Action<int> setMoneyAction)
     {
-        if (StopGame == null)
+        if (setMoney == null)
         {
-            StopGame = sender;
+            setMoney = setMoneyAction;
         }
-        else if (!StopGame.GetInvocationList().Contains(sender))
+        else if (!setMoney.GetInvocationList().Contains(setMoneyAction))
         {
-            StopGame += sender;
+            setMoney += setMoneyAction;
         }
     }
 
-    public void UnsubscribeOnStopGame(Action sender)
+    public void UnsubscribeOnSetMoney(Action<int> setMoneyAction)
     {
-        StopGame -= sender;
+        setMoney -= setMoneyAction;
+    }
+
+    public void OnSetMoney(int money)
+    {
+        setMoney?.Invoke(money);
+    }
+    #endregion
+
+    #region StopGame
+
+    public void SubscribeOnStopGame(Action stopGameAction)
+    {
+        if (stopGame == null)
+        {
+            stopGame = stopGameAction;
+        }
+        else if (!stopGame.GetInvocationList().Contains(stopGameAction))
+        {
+            stopGame += stopGameAction;
+        }
+    }
+
+    public void UnsubscribeOnStopGame(Action stopGameAction)
+    {
+        stopGame -= stopGameAction;
     }
 
     public void OnStopGame()
     {
-        StopGame?.Invoke();
+        stopGame?.Invoke();
     }
 
     #endregion
 
     #region LoseGame
-    public void SubscribeOnLoseGame(Action sender)
+    public void SubscribeOnLoseGame(Action loseGameAction)
     {
-        if (LoseGame == null)
+        if (loseGame == null)
         {
-            LoseGame = sender;
+            loseGame = loseGameAction;
         }
-        else if (!LoseGame.GetInvocationList().Contains(sender))
+        else if (!loseGame.GetInvocationList().Contains(loseGameAction))
         {
-            LoseGame += sender;
+            loseGame += loseGameAction;
         }
     }
 
-    public void UnsubscribeOnLoseGame(Action sender)
+    public void UnsubscribeOnLoseGame(Action loseGameAction)
     {
-        LoseGame -= sender;
+        loseGame -= loseGameAction;
     }
 
     public void OnLoseGame() 
     { 
-        LoseGame?.Invoke();
+        loseGame?.Invoke();
     }
 
-    #endregion
-
-    #region SetMoney
-    public void SubscribeOnSetMoney(Action<int> sender)
-    {
-        if (SetMoney == null)
-        {
-            SetMoney = sender;
-        }
-        else if (!SetMoney.GetInvocationList().Contains(sender))
-        {
-            SetMoney += sender;
-        }
-    }
-
-    public void UnsubscribeOnSetMoney(Action<int> sender)
-    {
-        SetMoney -= sender;
-    }
-
-    public void OnSetMoney(int money)
-    {
-        SetMoney?.Invoke(money);
-    }
     #endregion
 
     #region NewWave
-    public void SubscribeOnNewWave(Action sender)
+    public void SubscribeOnNewWave(Action newWaveAction)
     {
-        if (NewWave == null)
+        if (newWave == null)
         {
-            NewWave = sender;
+            newWave = newWaveAction;
         }
-        else if (!NewWave.GetInvocationList().Contains(sender))
+        else if (!newWave.GetInvocationList().Contains(newWaveAction))
         {
-            NewWave += sender;
+            newWave += newWaveAction;
         }
     }
 
-    public void UnsubscribeOnNewWave(Action sender)
+    public void UnsubscribeOnNewWave(Action newWaveAction)
     {
-        NewWave -= sender;
+        newWave -= newWaveAction;
     }
 
     public void OnNewWave()
     {
-        NewWave?.Invoke();
+        newWave?.Invoke();
     }
     #endregion
 
     #region EndWave
-    public void SubscribeOnEndWave(Action<int> sender)
+    public void SubscribeOnEndWave(Action<int> endWaveAction)
     {
-        if (EndWave == null)
+        if (endWave == null)
         {
-            EndWave = sender;
+            endWave = endWaveAction;
         }
-        else if (!EndWave.GetInvocationList().Contains(sender))
+        else if (!endWave.GetInvocationList().Contains(endWaveAction))
         {
-            EndWave += sender;
+            endWave += endWaveAction;
         }
     }
 
-    public void UnsubscribeOnEndWave(Action<int> sender)
+    public void UnsubscribeOnEndWave(Action<int> endWaveAction)
     {
-        EndWave -= sender;
+        endWave -= endWaveAction;
     }
 
     public void OnEndWave(int timeToNextWave)
     {
-        EndWave?.Invoke(timeToNextWave);
+        endWave?.Invoke(timeToNextWave);
     }
     #endregion
 
     #region UseBlowUp
-    public void SubscribeOnUseBlowUp(Action<int, int> sender)
+    public void SubscribeOnUseBlowUp(Action<int, int> useBlowUpAction)
     {
-        if (UseBlowUp == null)
+        if (useBlowUp == null)
         {
-            UseBlowUp = sender;
+            useBlowUp = useBlowUpAction;
         }
-        else if (!UseBlowUp.GetInvocationList().Contains(sender))
+        else if (!useBlowUp.GetInvocationList().Contains(useBlowUpAction))
         {
-            UseBlowUp += sender;
+            useBlowUp += useBlowUpAction;
         }
     }
 
-    public void UnsubscribeOnUseBlowUp(Action<int, int> sender)
+    public void UnsubscribeOnUseBlowUp(Action<int, int> useBlowUpAction)
     {
-        UseBlowUp -= sender;
+        useBlowUp -= useBlowUpAction;
     }
 
     public void OnUseBlowUp(int granadeCount, int mineCount)
     {
-        UseBlowUp?.Invoke(granadeCount, mineCount);
+        useBlowUp?.Invoke(granadeCount, mineCount);
     }
     #endregion
 
     #region ShowADV
-    public void SubscribeOnShowADV(Action sender)
+    public void SubscribeOnShowADV(Action showADVAction)
     {
-        if (ShowADV == null)
+        if (showADV == null)
         {
-            ShowADV = sender;
+            showADV = showADVAction;
         }
-        else if (!ShowADV.GetInvocationList().Contains(sender))
+        else if (!showADV.GetInvocationList().Contains(showADVAction))
         {
-            ShowADV += sender;
+            showADV += showADVAction;
         }
     }
 
-    public void UnsubscribeShowADV(Action sender)
+    public void UnsubscribeShowADV(Action showADVAction)
     {
-        ShowADV -= sender;
+        showADV -= showADVAction;
     }
 
     public void OnShowADV()
     {
-        ShowADV?.Invoke();
+        showADV?.Invoke();
     }
     #endregion
 
